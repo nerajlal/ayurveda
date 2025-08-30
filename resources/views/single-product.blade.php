@@ -1,110 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brahmi Hair Oil - Premium Ayurvedic Hair Care | AyurVeda Wellness</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'ayur-green': '#4a7c59',
-                        'ayur-gold': '#d4a574',
-                        'ayur-cream': '#f4f1e8',
-                        'ayur-brown': '#8b4513',
-                        'ayur-sage': '#87a96b',
-                    },
-                    fontFamily: {
-                        'serif': ['Georgia', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
-        
-        .font-playfair { font-family: 'Playfair Display', serif; }
-        .font-inter { font-family: 'Inter', sans-serif; }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #f4f1e8 0%, #e8e5d3 100%);
-        }
-        
-        .leaf-shadow {
-            box-shadow: 0 10px 25px rgba(74, 124, 89, 0.15);
-        }
-        
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .hover-lift:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(74, 124, 89, 0.2);
-        }
-        
-        .thumbnail {
-            transition: border-color 0.3s ease;
-        }
-        
-        .thumbnail.active {
-            border-color: #4a7c59;
-        }
-        
-        .zoom-container {
-            overflow: hidden;
-            cursor: zoom-in;
-        }
-        
-        .zoom-image {
-            transition: transform 0.3s ease;
-        }
-        
-        .zoom-container:hover .zoom-image {
-            transform: scale(1.2);
-        }
-        
-        .progress-bar {
-            background: linear-gradient(90deg, #4a7c59 var(--progress), #e5e7eb var(--progress));
-        }
-    </style>
-</head>
-<body class="font-inter bg-ayur-cream">
-    <!-- Header (Simplified for product page) -->
-    <header class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-3">
-                    <a href="#" class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-ayur-green rounded-full flex items-center justify-center">
-                            <span class="text-white font-bold">🌿</span>
-                        </div>
-                        <div>
-                            <h1 class="font-playfair text-xl font-bold text-ayur-green">AyurVeda</h1>
-                        </div>
-                    </a>
-                </div>
-                
-                <nav class="hidden md:flex space-x-6">
-                    <a href="#" class="text-ayur-green hover:text-ayur-gold transition duration-300">Home</a>
-                    <a href="#" class="text-ayur-green hover:text-ayur-gold transition duration-300">Products</a>
-                    <a href="#" class="text-ayur-green hover:text-ayur-gold transition duration-300">Contact</a>
-                </nav>
-                
-                <div class="flex items-center space-x-4">
-                    <button class="text-ayur-green hover:text-ayur-gold transition duration-300 relative">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5h15.5M7 13v8a2 2 0 002 2h6a2 2 0 002-2v-8"></path>
-                        </svg>
-                        <span class="absolute -top-2 -right-2 bg-ayur-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+@include('includes.header')
 
     <!-- Breadcrumb -->
     <div class="bg-white border-b">
@@ -592,7 +486,7 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="font-bold text-ayur-green">₹749</span>
-                        <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">Add</button>
+                        <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">View Product</button>
                     </div>
                 </div>
             </div>
@@ -609,7 +503,7 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="font-bold text-ayur-green">₹599</span>
-                        <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">Add</button>
+                        <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">View Product</button>
                     </div>
                 </div>
             </div>
@@ -626,7 +520,7 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="font-bold text-ayur-green">₹449</span>
-                        <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">Add</button>
+                        <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">View Product</button>
                     </div>
                 </div>
             </div>
@@ -643,7 +537,7 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="font-bold text-ayur-green">₹999</span>
-                        <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">Add</button>
+                        <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">View Product</button>
                     </div>
                 </div>
             </div>
@@ -651,45 +545,7 @@
     </section>
 
     <!-- Footer (Simplified) -->
-    <footer class="bg-ayur-green text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div>
-                    <h3 class="font-playfair text-lg font-bold mb-3">AyurVeda Wellness</h3>
-                    <p class="text-sm opacity-90">Your trusted partner in natural wellness.</p>
-                </div>
-                <div>
-                    <h4 class="font-medium mb-3">Customer Service</h4>
-                    <ul class="text-sm space-y-1 opacity-90">
-                        <li>Contact Us</li>
-                        <li>Shipping Info</li>
-                        <li>Returns</li>
-                        <li>FAQ</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-medium mb-3">Quick Links</h4>
-                    <ul class="text-sm space-y-1 opacity-90">
-                        <li>About Us</li>
-                        <li>Blog</li>
-                        <li>Consultation</li>
-                        <li>Testimonials</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-medium mb-3">Contact Info</h4>
-                    <div class="text-sm space-y-1 opacity-90">
-                        <p>📞 +91 9876543210</p>
-                        <p>✉️ support@ayurvedawellness.com</p>
-                        <p>🕒 Mon-Sat: 9AM-7PM</p>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-white border-opacity-20 mt-6 pt-6 text-center text-sm opacity-90">
-                © 2025 AyurVeda Wellness. All rights reserved.
-            </div>
-        </div>
-    </footer>
+    @include('includes.footer')
 
     <script>
         // Image gallery functionality
@@ -797,5 +653,3 @@
             });
         });
     </script>
-</body>
-</html>

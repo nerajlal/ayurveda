@@ -458,7 +458,7 @@
                                 ${product.originalPrice > product.price ? `<span class="text-gray-500 text-sm line-through">₹${product.originalPrice}</span>` : ''}
                             </div>
                             <button class="add-to-cart-btn bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300 ${!product.inStock ? 'opacity-50 cursor-not-allowed' : ''}" ${!product.inStock ? 'disabled' : ''}>
-                                ${product.inStock ? 'Add to Cart' : 'Out of Stock'}
+                                ${product.inStock ? 'View Product' : 'Out of Stock'}
                             </button>
                         </div>
                     </div>
@@ -514,7 +514,7 @@
                                     </svg>
                                 </button>
                                 <button class="add-to-cart-btn bg-ayur-green text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition duration-300 ${!product.inStock ? 'opacity-50 cursor-not-allowed' : ''}" ${!product.inStock ? 'disabled' : ''}>
-                                    ${product.inStock ? 'Add to Cart' : 'Out of Stock'}
+                                    ${product.inStock ? 'View Product' : 'Out of Stock'}
                                 </button>
                             </div>
                         </div>
@@ -687,10 +687,7 @@
                             
                             <div class="flex space-x-4">
                                 <button onclick="addToCart(${product.id})" class="flex-1 bg-ayur-green text-white py-3 px-6 rounded-lg hover:bg-opacity-90 transition duration-300 font-medium ${!product.inStock ? 'opacity-50 cursor-not-allowed' : ''}" ${!product.inStock ? 'disabled' : ''}>
-                                    ${product.inStock ? 'Add to Cart' : 'Out of Stock'}
-                                </button>
-                                <button class="border-2 border-ayur-green text-ayur-green py-3 px-6 rounded-lg hover:bg-ayur-green hover:text-white transition duration-300 font-medium">
-                                    Add to Wishlist
+                                    ${product.inStock ? 'View Product' : 'Out of Stock'}
                                 </button>
                             </div>
                             

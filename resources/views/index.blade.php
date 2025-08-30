@@ -83,7 +83,7 @@
                         <p class="text-ayur-brown text-sm mb-4">Nourishing hair oil with Brahmi and Amla for healthy, lustrous hair.</p>
                         <div class="flex justify-between items-center">
                             <span class="font-bold text-ayur-green text-lg">₹899</span>
-                            <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">Add to Cart</button>
+                            <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">View Product</button>
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                         <p class="text-ayur-brown text-sm mb-4">Powerful blend of Tulsi, Ginger, and Turmeric for natural immunity.</p>
                         <div class="flex justify-between items-center">
                             <span class="font-bold text-ayur-green text-lg">₹549</span>
-                            <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">Add to Cart</button>
+                            <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">View Product</button>
                         </div>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
                         <p class="text-ayur-brown text-sm mb-4">Traditional digestive support formula with three powerful fruits.</p>
                         <div class="flex justify-between items-center">
                             <span class="font-bold text-ayur-green text-lg">₹399</span>
-                            <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">Add to Cart</button>
+                            <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">View Product</button>
                         </div>
                     </div>
                 </div>
@@ -125,16 +125,18 @@
                         <p class="text-ayur-brown text-sm mb-4">Natural face pack with Neem and Turmeric for clear, glowing skin.</p>
                         <div class="flex justify-between items-center">
                             <span class="font-bold text-ayur-green text-lg">₹299</span>
-                            <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">Add to Cart</button>
+                            <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">View Product</button>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="text-center mt-12">
-                <button class="bg-ayur-green text-white px-8 py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-medium shadow-lg">
-                    View All Products
-                </button>
+                <a href="/products">
+                    <button class="bg-ayur-green text-white px-8 py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-medium shadow-lg">
+                        View All Products
+                    </button>
+                </a>
             </div>
         </div>
     </section>
