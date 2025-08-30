@@ -49,20 +49,35 @@
                 <div>
                     <h4 class="font-semibold text-lg mb-4">Contact Info</h4>
                     <div class="space-y-3">
+                        <!-- Address -->
                         <div class="flex items-center space-x-3">
-                            <span class="text-lg">📍</span>
+                            <div class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
                             <p class="opacity-90">123 Wellness Street, Ayurveda City, Kerala 680001</p>
                         </div>
+
+                        <!-- Phone -->
                         <div class="flex items-center space-x-3">
-                            <span class="text-lg">📞</span>
+                            <div class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
                             <p class="opacity-90">+91 9876543210</p>
                         </div>
+
+                        <!-- Email -->
                         <div class="flex items-center space-x-3">
-                            <span class="text-lg">✉️</span>
+                            <div class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-envelope"></i>
+                            </div>
                             <p class="opacity-90">info@ayurvedawellness.com</p>
                         </div>
+
+                        <!-- Working Hours -->
                         <div class="flex items-center space-x-3">
-                            <span class="text-lg">🕒</span>
+                            <div class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-clock"></i>
+                            </div>
                             <p class="opacity-90">Mon-Sat: 9AM-7PM</p>
                         </div>
                     </div>
@@ -72,9 +87,9 @@
             <div class="border-t border-white border-opacity-20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
                 <p class="opacity-90 mb-4 md:mb-0">© 2025 AyurVeda Wellness Store. All rights reserved.</p>
                 <div class="flex space-x-6">
-                    <a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Privacy Policy</a>
-                    <a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Terms of Service</a>
-                    <a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Shipping Info</a>
+                    <a href="/privacy" class="opacity-90 hover:opacity-100 transition duration-300">Privacy Policy</a>
+                    <a href="/terms" class="opacity-90 hover:opacity-100 transition duration-300">Terms of Service</a>
+                    <a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Refund Policy</a>
                 </div>
             </div>
         </div>

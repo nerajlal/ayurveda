@@ -6,73 +6,15 @@
             <nav class="text-sm">
                 <a href="/" class="text-ayur-green hover:text-ayur-gold">Home</a>
                 <span class="mx-2 text-ayur-brown">></span>
-                <span class="text-ayur-brown">All Products</span>
+                <span class="text-ayur-brown">Wishlist</span>
             </nav>
-        </div>
-    </div>
-
-    <!-- Page Title -->
-    <div class="bg-white">
-        <div class="container mx-auto px-4 py-8">
-            <h1 class="font-playfair text-4xl font-bold text-ayur-green mb-2">All Products</h1>
-            <p class="text-lg text-ayur-brown">Discover our complete collection of premium Ayurvedic products</p>
-        </div>
-    </div>
-
-    <!-- Filter Section -->
-    <div class="bg-white border-b">
-        <div class="container mx-auto px-4 py-6">
-            <div class="flex flex-wrap gap-6 items-center">
-                <!-- Category Filter -->
-                <div class="flex flex-wrap gap-2">
-                    <span class="text-ayur-green font-medium mr-2">Categories:</span>
-                    <button class="filter-btn category-filter bg-ayur-green text-white px-4 py-2 rounded-full text-sm font-medium transition duration-300" data-category="all">All</button>
-                    <button class="filter-btn category-filter bg-gray-200 text-ayur-green px-4 py-2 rounded-full text-sm font-medium hover:bg-ayur-green hover:text-white transition duration-300" data-category="oils">Herbal Oils</button>
-                    <button class="filter-btn category-filter bg-gray-200 text-ayur-green px-4 py-2 rounded-full text-sm font-medium hover:bg-ayur-green hover:text-white transition duration-300" data-category="skincare">Skincare</button>
-                    <button class="filter-btn category-filter bg-gray-200 text-ayur-green px-4 py-2 rounded-full text-sm font-medium hover:bg-ayur-green hover:text-white transition duration-300" data-category="teas">Herbal Tea</button>
-                    <button class="filter-btn category-filter bg-gray-200 text-ayur-green px-4 py-2 rounded-full text-sm font-medium hover:bg-ayur-green hover:text-white transition duration-300" data-category="powders">Churna & Powders</button>
-                    
-                    <button class="filter-btn category-filter bg-gray-200 text-ayur-green px-4 py-2 rounded-full text-sm font-medium hover:bg-ayur-green hover:text-white transition duration-300" data-category="supplements">Supplements</button>
-                </div>
-            </div>
-            
-            <!-- Advanced Filters -->
-            <div class="mt-6 border-t pt-6">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <!-- Price Range -->
-                    <div>
-                        <label class="block text-ayur-green font-medium mb-3">Price Range</label>
-                        <div class="space-y-3">
-                            <div class="flex justify-between text-sm text-ayur-brown">
-                                <span>₹<span id="min-price">0</span></span>
-                                <span>₹<span id="max-price">2000</span></span>
-                            </div>
-                            <input type="range" id="price-slider" class="price-slider w-full" min="0" max="2000" value="2000">
-                        </div>
-                    </div>
-                    
-                    <!-- Sort By -->
-                    <div>
-                        <label class="block text-ayur-green font-medium mb-3">Sort By</label>
-                        <select id="sort-select" class="w-full p-3 border border-ayur-sage rounded-lg focus:outline-none focus:border-ayur-green">
-                            <option value="name">Product Name</option>
-                            <option value="price-low">Price: Low to High</option>
-                            <option value="price-high">Price: High to Low</option>
-                            <option value="rating">Customer Rating</option>
-                            <option value="newest">Newest First</option>
-                        </select>
-                    </div>
-                    
-                    
-                </div>
-            </div>
         </div>
     </div>
 
     <!-- Results Info -->
     <div class="container mx-auto px-4 py-4">
         <div class="flex justify-between items-center">
-            <p class="text-ayur-brown">Showing <span id="results-count">24</span> of <span id="total-count">24</span> products</p>
+            <!-- <p class="text-ayur-brown">Showing <span id="results-count">24</span> of <span id="total-count">24</span> products</p> -->
         </div>
     </div>
 

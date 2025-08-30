@@ -67,7 +67,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="text-center p-8 bg-white rounded-2xl hover-lift leaf-shadow">
                     <div class="w-16 h-16 bg-ayur-green rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-2xl">🌿</span>
+                        <span class="text-2xl text-white"><i class="fas fa-leaf text-2xl"></i></span>
                     </div>
                     <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-4">Authenticity</h3>
                     <p class="text-ayur-brown text-sm">Every formula is based on classical Ayurvedic texts and time-tested traditions.</p>
@@ -75,7 +75,7 @@
 
                 <div class="text-center p-8 bg-white rounded-2xl hover-lift leaf-shadow">
                     <div class="w-16 h-16 bg-ayur-sage rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-2xl">🔬</span>
+                        <span class="text-2xl"><i class="fas fa-microscope text-2xl text-white"></i></span>
                     </div>
                     <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-4">Quality</h3>
                     <p class="text-ayur-brown text-sm">Rigorous testing and quality control ensure the highest standards in every product.</p>
@@ -83,7 +83,7 @@
 
                 <div class="text-center p-8 bg-white rounded-2xl hover-lift leaf-shadow">
                     <div class="w-16 h-16 bg-ayur-gold rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-2xl">🤝</span>
+                        <span class="text-2xl"><i class="fa-solid fa-handshake text-2xl text-white"></i></span>
                     </div>
                     <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-4">Trust</h3>
                     <p class="text-ayur-brown text-sm">Transparent practices and honest communication build lasting relationships with our customers.</p>
@@ -91,7 +91,7 @@
 
                 <div class="text-center p-8 bg-white rounded-2xl hover-lift leaf-shadow">
                     <div class="w-16 h-16 bg-ayur-brown rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-2xl text-white">🌍</span>
+                        <span class="text-2xl text-white"><i class="fa-solid fa-globe text-2xl text-white"></i></span>
                     </div>
                     <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-4">Sustainability</h3>
                     <p class="text-ayur-brown text-sm">We protect the environment through ethical sourcing and eco-friendly practices.</p>
@@ -148,10 +148,10 @@
                 <div class="text-center">
                     <div class="bg-white p-8 rounded-2xl hover-lift leaf-shadow mb-4">
                         <div class="w-16 h-16 bg-ayur-green rounded-full flex items-center justify-center mx-auto mb-6">
-                            <span class="text-2xl">🌱</span>
+                            <span class="text-2xl text-white"><i class="fas fa-seedling text-2xl"></i></span>
                         </div>
                         <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-4">Sourcing</h3>
-                        <p class="text-ayur-brown text-sm">Direct partnerships with certified organic farms and traditional suppliers across India.</p>
+                        <p class="text-ayur-brown text-sm">Direct partnerships with certified farms and traditional suppliers across India.</p>
                     </div>
                     <div class="text-3xl font-bold text-ayur-green">01</div>
                 </div>
@@ -159,7 +159,7 @@
                 <div class="text-center">
                     <div class="bg-white p-8 rounded-2xl hover-lift leaf-shadow mb-4">
                         <div class="w-16 h-16 bg-ayur-sage rounded-full flex items-center justify-center mx-auto mb-6">
-                            <span class="text-2xl">⚗️</span>
+                            <span class="text-2xl text-white"><i class="fas fa-flask text-2xl"></i></span>
                         </div>
                         <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-4">Processing</h3>
                         <p class="text-ayur-brown text-sm">Traditional methods combined with modern hygiene standards in our certified facilities.</p>
@@ -170,7 +170,7 @@
                 <div class="text-center">
                     <div class="bg-white p-8 rounded-2xl hover-lift leaf-shadow mb-4">
                         <div class="w-16 h-16 bg-ayur-gold rounded-full flex items-center justify-center mx-auto mb-6">
-                            <span class="text-2xl">🔍</span>
+                            <span class="text-2xl text-white"><i class="fas fa-search text-2xl"></i></span>
                         </div>
                         <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-4">Testing</h3>
                         <p class="text-ayur-brown text-sm">Comprehensive quality checks including purity, potency, and safety verification.</p>
@@ -181,7 +181,7 @@
                 <div class="text-center">
                     <div class="bg-white p-8 rounded-2xl hover-lift leaf-shadow mb-4">
                         <div class="w-16 h-16 bg-ayur-brown rounded-full flex items-center justify-center mx-auto mb-6">
-                            <span class="text-2xl text-white">📦</span>
+                            <span class="text-2xl text-white"><i class="fas fa-box-open text-2xl"></i></span>
                         </div>
                         <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-4">Delivery</h3>
                         <p class="text-ayur-brown text-sm">Eco-friendly packaging and careful handling to preserve product integrity.</p>

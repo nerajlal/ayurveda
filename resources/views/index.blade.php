@@ -42,21 +42,21 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="text-center p-8 rounded-xl bg-ayur-cream hover-lift">
                     <div class="w-16 h-16 bg-ayur-green rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-2xl">🌱</span>
+                        <i class="fas fa-seedling text-2xl text-white"></i>
                     </div>
                     <h3 class="font-playfair text-2xl font-semibold text-ayur-green mb-4">100% Natural</h3>
                     <p class="text-ayur-brown">All our products are made from pure, organic ingredients sourced directly from certified organic farms.</p>
                 </div>
                 <div class="text-center p-8 rounded-xl bg-ayur-cream hover-lift">
                     <div class="w-16 h-16 bg-ayur-green rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-2xl">⚖️</span>
+                        <i class="fas fa-balance-scale text-2xl text-white"></i>
                     </div>
                     <h3 class="font-playfair text-2xl font-semibold text-ayur-green mb-4">Traditional Methods</h3>
                     <p class="text-ayur-brown">Crafted using time-tested Ayurvedic formulations and traditional preparation methods.</p>
                 </div>
                 <div class="text-center p-8 rounded-xl bg-ayur-cream hover-lift">
                     <div class="w-16 h-16 bg-ayur-green rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-2xl">👨‍⚕️</span>
+                        <i class="fas fa-user-doctor text-2xl text-white"></i>
                     </div>
                     <h3 class="font-playfair text-2xl font-semibold text-ayur-green mb-4">Expert Guidance</h3>
                     <p class="text-ayur-brown">Get personalized recommendations from certified Ayurvedic practitioners and wellness experts.</p>
@@ -178,10 +178,11 @@
                             <div class="text-ayur-brown">Years Experience</div>
                         </div>
                     </div>
-                    
-                    <button class="bg-ayur-green text-white px-8 py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-medium shadow-lg">
-                        Learn More About Us
-                    </button>
+                    <a href="/about">
+                        <button class="bg-ayur-green text-white px-8 py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-medium shadow-lg">
+                            Learn More About Us
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -198,21 +199,21 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <div class="text-center">
                     <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-2xl">📋</span>
+                        <i class="fas fa-clipboard-list text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Assessment</h3>
                     <p class="opacity-90">Complete health and lifestyle assessment</p>
                 </div>
                 <div class="text-center">
                     <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-2xl">💬</span>
+                        <i class="fas fa-comment-dots text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Consultation</h3>
                     <p class="opacity-90">One-on-one session with expert practitioner</p>
                 </div>
                 <div class="text-center">
                     <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-2xl">📝</span>
+                        <i class="fas fa-pencil-alt text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Recommendations</h3>
                     <p class="opacity-90">Personalized wellness plan and products</p>

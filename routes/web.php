@@ -31,6 +31,16 @@ Route::get('/contact', function () {
 Route::get('/cart', function () {
     return view('cart');
 });
+Route::get('/wishlist', function () {
+    return view('wishlist');
+});
+
+Route::get('/privacy', function () {
+    return view('privacy-policy');
+});
+Route::get('/terms', function () {
+    return view('terms');
+});
 
 Route::get('/admin', function () {
     return view('admin.index');

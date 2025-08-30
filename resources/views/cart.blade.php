@@ -214,73 +214,86 @@
     </section>
 
     <!-- Recommended Products -->
-    <section class="py-16 gradient-bg">
+    <!-- Products Section -->
+    <section id="products" class="py-16 gradient-bg">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="font-playfair text-3xl font-bold text-ayur-green mb-4">You Might Also Like</h2>
-                <p class="text-ayur-brown">Complete your wellness routine with these complementary products</p>
+                <h2 class="font-playfair text-4xl font-bold text-ayur-green mb-4">You might also like</h2>
+                <p class="text-xl text-ayur-brown max-w-2xl mx-auto">Complete your wellness routine with these complementary products</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white rounded-xl overflow-hidden leaf-shadow hover-lift">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%238b4513'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='12' fill='white'%3ETriphala Churna%3C/text%3E%3C/svg%3E" 
-                         alt="Triphala Churna" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="font-playfair text-lg font-semibold text-ayur-green mb-2">Triphala Churna</h3>
-                        <p class="text-ayur-brown text-sm mb-3">Traditional digestive support formula</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23d4a574'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EHerbal Oil%3C/text%3E%3C/svg%3E" 
+                         alt="Herbal Oil" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Brahmi Hair Oil</h3>
+                        <p class="text-ayur-brown text-sm mb-4">Nourishing hair oil with Brahmi and Amla for healthy, lustrous hair.</p>
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-ayur-green">₹399</span>
-                            <button class="bg-ayur-green text-white px-3 py-1 rounded hover:bg-opacity-90 transition duration-300 text-sm">
-                                View Product
-                            </button>
+                            <span class="font-bold text-ayur-green text-lg">₹899</span>
+                            <a href="/product">
+                                <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">View Product</button>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl overflow-hidden leaf-shadow hover-lift">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23d4a574'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='12' fill='white'%3EAshwagandha%3C/text%3E%3C/svg%3E" 
-                         alt="Ashwagandha" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="font-playfair text-lg font-semibold text-ayur-green mb-2">Ashwagandha Capsules</h3>
-                        <p class="text-ayur-brown text-sm mb-3">Stress relief and energy boost</p>
+                <!-- Product 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%2387a96b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EHerbal Tea%3C/text%3E%3C/svg%3E" 
+                         alt="Herbal Tea" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Immunity Tea Blend</h3>
+                        <p class="text-ayur-brown text-sm mb-4">Powerful blend of Tulsi, Ginger, and Turmeric for natural immunity.</p>
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-ayur-green">₹699</span>
-                            <button class="bg-ayur-green text-white px-3 py-1 rounded hover:bg-opacity-90 transition duration-300 text-sm">
-                                View Product
-                            </button>
+                            <span class="font-bold text-ayur-green text-lg">₹549</span>
+                            <a href="/product">
+                                <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">View Product</button>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl overflow-hidden leaf-shadow hover-lift">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%2387a96b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='12' fill='white'%3EAloe Vera Gel%3C/text%3E%3C/svg%3E" 
-                         alt="Aloe Vera Gel" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="font-playfair text-lg font-semibold text-ayur-green mb-2">Pure Aloe Vera Gel</h3>
-                        <p class="text-ayur-brown text-sm mb-3">Soothing skin care essential</p>
+                <!-- Product 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%238b4513'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EAyurvedic Powder%3C/text%3E%3C/svg%3E" 
+                         alt="Ayurvedic Powder" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Triphala Churna</h3>
+                        <p class="text-ayur-brown text-sm mb-4">Traditional digestive support formula with three powerful fruits.</p>
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-ayur-green">₹199</span>
-                            <button class="bg-ayur-green text-white px-3 py-1 rounded hover:bg-opacity-90 transition duration-300 text-sm">
-                                View Product
-                            </button>
+                            <span class="font-bold text-ayur-green text-lg">₹399</span>
+                            <a href="/product">
+                                <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">View Product</button>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl overflow-hidden leaf-shadow hover-lift">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%234a7c59'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='12' fill='white'%3ETulsi Drops%3C/text%3E%3C/svg%3E" 
-                         alt="Tulsi Drops" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="font-playfair text-lg font-semibold text-ayur-green mb-2">Tulsi Immunity Drops</h3>
-                        <p class="text-ayur-brown text-sm mb-3">Natural immunity booster</p>
+                <!-- Product 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%234a7c59'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EFace Pack%3C/text%3E%3C/svg%3E" 
+                         alt="Face Pack" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Neem Face Pack</h3>
+                        <p class="text-ayur-brown text-sm mb-4">Natural face pack with Neem and Turmeric for clear, glowing skin.</p>
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-ayur-green">₹249</span>
-                            <button class="bg-ayur-green text-white px-3 py-1 rounded hover:bg-opacity-90 transition duration-300 text-sm">
-                                View Product
-                            </button>
+                            <span class="font-bold text-ayur-green text-lg">₹299</span>
+                            <a href="/product">
+                                <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">View Product</button>
+                            </a>
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="/products">
+                    <button class="bg-ayur-green text-white px-8 py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-medium shadow-lg">
+                        View All Products
+                    </button>
+                </a>
             </div>
         </div>
     </section>

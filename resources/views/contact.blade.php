@@ -12,15 +12,15 @@
             </p>
             <div class="flex justify-center space-x-8 text-center">
                 <div class="bg-white bg-opacity-70 px-6 py-4 rounded-xl">
-                    <div class="text-2xl mb-2">📞</div>
+                    <div class="text-2xl mb-2"><i class="fas fa-phone text-2xl text-ayur-green"></i></div>
                     <div class="text-ayur-brown text-sm">Call us anytime</div>
                 </div>
                 <div class="bg-white bg-opacity-70 px-6 py-4 rounded-xl">
-                    <div class="text-2xl mb-2">💬</div>
+                    <div class="text-2xl mb-2 text-ayur-green"><i class="fas fa-comment-dots text-2xl"></i></div>
                     <div class="text-ayur-brown text-sm">Live chat support</div>
                 </div>
                 <div class="bg-white bg-opacity-70 px-6 py-4 rounded-xl">
-                    <div class="text-2xl mb-2">📧</div>
+                    <div class="text-2xl mb-2"><i class="fas fa-envelope text-2xl text-ayur-green"></i></div>
                     <div class="text-ayur-brown text-sm">Email response</div>
                 </div>
             </div>
@@ -97,7 +97,7 @@
                         <div class="bg-white p-6 rounded-xl leaf-shadow hover-lift">
                             <div class="flex items-start space-x-4">
                                 <div class="w-12 h-12 bg-ayur-green rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white text-xl">📍</span>
+                                    <span class="text-white text-xl"><i class="fas fa-map-marker-alt text-white text-xl"></i></span>
                                 </div>
                                 <div>
                                     <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Visit Our Store</h3>
@@ -114,7 +114,7 @@
                         <div class="bg-white p-6 rounded-xl leaf-shadow hover-lift">
                             <div class="flex items-start space-x-4">
                                 <div class="w-12 h-12 bg-ayur-sage rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white text-xl">📞</span>
+                                    <span class="text-white text-xl"><i class="fas fa-phone text-white text-xl"></i></span>
                                 </div>
                                 <div>
                                     <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Call Us</h3>
@@ -131,7 +131,7 @@
                         <div class="bg-white p-6 rounded-xl leaf-shadow hover-lift">
                             <div class="flex items-start space-x-4">
                                 <div class="w-12 h-12 bg-ayur-gold rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white text-xl">📧</span>
+                                    <span class="text-white text-xl"><i class="fas fa-envelope text-white text-xl"></i></span>
                                 </div>
                                 <div>
                                     <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Email Us</h3>
@@ -141,21 +141,6 @@
                                         <strong>Support:</strong> support@ayurwellness.com
                                     </p>
                                     <p class="text-ayur-sage text-sm mt-2">Response within 24 hours</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white p-6 rounded-xl leaf-shadow hover-lift">
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-ayur-brown rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span class="text-white text-xl">💬</span>
-                                </div>
-                                <div>
-                                    <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Live Chat</h3>
-                                    <p class="text-ayur-brown">
-                                        Get instant help with our live chat support. Click the chat icon at the bottom right of your screen.
-                                    </p>
-                                    <p class="text-ayur-sage text-sm mt-2">Available: Mon-Sat 9:00 AM - 6:00 PM</p>
                                 </div>
                             </div>
                         </div>
