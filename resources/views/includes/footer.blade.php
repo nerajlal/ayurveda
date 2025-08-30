@@ -14,32 +14,36 @@
                     </div>
                     <p class="opacity-90 mb-4">Your trusted partner in natural wellness and Ayurvedic healing.</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition duration-300">f</a>
-                        <a href="#" class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition duration-300">t</a>
-                        <a href="#" class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition duration-300">i</a>
+                        <a href="#" class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition duration-300"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
-                <div>
-                    <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Home</a></li>
-                        <li><a href="#products" class="opacity-90 hover:opacity-100 transition duration-300">Products</a></li>
-                        <li><a href="#about" class="opacity-90 hover:opacity-100 transition duration-300">About Us</a></li>
-                        <li><a href="#consultation" class="opacity-90 hover:opacity-100 transition duration-300">Consultation</a></li>
-                        <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Blog</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-semibold text-lg mb-4">Categories</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Herbal Oils</a></li>
-                        <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Herbal Teas</a></li>
-                        <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Churnas & Powders</a></li>
-                        <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Skincare</a></li>
-                        <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Supplements</a></li>
-                    </ul>
+                <div class="md:col-span-2">
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
+                            <ul class="space-y-2">
+                                <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Home</a></li>
+                                <li><a href="#products" class="opacity-90 hover:opacity-100 transition duration-300">Products</a></li>
+                                <li><a href="#about" class="opacity-90 hover:opacity-100 transition duration-300">About Us</a></li>
+                                <li><a href="#consultation" class="opacity-90 hover:opacity-100 transition duration-300">Consultation</a></li>
+                                <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Blog</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-lg mb-4">Categories</h4>
+                            <ul class="space-y-2">
+                                <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Herbal Oils</a></li>
+                                <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Herbal Teas</a></li>
+                                <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Churnas & Powders</a></li>
+                                <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Skincare</a></li>
+                                <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Supplements</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 
                 <div>
@@ -78,11 +82,11 @@
 
     <!-- Floating WhatsApp Button -->
     <div class="fixed bottom-6 right-6 z-50">
-        <button class="bg-green-500 text-white w-14 h-14 rounded-full shadow-lg hover:bg-green-600 transition duration-300 flex items-center justify-center">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.568 8.16c-.169-.225-.45-.374-.757-.374-.306 0-.587.149-.757.374L12 12.215 7.946 8.16c-.169-.225-.45-.374-.757-.374-.306 0-.587.149-.757.374-.225.3-.225.788 0 1.087L10.946 13.8c.225.3.563.467.904.467s.679-.167.904-.467l4.514-4.553c.225-.3.225-.788 0-1.087z"/>
-            </svg>
-        </button>
+        <a href="#">
+            <button class="bg-green-500 text-white w-14 h-14 rounded-full shadow-lg hover:bg-green-600 transition duration-300 flex items-center justify-center">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+        </a>
     </div>
 
     <!-- Back to Top Button -->
