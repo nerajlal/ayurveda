@@ -41,6 +41,9 @@ Route::get('/privacy', function () {
 Route::get('/terms', function () {
     return view('terms');
 });
+Route::get('/refund', function () {
+    return view('refund');
+});
 
 Route::get('/admin', function () {
     return view('admin.index');

@@ -89,7 +89,7 @@
                 <div class="flex space-x-6">
                     <a href="/privacy" class="opacity-90 hover:opacity-100 transition duration-300">Privacy Policy</a>
                     <a href="/terms" class="opacity-90 hover:opacity-100 transition duration-300">Terms of Service</a>
-                    <a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Refund Policy</a>
+                    <a href="/refund" class="opacity-90 hover:opacity-100 transition duration-300">Refund Policy</a>
                 </div>
             </div>
         </div>
