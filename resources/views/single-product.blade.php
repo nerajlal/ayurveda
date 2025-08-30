@@ -544,7 +544,7 @@
         </div>
     </section>
 
-    <!-- Footer (Simplified) -->
+    <!-- Footer -->
     @include('includes.footer')
 
     <script>
