@@ -73,9 +73,9 @@
                 <nav class="hidden md:flex space-x-8">
                     <a href="/" class="text-ayur-green hover:text-ayur-gold transition duration-300 font-medium">Home</a>
                     <a href="/products" class="text-ayur-green hover:text-ayur-gold transition duration-300 font-medium">Products</a>
-                    <a href="#about" class="text-ayur-green hover:text-ayur-gold transition duration-300 font-medium">About</a>
-                    <a href="#consultation" class="text-ayur-green hover:text-ayur-gold transition duration-300 font-medium">Consultation</a>
-                    <a href="#contact" class="text-ayur-green hover:text-ayur-gold transition duration-300 font-medium">Contact</a>
+                    <a href="/about" class="text-ayur-green hover:text-ayur-gold transition duration-300 font-medium">About</a>
+                    <!-- <a href="#consultation" class="text-ayur-green hover:text-ayur-gold transition duration-300 font-medium">Consultation</a> -->
+                    <a href="/contact" class="text-ayur-green hover:text-ayur-gold transition duration-300 font-medium">Contact</a>
                 </nav>
                 
                 <div class="flex items-center space-x-4">

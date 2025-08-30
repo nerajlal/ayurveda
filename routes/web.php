@@ -22,6 +22,12 @@ Route::get('/products', function () {
 Route::get('/product', function () {
     return view('single-product');
 });
+Route::get('/about', function () {
+    return view('about');
+});
+Route::get('/contact', function () {
+    return view('contact');
+});
 
 Route::get('/admin', function () {
     return view('admin.index');

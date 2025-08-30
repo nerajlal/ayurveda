@@ -25,11 +25,11 @@
                         <div>
                             <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
                             <ul class="space-y-2">
-                                <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Home</a></li>
-                                <li><a href="#products" class="opacity-90 hover:opacity-100 transition duration-300">Products</a></li>
-                                <li><a href="#about" class="opacity-90 hover:opacity-100 transition duration-300">About Us</a></li>
-                                <li><a href="#consultation" class="opacity-90 hover:opacity-100 transition duration-300">Consultation</a></li>
-                                <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Blog</a></li>
+                                <li><a href="/" class="opacity-90 hover:opacity-100 transition duration-300">Home</a></li>
+                                <li><a href="/products" class="opacity-90 hover:opacity-100 transition duration-300">Products</a></li>
+                                <li><a href="/about" class="opacity-90 hover:opacity-100 transition duration-300">About Us</a></li>
+                                <li><a href="/contact" class="opacity-90 hover:opacity-100 transition duration-300">Contact</a></li>
+                                <!-- <li><a href="#" class="opacity-90 hover:opacity-100 transition duration-300">Blog</a></li> -->
                             </ul>
                         </div>
                         
