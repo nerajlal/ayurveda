@@ -48,4 +48,15 @@ Route::get('/refund', function () {
 Route::get('/admin', function () {
     return view('admin.index');
 });
-
+Route::get('/admin-products', function () {
+    return view('admin.products');
+});
+Route::get('/admin-orders', function () {
+    return view('admin.orders');
+});
+Route::get('/admin-customers', function () {
+    return view('admin.customers');
+});
+Route::get('/admin-inventory', function () {
+    return view('admin.inventory');
+});

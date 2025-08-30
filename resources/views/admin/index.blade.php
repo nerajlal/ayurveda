@@ -1,4 +1,4 @@
-@include('includes.sidebar')
+@include('admin.includes.sidebar')
 
 
     <!-- Main Content -->
@@ -232,4 +232,4 @@
 
     
 
-@include('includes.footer')
+@include('admin.includes.footer')

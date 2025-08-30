@@ -6,11 +6,34 @@
     .hover-lift:hover { transform: translateY(-4px); transition: transform 0.3s ease-in-out; }
     .table-hover:hover { background-color: #f9fafb; transition: background-color 0.3s; }
 
-    /* For managing visibility of inline-edit elements */
-    .edit-mode .view-mode-item { display: none; }
-    .view-mode .edit-mode-item { display: none; }
+    /* Modal styles */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 50;
+    }
 
-    /* Modal styles removed as per request */
+    .modal-content {
+        background-color: white;
+        padding: 2.5rem;
+        border-radius: 1rem;
+        max-width: 500px;
+        width: 90%;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        animation: fadeInScale 0.3s ease-out;
+    }
+
+    @keyframes fadeInScale {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
 </style>
 
 <!-- Main Content -->
@@ -122,88 +145,56 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Product 1 -->
-                        <tr id="row-1" class="table-hover view-mode">
+                        <tr class="table-hover">
                             <td class="py-3 text-sm font-medium text-ayur-green">Brahmi Hair Oil</td>
                             <td class="py-3 text-sm text-ayur-brown">BR-HO-01</td>
                             <td class="py-3 text-sm text-ayur-brown">Hair Care</td>
-                            <td class="py-3 text-sm text-ayur-brown">
-                                <span class="view-mode-item" data-stock="45">45</span>
-                                <input type="number" value="45" class="edit-mode-item w-20 px-2 py-1 border border-gray-300 rounded-md">
-                            </td>
+                            <td class="py-3 text-sm text-ayur-brown">45</td>
                             <td class="py-3 text-sm text-ayur-brown">10</td>
                             <td class="py-3">
                                 <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-medium">In Stock</span>
                             </td>
                             <td class="py-3">
-                                <div class="flex items-center space-x-2">
-                                    <button onclick="toggleEditMode('row-1')" class="view-mode-item text-ayur-green hover:text-ayur-dark text-sm">Update Stock</button>
-                                    <button onclick="saveStock('row-1')" class="edit-mode-item bg-ayur-green text-white px-3 py-1 rounded-md text-xs hover:bg-ayur-dark">Save</button>
-                                    <button onclick="toggleEditMode('row-1')" class="edit-mode-item bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-xs hover:bg-gray-300">Cancel</button>
-                                </div>
+                                <button onclick="showUpdateStockModal('Brahmi Hair Oil', 45)" class="text-ayur-green hover:text-ayur-dark text-sm mr-2">Update Stock</button>
                             </td>
                         </tr>
-                        <!-- Product 2 -->
-                        <tr id="row-2" class="table-hover view-mode">
+                        <tr class="table-hover">
                             <td class="py-3 text-sm font-medium text-ayur-green">Immunity Tea Blend</td>
                             <td class="py-3 text-sm text-ayur-brown">ITB-02</td>
                             <td class="py-3 text-sm text-ayur-brown">Wellness Teas</td>
-                            <td class="py-3 text-sm text-ayur-brown">
-                                <span class="view-mode-item" data-stock="7">7</span>
-                                <input type="number" value="7" class="edit-mode-item w-20 px-2 py-1 border border-gray-300 rounded-md">
-                            </td>
+                            <td class="py-3 text-sm text-ayur-brown">7</td>
                             <td class="py-3 text-sm text-ayur-brown">10</td>
                             <td class="py-3">
                                 <span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-medium">Low Stock</span>
                             </td>
                             <td class="py-3">
-                                <div class="flex items-center space-x-2">
-                                    <button onclick="toggleEditMode('row-2')" class="view-mode-item text-ayur-green hover:text-ayur-dark text-sm">Update Stock</button>
-                                    <button onclick="saveStock('row-2')" class="edit-mode-item bg-ayur-green text-white px-3 py-1 rounded-md text-xs hover:bg-ayur-dark">Save</button>
-                                    <button onclick="toggleEditMode('row-2')" class="edit-mode-item bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-xs hover:bg-gray-300">Cancel</button>
-                                </div>
+                                <button onclick="showUpdateStockModal('Immunity Tea Blend', 7)" class="text-ayur-green hover:text-ayur-dark text-sm mr-2">Update Stock</button>
                             </td>
                         </tr>
-                        <!-- Product 3 -->
-                        <tr id="row-3" class="table-hover view-mode">
+                        <tr class="table-hover">
                             <td class="py-3 text-sm font-medium text-ayur-green">Triphala Churna</td>
                             <td class="py-3 text-sm text-ayur-brown">TRP-CHU-03</td>
                             <td class="py-3 text-sm text-ayur-brown">Digestion</td>
-                            <td class="py-3 text-sm text-ayur-brown">
-                                <span class="view-mode-item" data-stock="2">2</span>
-                                <input type="number" value="2" class="edit-mode-item w-20 px-2 py-1 border border-gray-300 rounded-md">
-                            </td>
+                            <td class="py-3 text-sm text-ayur-brown">2</td>
                             <td class="py-3 text-sm text-ayur-brown">5</td>
                             <td class="py-3">
                                 <span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-medium">Low Stock</span>
                             </td>
                             <td class="py-3">
-                                <div class="flex items-center space-x-2">
-                                    <button onclick="toggleEditMode('row-3')" class="view-mode-item text-ayur-green hover:text-ayur-dark text-sm">Update Stock</button>
-                                    <button onclick="saveStock('row-3')" class="edit-mode-item bg-ayur-green text-white px-3 py-1 rounded-md text-xs hover:bg-ayur-dark">Save</button>
-                                    <button onclick="toggleEditMode('row-3')" class="edit-mode-item bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-xs hover:bg-gray-300">Cancel</button>
-                                </div>
+                                <button onclick="showUpdateStockModal('Triphala Churna', 2)" class="text-ayur-green hover:text-ayur-dark text-sm mr-2">Update Stock</button>
                             </td>
                         </tr>
-                        <!-- Product 4 -->
-                        <tr id="row-4" class="table-hover view-mode">
+                        <tr class="table-hover">
                             <td class="py-3 text-sm font-medium text-ayur-green">Neem Face Pack</td>
                             <td class="py-3 text-sm text-ayur-brown">NFP-04</td>
                             <td class="py-3 text-sm text-ayur-brown">Skin Care</td>
-                            <td class="py-3 text-sm text-ayur-brown">
-                                <span class="view-mode-item" data-stock="0">0</span>
-                                <input type="number" value="0" class="edit-mode-item w-20 px-2 py-1 border border-gray-300 rounded-md">
-                            </td>
+                            <td class="py-3 text-sm text-ayur-brown">0</td>
                             <td class="py-3 text-sm text-ayur-brown">5</td>
                             <td class="py-3">
                                 <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full font-medium">Out of Stock</span>
                             </td>
                             <td class="py-3">
-                                <div class="flex items-center space-x-2">
-                                    <button onclick="toggleEditMode('row-4')" class="view-mode-item text-ayur-green hover:text-ayur-dark text-sm">Update Stock</button>
-                                    <button onclick="saveStock('row-4')" class="edit-mode-item bg-ayur-green text-white px-3 py-1 rounded-md text-xs hover:bg-ayur-dark">Save</button>
-                                    <button onclick="toggleEditMode('row-4')" class="edit-mode-item bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-xs hover:bg-gray-300">Cancel</button>
-                                </div>
+                                <button onclick="showUpdateStockModal('Neem Face Pack', 0)" class="text-ayur-green hover:text-ayur-dark text-sm mr-2">Update Stock</button>
                             </td>
                         </tr>
                     </tbody>
@@ -213,35 +204,58 @@
     </div>
 </div>
 
+<!-- Update Stock Modal -->
+<div id="update-stock-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <div class="flex justify-between items-start mb-4">
+            <h3 class="font-playfair text-2xl font-bold text-ayur-green">Update Stock</h3>
+            <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 transition duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="text-ayur-brown space-y-4">
+            <p id="modal-product-name" class="font-medium text-lg"></p>
+            <div>
+                <label for="stock-level" class="block text-sm font-medium text-ayur-brown">New Stock Level</label>
+                <input type="number" id="stock-level" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-ayur-green focus:border-ayur-green">
+            </div>
+            <div class="flex justify-end mt-4">
+                <button onclick="closeModal()" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-md mr-2 hover:bg-gray-300">Cancel</button>
+                <button onclick="saveStock()" class="bg-ayur-green text-white px-4 py-2 rounded-md hover:bg-ayur-dark">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-    function toggleEditMode(rowId) {
-        const row = document.getElementById(rowId);
-        if (row.classList.contains('view-mode')) {
-            row.classList.remove('view-mode');
-            row.classList.add('edit-mode');
-        } else {
-            row.classList.remove('edit-mode');
-            row.classList.add('view-mode');
+    let currentProduct = null;
+
+    function showUpdateStockModal(productName, currentStock) {
+        currentProduct = productName;
+        document.getElementById('modal-product-name').innerText = `Product: ${productName}`;
+        document.getElementById('stock-level').value = currentStock;
+        document.getElementById('update-stock-modal').classList.remove('hidden');
+    }
+
+    function saveStock() {
+        const newStock = document.getElementById('stock-level').value;
+        // In a real application, you would send this data to a backend API to update the inventory.
+        console.log(`Updating stock for ${currentProduct} to ${newStock}`);
+        closeModal();
+    }
+
+    function closeModal() {
+        document.getElementById('update-stock-modal').classList.add('hidden');
+    }
+
+    // Close modal when clicking outside of it
+    document.getElementById('update-stock-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'update-stock-modal') {
+            closeModal();
         }
-    }
-
-    function saveStock(rowId) {
-        const row = document.getElementById(rowId);
-        const input = row.querySelector('.edit-mode-item[type="number"]');
-        const viewSpan = row.querySelector('.view-mode-item');
-        
-        const newStock = input.value;
-        
-        // In a real application, you would send this to your backend
-        console.log(`Updating stock for ${row.querySelector('td:first-child').innerText} to ${newStock}`);
-
-        // Update the view
-        viewSpan.innerText = newStock;
-        viewSpan.dataset.stock = newStock; // Update the data attribute for persistence
-        
-        // Switch back to view mode
-        toggleEditMode(rowId);
-    }
+    });
 </script>
     
 @include('admin.includes.footer')
