@@ -486,7 +486,9 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="font-bold text-ayur-green">₹749</span>
-                        <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">View Product</button>
+                        <a href="/product">
+                            <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">View Product</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -503,7 +505,9 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="font-bold text-ayur-green">₹599</span>
-                        <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">View Product</button>
+                        <a href="/product">
+                            <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">View Product</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -520,7 +524,9 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="font-bold text-ayur-green">₹449</span>
-                        <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">View Product</button>
+                        <a href="/product">
+                            <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">View Product</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -537,7 +543,9 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="font-bold text-ayur-green">₹999</span>
-                        <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">View Product</button>
+                        <a href="/product">
+                            <button class="bg-ayur-green text-white px-3 py-1 rounded text-sm hover:bg-opacity-90">View Product</button>
+                        </a>
                     </div>
                 </div>
             </div>

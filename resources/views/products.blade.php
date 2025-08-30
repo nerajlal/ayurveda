@@ -28,9 +28,10 @@
                     <span class="text-ayur-green font-medium mr-2">Categories:</span>
                     <button class="filter-btn category-filter bg-ayur-green text-white px-4 py-2 rounded-full text-sm font-medium transition duration-300" data-category="all">All</button>
                     <button class="filter-btn category-filter bg-gray-200 text-ayur-green px-4 py-2 rounded-full text-sm font-medium hover:bg-ayur-green hover:text-white transition duration-300" data-category="oils">Herbal Oils</button>
-                    <button class="filter-btn category-filter bg-gray-200 text-ayur-green px-4 py-2 rounded-full text-sm font-medium hover:bg-ayur-green hover:text-white transition duration-300" data-category="teas">Herbal Teas</button>
-                    <button class="filter-btn category-filter bg-gray-200 text-ayur-green px-4 py-2 rounded-full text-sm font-medium hover:bg-ayur-green hover:text-white transition duration-300" data-category="powders">Churnas & Powders</button>
                     <button class="filter-btn category-filter bg-gray-200 text-ayur-green px-4 py-2 rounded-full text-sm font-medium hover:bg-ayur-green hover:text-white transition duration-300" data-category="skincare">Skincare</button>
+                    <button class="filter-btn category-filter bg-gray-200 text-ayur-green px-4 py-2 rounded-full text-sm font-medium hover:bg-ayur-green hover:text-white transition duration-300" data-category="teas">Herbal Tea</button>
+                    <button class="filter-btn category-filter bg-gray-200 text-ayur-green px-4 py-2 rounded-full text-sm font-medium hover:bg-ayur-green hover:text-white transition duration-300" data-category="powders">Churna & Powders</button>
+                    
                     <button class="filter-btn category-filter bg-gray-200 text-ayur-green px-4 py-2 rounded-full text-sm font-medium hover:bg-ayur-green hover:text-white transition duration-300" data-category="supplements">Supplements</button>
                 </div>
             </div>
@@ -72,14 +73,6 @@
     <div class="container mx-auto px-4 py-4">
         <div class="flex justify-between items-center">
             <p class="text-ayur-brown">Showing <span id="results-count">24</span> of <span id="total-count">24</span> products</p>
-            <div class="flex items-center space-x-2">
-                <span class="text-ayur-brown text-sm">Products per page:</span>
-                <select id="per-page" class="border border-ayur-sage rounded px-2 py-1 text-sm focus:outline-none focus:border-ayur-green">
-                    <option value="12">12</option>
-                    <option value="24" selected>24</option>
-                    <option value="48">48</option>
-                </select>
-            </div>
         </div>
     </div>
 
@@ -91,12 +84,7 @@
         
         <!-- Pagination -->
         <div class="flex justify-center mt-12">
-            <nav class="flex items-center space-x-2">
-                <button class="px-3 py-2 border border-ayur-sage rounded-lg hover:bg-ayur-green hover:text-white hover:border-ayur-green transition duration-300">Previous</button>
-                <button class="px-3 py-2 bg-ayur-green text-white border border-ayur-green rounded-lg">1</button>
-                <button class="px-3 py-2 border border-ayur-sage rounded-lg hover:bg-ayur-green hover:text-white hover:border-ayur-green transition duration-300">2</button>
-                <button class="px-3 py-2 border border-ayur-sage rounded-lg hover:bg-ayur-green hover:text-white hover:border-ayur-green transition duration-300">3</button>
-                <button class="px-3 py-2 border border-ayur-sage rounded-lg hover:bg-ayur-green hover:text-white hover:border-ayur-green transition duration-300">Next</button>
+            <nav class="flex items-center space-x-2 pagination-container">
             </nav>
         </div>
     </div>
@@ -268,17 +256,298 @@
                 benefits: ["skin"],
                 isNew: false,
                 inStock: true
+            },
+            {
+                id: 25,
+                name: "Brahmi Hair Oil",
+                category: "oils",
+                price: 899,
+                originalPrice: 1099,
+                rating: 4.8,
+                reviews: 189,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%2387a96b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3ERose Serum%3C/text%3E%3C/svg%3E",
+                description: "Hydrating rose serum with hyaluronic acid for glowing skin.",
+                benefits: ["skin"],
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 26,
+                name: "Arjuna Churna",
+                category: "powders",
+                price: 459,
+                originalPrice: 559,
+                rating: 4.5,
+                reviews: 87,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%238b4513'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EArjuna Churna%3C/text%3E%3C/svg%3E",
+                description: "Heart-healthy Arjuna bark powder for cardiovascular support.",
+                benefits: ["immunity"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 27,
+                name: "Jasmine Hair Oil",
+                category: "oils",
+                price: 629,
+                originalPrice: 729,
+                rating: 4.7,
+                reviews: 145,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%234a7c59'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EJasmine Oil%3C/text%3E%3C/svg%3E",
+                description: "Fragrant jasmine oil for hair nourishment and aromatherapy.",
+                benefits: ["hair", "stress"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 28,
+                name: "Weight Loss Tea",
+                category: "teas",
+                price: 589,
+                originalPrice: 689,
+                rating: 4.3,
+                reviews: 156,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23d4a574'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EWeight Loss Tea%3C/text%3E%3C/svg%3E",
+                description: "Metabolic support tea with green tea and garcinia.",
+                benefits: ["digestion"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 29,
+                name: "Giloy Tablets",
+                category: "supplements",
+                price: 489,
+                originalPrice: 589,
+                rating: 4.6,
+                reviews: 201,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%2387a96b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EGiloy Tablets%3C/text%3E%3C/svg%3E",
+                description: "Immunity booster with pure Giloy extract tablets.",
+                benefits: ["immunity"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 30,
+                name: "Sandalwood Face Pack",
+                category: "skincare",
+                price: 399,
+                originalPrice: 499,
+                rating: 4.5,
+                reviews: 134,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%238b4513'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3ESandalwood Pack%3C/text%3E%3C/svg%3E",
+                description: "Cooling sandalwood face pack for sensitive skin.",
+                benefits: ["skin"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 31,
+                name: "Brahmi Powder",
+                category: "powders",
+                price: 379,
+                originalPrice: 479,
+                rating: 4.7,
+                reviews: 167,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%234a7c59'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EBrahmi Powder%3C/text%3E%3C/svg%3E",
+                description: "Memory enhancing Brahmi powder for cognitive health.",
+                benefits: ["stress"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 32,
+                name: "Sesame Hair Oil",
+                category: "oils",
+                price: 529,
+                originalPrice: 629,
+                rating: 4.4,
+                reviews: 98,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23d4a574'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3ESesame Oil%3C/text%3E%3C/svg%3E",
+                description: "Traditional sesame oil enriched with herbs for hair growth.",
+                benefits: ["hair"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 33,
+                name: "Sleep Tea",
+                category: "teas",
+                price: 449,
+                originalPrice: 549,
+                rating: 4.8,
+                reviews: 223,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%2387a96b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3ESleep Tea%3C/text%3E%3C/svg%3E",
+                description: "Relaxing bedtime tea with chamomile and passion flower.",
+                benefits: ["stress"],
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 34,
+                name: "Turmeric Tablets",
+                category: "supplements",
+                price: 369,
+                originalPrice: 469,
+                rating: 4.5,
+                reviews: 189,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%238b4513'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3ETurmeric Tablets%3C/text%3E%3C/svg%3E",
+                description: "Anti-inflammatory turmeric extract with black pepper.",
+                benefits: ["immunity"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 35,
+                name: "Aloe Vera Gel",
+                category: "skincare",
+                price: 249,
+                originalPrice: 349,
+                rating: 4.6,
+                reviews: 267,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%234a7c59'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EAloe Vera Gel%3C/text%3E%3C/svg%3E",
+                description: "Pure aloe vera gel for skin healing and moisturization.",
+                benefits: ["skin"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 36,
+                name: "Brahmi Hair Oil",
+                category: "oils",
+                price: 899,
+                originalPrice: 1099,
+                rating: 4.8,
+                reviews: 189,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%2387a96b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3ERose Serum%3C/text%3E%3C/svg%3E",
+                description: "Hydrating rose serum with hyaluronic acid for glowing skin.",
+                benefits: ["skin"],
+                isNew: true,
+                inStock: true
+            },
+            {
+                id: 37,
+                name: "Arjuna Churna",
+                category: "powders",
+                price: 459,
+                originalPrice: 559,
+                rating: 4.5,
+                reviews: 87,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%238b4513'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EArjuna Churna%3C/text%3E%3C/svg%3E",
+                description: "Heart-healthy Arjuna bark powder for cardiovascular support.",
+                benefits: ["immunity"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 38,
+                name: "Jasmine Hair Oil",
+                category: "oils",
+                price: 629,
+                originalPrice: 729,
+                rating: 4.7,
+                reviews: 145,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%234a7c59'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EJasmine Oil%3C/text%3E%3C/svg%3E",
+                description: "Fragrant jasmine oil for hair nourishment and aromatherapy.",
+                benefits: ["hair", "stress"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 39,
+                name: "Weight Loss Tea",
+                category: "teas",
+                price: 589,
+                originalPrice: 689,
+                rating: 4.3,
+                reviews: 156,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23d4a574'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EWeight Loss Tea%3C/text%3E%3C/svg%3E",
+                description: "Metabolic support tea with green tea and garcinia.",
+                benefits: ["digestion"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 40,
+                name: "Giloy Tablets",
+                category: "supplements",
+                price: 489,
+                originalPrice: 589,
+                rating: 4.6,
+                reviews: 201,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%2387a96b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EGiloy Tablets%3C/text%3E%3C/svg%3E",
+                description: "Immunity booster with pure Giloy extract tablets.",
+                benefits: ["immunity"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 41,
+                name: "Sandalwood Face Pack",
+                category: "skincare",
+                price: 399,
+                originalPrice: 499,
+                rating: 4.5,
+                reviews: 134,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%238b4513'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3ESandalwood Pack%3C/text%3E%3C/svg%3E",
+                description: "Cooling sandalwood face pack for sensitive skin.",
+                benefits: ["skin"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 42,
+                name: "Brahmi Powder",
+                category: "powders",
+                price: 379,
+                originalPrice: 479,
+                rating: 4.7,
+                reviews: 167,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%234a7c59'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EBrahmi Powder%3C/text%3E%3C/svg%3E",
+                description: "Memory enhancing Brahmi powder for cognitive health.",
+                benefits: ["stress"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 43,
+                name: "Sesame Hair Oil",
+                category: "oils",
+                price: 529,
+                originalPrice: 629,
+                rating: 4.4,
+                reviews: 98,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23d4a574'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3ESesame Oil%3C/text%3E%3C/svg%3E",
+                description: "Traditional sesame oil enriched with herbs for hair growth.",
+                benefits: ["hair"],
+                isNew: false,
+                inStock: true
+            },
+            {
+                id: 44,
+                name: "Sleep Tea",
+                category: "teas",
+                price: 449,
+                originalPrice: 549,
+                rating: 4.8,
+                reviews: 223,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%2387a96b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3ESleep Tea%3C/text%3E%3C/svg%3E",
+                description: "Relaxing bedtime tea with chamomile and passion flower.",
+                benefits: ["stress"],
+                isNew: true,
+                inStock: true
             }
         ];
 
         let filteredProducts = [...products];
         let currentView = 'grid';
+        let currentPage = 1;
+        const pageSize = 12;
 
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
             renderProducts();
             setupEventListeners();
-            updateResultsCount();
         });
 
         function setupEventListeners() {
@@ -336,11 +605,6 @@
 
             // Clear filters
             document.getElementById('clear-filters').addEventListener('click', clearAllFilters);
-
-            // Per page
-            document.getElementById('per-page').addEventListener('change', function() {
-                renderProducts();
-            });
         }
 
         function filterProducts() {
@@ -400,8 +664,9 @@
 
         function renderProducts() {
             const container = document.getElementById('products-container');
-            const perPage = parseInt(document.getElementById('per-page').value);
-            const productsToShow = filteredProducts.slice(0, perPage);
+            const startIndex = (currentPage - 1) * pageSize;
+            const endIndex = startIndex + pageSize;
+            const productsToShow = filteredProducts.slice(startIndex, endIndex);
 
             if (currentView === 'grid') {
                 container.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8';
@@ -413,6 +678,8 @@
 
             // Add event listeners to product cards
             addProductEventListeners();
+            updateResultsCount();
+            renderPagination();
         }
 
         function createProductCard(product) {
@@ -457,9 +724,11 @@
                                 <span class="font-bold text-ayur-green text-lg">₹${product.price}</span>
                                 ${product.originalPrice > product.price ? `<span class="text-gray-500 text-sm line-through">₹${product.originalPrice}</span>` : ''}
                             </div>
-                            <button class="add-to-cart-btn bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300 ${!product.inStock ? 'opacity-50 cursor-not-allowed' : ''}" ${!product.inStock ? 'disabled' : ''}>
-                                ${product.inStock ? 'View Product' : 'Out of Stock'}
-                            </button>
+                            <a href="/product">
+                                <button class="add-to-cart-btn bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300 ${!product.inStock ? 'opacity-50 cursor-not-allowed' : ''}" ${!product.inStock ? 'disabled' : ''}>
+                                    ${product.inStock ? 'View Product' : 'Out of Stock'}
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -513,9 +782,11 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                                     </svg>
                                 </button>
-                                <button class="add-to-cart-btn bg-ayur-green text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition duration-300 ${!product.inStock ? 'opacity-50 cursor-not-allowed' : ''}" ${!product.inStock ? 'disabled' : ''}>
-                                    ${product.inStock ? 'View Product' : 'Out of Stock'}
-                                </button>
+                                <a href="/product">
+                                    <button class="add-to-cart-btn bg-ayur-green text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition duration-300 ${!product.inStock ? 'opacity-50 cursor-not-allowed' : ''}" ${!product.inStock ? 'disabled' : ''}>
+                                        ${product.inStock ? 'View Product' : 'Out of Stock'}
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -624,8 +895,42 @@
         }
 
         function updateResultsCount() {
-            document.getElementById('results-count').textContent = filteredProducts.length;
-            document.getElementById('total-count').textContent = products.length;
+            const startIndex = (currentPage - 1) * pageSize + 1;
+            const endIndex = Math.min(currentPage * pageSize, filteredProducts.length);
+            document.getElementById('results-count').textContent = `${startIndex}-${endIndex}`;
+            document.getElementById('total-count').textContent = filteredProducts.length;
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredProducts.length / pageSize);
+            const paginationContainer = document.querySelector('.pagination-container');
+            if (!paginationContainer) return;
+
+            let html = '';
+
+            // Previous button
+            html += `<button class="pagination-btn px-3 py-2 border border-ayur-sage rounded-lg hover:bg-ayur-green hover:text-white hover:border-ayur-green transition duration-300 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>Previous</button>`;
+
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                html += `<button class="pagination-btn px-3 py-2 border border-ayur-sage rounded-lg hover:bg-ayur-green hover:text-white hover:border-ayur-green transition duration-300 ${currentPage === i ? 'bg-ayur-green text-white' : ''}" data-page="${i}">${i}</button>`;
+            }
+
+            // Next button
+            html += `<button class="pagination-btn px-3 py-2 border border-ayur-sage rounded-lg hover:bg-ayur-green hover:text-white hover:border-ayur-green transition duration-300 ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>`;
+
+            paginationContainer.innerHTML = html;
+
+            // Add event listeners
+            document.querySelectorAll('.pagination-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const page = parseInt(this.dataset.page);
+                    if (page) {
+                        currentPage = page;
+                        renderProducts();
+                    }
+                });
+            });
         }
 
         function addToCart(productId) {
@@ -686,9 +991,11 @@
                             </div>
                             
                             <div class="flex space-x-4">
-                                <button onclick="addToCart(${product.id})" class="flex-1 bg-ayur-green text-white py-3 px-6 rounded-lg hover:bg-opacity-90 transition duration-300 font-medium ${!product.inStock ? 'opacity-50 cursor-not-allowed' : ''}" ${!product.inStock ? 'disabled' : ''}>
-                                    ${product.inStock ? 'View Product' : 'Out of Stock'}
-                                </button>
+                                <a href="/product" class="flex-1">
+                                    <button class="w-full bg-ayur-green text-white py-3 px-6 rounded-lg hover:bg-opacity-90 transition duration-300 font-medium ${!product.inStock ? 'opacity-50 cursor-not-allowed' : ''}" ${!product.inStock ? 'disabled' : ''}>
+                                        ${product.inStock ? 'View Product' : 'Out of Stock'}
+                                    </button>
+                                </a>
                             </div>
                             
                             <div class="mt-6 p-4 bg-ayur-cream rounded-lg">
