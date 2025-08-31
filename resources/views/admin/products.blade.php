@@ -34,9 +34,9 @@
         <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-ayur-brown text-sm font-medium">Out of Stock</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">{{ $outOfStockCount }}</p>
-                    <p class="text-red-600 text-sm mt-1">Variants out of stock</p>
+                    <p class="text-ayur-brown text-sm font-medium">Out of Stock Variants</p>
+                    <p class="text-2xl font-bold text-ayur-green mt-1">{{ $outOfStockVariantsCount }}</p>
+                    <p class="text-red-600 text-sm mt-1">Individual sizes</p>
                 </div>
                 <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
                     <span class="text-red-600 text-xl">⚠️</span>
@@ -47,9 +47,9 @@
         <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-ayur-brown text-sm font-medium">Hidden Products</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">0</p>
-                    <p class="text-gray-600 text-sm mt-1">Coming soon</p>
+                    <p class="text-ayur-brown text-sm font-medium">Unavailable Products</p>
+                    <p class="text-2xl font-bold text-ayur-green mt-1">{{ $hiddenProductsCount }}</p>
+                    <p class="text-gray-600 text-sm mt-1">All sizes out of stock</p>
                 </div>
                 <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
                     <span class="text-gray-600 text-xl">🙈</span>
@@ -110,7 +110,7 @@
                                     <td class="py-3 text-sm text-ayur-brown">{{ $size->stock_quantity }} in stock</td>
                                     <td class="py-3">
                                         @if ($size->stock_quantity == 0)
-                                            <span class="text-xs px-2 py-1 rounded-full bg-red-500 text-white">Out of Stock</span>
+                                            <span class="text-xs px-2 py-1 rounded-full bg-gray-500 text-white">Inactive</span>
                                         @elseif ($size->stock_quantity < 10)
                                             <span class="text-xs px-2 py-1 rounded-full bg-yellow-500 text-white">Low Stock</span>
                                         @else

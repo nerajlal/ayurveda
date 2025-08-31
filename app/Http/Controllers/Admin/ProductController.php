@@ -16,12 +16,15 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('sizes')->latest()->get();
+
+        // Stats for cards
         $totalProducts = Product::count();
-        $outOfStockCount = Product::whereDoesntHave('sizes', function ($query) {
+        $hiddenProductsCount = Product::whereDoesntHave('sizes', function ($query) {
             $query->where('stock_quantity', '>', 0);
         })->count();
+        $outOfStockVariantsCount = \App\Models\ProductSize::where('stock_quantity', 0)->count();
 
-        return view('admin.products', compact('products', 'totalProducts', 'outOfStockCount'));
+        return view('admin.products', compact('products', 'totalProducts', 'hiddenProductsCount', 'outOfStockVariantsCount'));
     }
 
     /**
