@@ -252,7 +252,7 @@
             return `
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift product-card" data-product-id="${product.id}">
                     <div class="relative">
-                        <img src="${product.image}" alt="${product.name}" class="w-full aspect-square object-cover">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
                         <div class="absolute top-4 left-4 flex flex-col space-y-2">
                             ${product.isNew ? '<span class="bg-ayur-gold text-white px-3 py-1 rounded-full text-xs font-medium">New</span>' : ''}
                             ${discount > 0 ? `<span class="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-medium">-${discount}%</span>` : ''}
