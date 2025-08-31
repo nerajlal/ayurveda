@@ -26,7 +26,7 @@
                     <img id="mainImage" 
                          src="{{ $primaryImage ? url('images/' . $primaryImage->image_path) : 'https://via.placeholder.com/500' }}"
                          alt="{{ $product->name }}"
-                         class="zoom-image w-full h-96 object-contain">
+                         class="zoom-image w-full aspect-square object-contain">
                 </div>
                 
                 <!-- Thumbnail Images -->
