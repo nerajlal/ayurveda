@@ -15,10 +15,14 @@ class CartController extends Controller
     public function index()
     {
         $cartItems = CartItem::where('user_id', Auth::id())
-            ->with('product', 'productSize')
+            ->with('product.images', 'productSize')
             ->get();
 
-        return view('cart', compact('cartItems'));
+        $subtotal = $cartItems->sum(function ($item) {
+            return $item->productSize->price * $item->quantity;
+        });
+
+        return view('cart', compact('cartItems', 'subtotal'));
     }
 
     /**
