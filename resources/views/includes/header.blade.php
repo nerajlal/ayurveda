@@ -7,6 +7,7 @@
     <title>AyurVeda Wellness - Premium Ayurvedic Products</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -123,16 +124,22 @@
                     </button>
                     @endguest
                     @auth
-                    <a href="#" class="text-ayur-green hover:text-ayur-gold transition duration-300 relative">
-                        <i class="fas fa-user-circle text-2xl"></i>
-                    </a>
-                    <form action="{{ route('logout') }}" method="post">
-                        @csrf
-                        <button type="submit" class="hidden md:flex bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-ayur-gold transition duration-300 items-center space-x-2">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>Logout</span>
+                    <div class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="text-ayur-green hover:text-ayur-gold transition duration-300 relative">
+                            <i class="fas fa-user-circle text-2xl"></i>
                         </button>
-                    </form>
+
+                        <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Orders</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile Update</a>
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    Signout
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                     @endauth
 
                     <button onclick="toggleMobileMenu()" class="lg:hidden text-ayur-green">
