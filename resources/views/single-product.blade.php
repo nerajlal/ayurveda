@@ -24,7 +24,7 @@
                 <!-- Main Image -->
                 <div class="zoom-container bg-white rounded-2xl p-6 leaf-shadow">
                     <img id="mainImage" 
-                         src="{{ $primaryImage ? asset('storage/' . $primaryImage->image_path) : 'https://via.placeholder.com/500' }}"
+                         src="{{ $primaryImage ? url('images/' . $primaryImage->image_path) : 'https://via.placeholder.com/500' }}"
                          alt="{{ $product->name }}"
                          class="zoom-image w-full h-96 object-contain">
                 </div>
@@ -33,7 +33,7 @@
                 <div class="flex space-x-3">
                     @foreach ($product->images as $image)
                     <img class="thumbnail w-20 h-20 object-cover rounded-lg border-2 cursor-pointer {{ $image->is_primary ? 'border-ayur-green' : 'border-gray-300' }}"
-                         src="{{ asset('storage/' . $image->image_path) }}"
+                         src="{{ url('images/' . $image->image_path) }}"
                          onclick="changeMainImage(this)" alt="{{ $product->name }} view">
                     @endforeach
                 </div>

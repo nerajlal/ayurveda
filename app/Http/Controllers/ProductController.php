@@ -36,7 +36,7 @@ class ProductController extends Controller
                 'originalPrice' => $firstSize->original_price ?? 0,
                 'rating' => 4.5, // Placeholder rating
                 'reviews' => 100, // Placeholder reviews
-                'image' => $primaryImage ? asset('storage/' . $primaryImage->image_path) : 'https://via.placeholder.com/300x200',
+                'image' => $primaryImage ? url('images/' . $primaryImage->image_path) : 'https://via.placeholder.com/300x200',
                 'description' => $product->subtitle, // Using subtitle as short description
                 'benefits' => [], // Placeholder
                 'isNew' => $product->created_at->isAfter(now()->subMonth()),
