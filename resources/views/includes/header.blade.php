@@ -205,29 +205,30 @@
                 </form>
                 
                 <!-- Register Form -->
-                <form id="registerForm" class="space-y-6 hidden">
+                <form id="registerForm" class="space-y-6 hidden" action="{{ route('register') }}" method="post">
+                    @csrf
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block text-ayur-green font-medium mb-2">First Name</label>
-                            <input type="text" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="First name" required>
+                            <input type="text" name="first_name" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="First name" required>
                         </div>
                         <div>
                             <label class="block text-ayur-green font-medium mb-2">Last Name</label>
-                            <input type="text" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Last name" required>
+                            <input type="text" name="last_name" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Last name" required>
                         </div>
                     </div>
                     <div>
                         <label class="block text-ayur-green font-medium mb-2">Email Address</label>
-                        <input type="email" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Enter your email" required>
+                        <input type="email" name="email" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Enter your email" required>
                     </div>
                     <div>
                         <label class="block text-ayur-green font-medium mb-2">Phone Number</label>
-                        <input type="tel" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Enter your phone number" required>
+                        <input type="tel" name="phone_number" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Enter your phone number" required>
                     </div>
                     <div>
                         <label class="block text-ayur-green font-medium mb-2">Password</label>
                         <div class="relative">
-                            <input type="password" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none pr-12" placeholder="Create a password" required>
+                            <input type="password" name="password" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none pr-12" placeholder="Create a password" required>
                             <button type="button" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-ayur-brown hover:text-ayur-green">
                                 <i class="fas fa-eye"></i>
                             </button>
@@ -236,7 +237,7 @@
                     <div>
                         <label class="block text-ayur-green font-medium mb-2">Confirm Password</label>
                         <div class="relative">
-                            <input type="password" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none pr-12" placeholder="Confirm your password" required>
+                            <input type="password" name="password_confirmation" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none pr-12" placeholder="Confirm your password" required>
                             <button type="button" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-ayur-brown hover:text-ayur-green">
                                 <i class="fas fa-eye"></i>
                             </button>
@@ -358,8 +359,6 @@
         });
         
         document.getElementById('registerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Registration functionality would be implemented here');
         });
         
         // Password visibility toggle

@@ -14,10 +14,8 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/register', [AuthController::class, 'registerPost']);
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'loginPost']);
+Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/', function () {
