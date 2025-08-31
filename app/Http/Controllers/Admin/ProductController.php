@@ -37,7 +37,7 @@ class ProductController extends Controller
 
             // Validation for images array
             'images' => 'required|array|min:1',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'images.*' => 'image|mimes:webp|max:2048',
             'primary_image_index' => 'required|integer',
         ]);
 
