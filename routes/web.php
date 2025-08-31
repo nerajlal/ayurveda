@@ -60,3 +60,9 @@ Route::get('/admin-customers', function () {
 Route::get('/admin-inventory', function () {
     return view('admin.inventory');
 });
+Route::get('/admin-analytics', function () {
+    return view('admin.analytics');
+}); 
+Route::get('/admin-setting', function () {
+    return view('admin.setting');
+}); 
