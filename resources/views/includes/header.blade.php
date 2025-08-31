@@ -202,7 +202,7 @@
                         <i class="fas fa-times text-xl"></i>
                     </button>
                 </div>
-                <form id="shippingAddressForm" class="space-y-4" action="/profile/address" method="post">
+                <form id="shippingAddressForm" class="space-y-4" action="{{ route('profile.address.update') }}" method="post">
                     @csrf
                     @method('PATCH')
                     <div>
