@@ -13,16 +13,37 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('sizes')->latest()->get();
-
-        // Stats for cards
+        // Stats for cards are always calculated on the full set of products
         $totalProducts = Product::count();
         $hiddenProductsCount = Product::whereDoesntHave('sizes', function ($query) {
             $query->where('stock_quantity', '>', 0);
         })->count();
         $outOfStockVariantsCount = \App\Models\ProductSize::where('stock_quantity', 0)->count();
+
+        // Start query for filtered/searched products
+        $query = Product::query()->with('sizes');
+
+        // Handle search
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        // Handle stock status filter
+        if ($request->filled('stock_status')) {
+            if ($request->stock_status === 'in_stock') {
+                $query->whereHas('sizes', function ($q) {
+                    $q->where('stock_quantity', '>', 0);
+                });
+            } elseif ($request->stock_status === 'out_of_stock') {
+                $query->whereDoesntHave('sizes', function ($q) {
+                    $q->where('stock_quantity', '>', 0);
+                });
+            }
+        }
+
+        $products = $query->latest()->paginate(10);
 
         return view('admin.products', compact('products', 'totalProducts', 'hiddenProductsCount', 'outOfStockVariantsCount'));
     }

@@ -75,14 +75,20 @@
         <div class="bg-white rounded-xl card-shadow">
             <div class="p-6 border-b border-gray-100 flex justify-between items-center">
                 <h3 class="font-playfair text-xl font-semibold text-ayur-green">Product Variants</h3>
-                <div class="flex space-x-2">
-                    <input type="text" placeholder="Search products..." class="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-ayur-green">
-                    <button class="bg-gray-100 p-2 rounded-md text-ayur-brown hover:bg-gray-200 transition duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
+                <div class="flex items-center space-x-4">
+                    <div class="flex space-x-2">
+                        <a href="{{ route('admin.products.index') }}" class="px-3 py-1 text-sm rounded-md {{ !request('stock_status') ? 'bg-ayur-green text-white' : 'bg-gray-100 text-ayur-brown' }}">All</a>
+                        <a href="{{ route('admin.products.index', ['stock_status' => 'in_stock']) }}" class="px-3 py-1 text-sm rounded-md {{ request('stock_status') == 'in_stock' ? 'bg-ayur-green text-white' : 'bg-gray-100 text-ayur-brown' }}">In Stock</a>
+                        <a href="{{ route('admin.products.index', ['stock_status' => 'out_of_stock']) }}" class="px-3 py-1 text-sm rounded-md {{ request('stock_status') == 'out_of_stock' ? 'bg-ayur-green text-white' : 'bg-gray-100 text-ayur-brown' }}">Unavailable</a>
+                    </div>
+                    <form action="{{ route('admin.products.index') }}" method="GET" class="flex space-x-2">
+                        <input type="text" name="search" placeholder="Search products..." class="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-ayur-green" value="{{ request('search') }}">
+                        <button type="submit" class="bg-gray-100 p-2 rounded-md text-ayur-brown hover:bg-gray-200 transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </form>
                 </div>
             </div>
             <div class="p-6">
@@ -145,6 +151,9 @@
                             @endforelse
                         </tbody>
                     </table>
+                </div>
+                <div class="mt-6">
+                    {{ $products->appends(request()->query())->links() }}
                 </div>
             </div>
         </div>
