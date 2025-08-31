@@ -41,11 +41,11 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($slug)
+    public function show(Product $product)
     {
-        // Find the product by its slug
-        // Eager load all images and sizes for the detail page
-        $product = Product::where('slug', $slug)->with('images', 'sizes')->firstOrFail();
+        // The product is automatically resolved by Laravel.
+        // We can load the relationships if they are not already loaded.
+        $product->load('images', 'sizes');
 
         return view('single-product', compact('product'));
     }
