@@ -258,8 +258,8 @@
                             ${discount > 0 ? `<span class="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-medium">-${discount}%</span>` : ''}
                         </div>
                         <div class="absolute top-4 right-4 flex space-x-2">
-                            <button class="wishlist-btn w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center hover:bg-opacity-100 transition duration-300">
-                                <svg class="w-4 h-4 text-ayur-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <button class="wishlist-btn w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center hover:bg-opacity-100 transition duration-300" data-product-id="${product.id}" data-wishlisted="${product.isWishlisted}">
+                                <svg class="w-4 h-4 ${product.isWishlisted ? 'text-red-500' : 'text-ayur-green'}" fill="${product.isWishlisted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                                 </svg>
                             </button>
@@ -385,22 +385,48 @@
             document.querySelectorAll('.wishlist-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    this.classList.toggle('text-red-500');
-                    
-                    // Visual feedback
-                    if (this.classList.contains('text-red-500')) {
-                        this.innerHTML = `
-                            <svg class="w-4 h-4 text-red-500" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-                        `;
-                    } else {
-                        this.innerHTML = `
-                            <svg class="w-4 h-4 text-ayur-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-                        `;
-                    }
+                    const productId = this.dataset.productId;
+                    let isWishlisted = this.dataset.wishlisted === 'true';
+                    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                    const wishlistCount = document.getElementById('wishlist-count');
+                    const svg = this.querySelector('svg');
+
+                    const method = isWishlisted ? 'DELETE' : 'POST';
+                    const url = isWishlisted ? `/wishlist/${productId}` : '/wishlist';
+                    const body = isWishlisted ? null : JSON.stringify({ product_id: productId });
+
+                    fetch(url, {
+                        method: method,
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        body: body
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            isWishlisted = !isWishlisted;
+                            this.dataset.wishlisted = isWishlisted;
+
+                            if (isWishlisted) {
+                                svg.classList.add('text-red-500');
+                                svg.setAttribute('fill', 'currentColor');
+                                wishlistCount.textContent = parseInt(wishlistCount.textContent) + 1;
+                            } else {
+                                svg.classList.remove('text-red-500');
+                                svg.setAttribute('fill', 'none');
+                                wishlistCount.textContent = parseInt(wishlistCount.textContent) - 1;
+                            }
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log(data.message);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Something went wrong.');
+                    });
                 });
             });
 

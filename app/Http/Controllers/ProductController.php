@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\WishlistItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -14,7 +16,12 @@ class ProductController extends Controller
     {
         $rawProducts = Product::with('images', 'sizes')->get();
 
-        $products = $rawProducts->map(function ($product) {
+        $wishlistedProductIds = [];
+        if (Auth::check()) {
+            $wishlistedProductIds = WishlistItem::where('user_id', Auth::id())->pluck('product_id')->toArray();
+        }
+
+        $products = $rawProducts->map(function ($product) use ($wishlistedProductIds) {
             $primaryImage = $product->images->firstWhere('is_primary', true);
             $firstSize = $product->sizes->first();
 
@@ -41,6 +48,7 @@ class ProductController extends Controller
                 'benefits' => [], // Placeholder
                 'isNew' => $product->created_at->isAfter(now()->subMonth()),
                 'inStock' => $product->sizes->sum('stock_quantity') > 0,
+                'isWishlisted' => in_array($product->id, $wishlistedProductIds),
             ];
         });
 
