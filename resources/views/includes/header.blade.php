@@ -131,7 +131,7 @@
 
                         <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Orders</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile Update</a>
+                            <a href="#" onclick="openAddressModal(); return false;" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile Update</a>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
                                 <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
@@ -191,6 +191,56 @@
             </div>
         </div>
     </header>
+
+    <!-- Shipping Address Modal -->
+    <div id="addressModal" class="fixed inset-0 modal-backdrop z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="font-playfair text-2xl font-bold text-ayur-green">Update Shipping Address</h2>
+                    <button onclick="closeAddressModal()" class="text-ayur-brown hover:text-ayur-green transition duration-300">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <form id="shippingAddressForm" class="space-y-4" action="/profile/address" method="post">
+                    @csrf
+                    @method('PATCH')
+                    <div>
+                        <label class="block text-ayur-green font-medium mb-2">Address Line 1</label>
+                        <input type="text" name="address_line_1" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Street address, P.O. box, etc." required>
+                    </div>
+                    <div>
+                        <label class="block text-ayur-green font-medium mb-2">Address Line 2</label>
+                        <input type="text" name="address_line_2" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Apartment, suite, unit, building, floor, etc.">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-ayur-green font-medium mb-2">City</label>
+                            <input type="text" name="city" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="City" required>
+                        </div>
+                        <div>
+                            <label class="block text-ayur-green font-medium mb-2">State / Province</label>
+                            <input type="text" name="state" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="State / Province" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-ayur-green font-medium mb-2">Postal Code</label>
+                            <input type="text" name="postal_code" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Postal Code" required>
+                        </div>
+                        <div>
+                            <label class="block text-ayur-green font-medium mb-2">Country</label>
+                            <input type="text" name="country" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Country" required>
+                        </div>
+                    </div>
+                    <div class="flex justify-end space-x-4 pt-4">
+                        <button type="button" onclick="closeAddressModal()" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition duration-300">Cancel</button>
+                        <button type="submit" class="bg-ayur-green text-white px-6 py-2 rounded-lg hover:bg-ayur-gold transition duration-300">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Authentication Modal -->
     <div id="authModal" class="fixed inset-0 modal-backdrop z-50 flex items-center justify-center p-4 hidden">
@@ -336,6 +386,16 @@
     
 
     <script>
+        function openAddressModal() {
+            document.getElementById('addressModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAddressModal() {
+            document.getElementById('addressModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
         function openAuthModal() {
             document.getElementById('authModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
