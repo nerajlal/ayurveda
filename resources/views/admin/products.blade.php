@@ -128,7 +128,7 @@
                                             @endif
                                         </td>
                                         <td class="py-3 flex items-center">
-                                            <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">Edit</button>
+                                            <!-- <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">Edit</button> -->
                                             <button class="update-stock-btn text-blue-500 hover:text-blue-700 text-sm mr-2"
                                                     data-size-id="{{ $size->id }}"
                                                     data-current-stock="{{ $size->stock_quantity }}"
