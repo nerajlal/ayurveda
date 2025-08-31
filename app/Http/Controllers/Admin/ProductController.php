@@ -37,8 +37,8 @@ class ProductController extends Controller
                     $q->where('stock_quantity', '>', 0);
                 });
             } elseif ($request->stock_status === 'out_of_stock') {
-                $query->whereDoesntHave('sizes', function ($q) {
-                    $q->where('stock_quantity', '>', 0);
+                $query->whereHas('sizes', function ($q) {
+                    $q->where('stock_quantity', '=', 0);
                 });
             }
         }
