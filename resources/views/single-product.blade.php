@@ -89,6 +89,7 @@
                         <div class="flex space-x-3">
                             @foreach ($product->sizes as $index => $size)
                             <button class="size-option px-4 py-2 border-2 rounded-lg transition duration-300 {{ $index == 0 ? 'border-ayur-green text-ayur-green active' : 'border-gray-300 text-gray-600' }}"
+                                    data-id="{{ $size->id }}"
                                     data-price="{{ $size->price }}"
                                     data-original-price="{{ $size->original_price }}"
                                     data-stock="{{ $size->stock_quantity }}">
@@ -336,6 +337,10 @@
                 // Add active class to clicked option
                 button.classList.add('bg-ayur-green', 'text-white', 'active');
                 button.classList.remove('border-gray-300', 'text-gray-600');
+
+                // Update hidden input with selected size id
+                const selectedSizeId = button.dataset.id;
+                document.getElementById('selected_product_size_id').value = selectedSizeId;
             });
         });
         
