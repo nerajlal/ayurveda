@@ -216,7 +216,7 @@
                 <!-- Product 1 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
                     <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23d4a574'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EHerbal Oil%3C/text%3E%3C/svg%3E" 
-                         alt="Herbal Oil" class="w-full h-48 object-cover">
+                         alt="Herbal Oil" class="w-full aspect-square object-cover">
                     <div class="p-6">
                         <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Brahmi Hair Oil</h3>
                         <p class="text-ayur-brown text-sm mb-4">Nourishing hair oil with Brahmi and Amla for healthy, lustrous hair.</p>
@@ -232,7 +232,7 @@
                 <!-- Product 2 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
                     <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%2387a96b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EHerbal Tea%3C/text%3E%3C/svg%3E" 
-                         alt="Herbal Tea" class="w-full h-48 object-cover">
+                         alt="Herbal Tea" class="w-full aspect-square object-cover">
                     <div class="p-6">
                         <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Immunity Tea Blend</h3>
                         <p class="text-ayur-brown text-sm mb-4">Powerful blend of Tulsi, Ginger, and Turmeric for natural immunity.</p>
@@ -247,8 +247,8 @@
 
                 <!-- Product 3 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%238b4513'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EAyurvedic Powder%3C/text%3E%3C/svg%3E" 
-                         alt="Ayurvedic Powder" class="w-full h-48 object-cover">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%238b4513'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EAyurvedic Powder%3C/text%E3C/svg%3E"
+                         alt="Ayurvedic Powder" class="w-full aspect-square object-cover">
                     <div class="p-6">
                         <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Triphala Churna</h3>
                         <p class="text-ayur-brown text-sm mb-4">Traditional digestive support formula with three powerful fruits.</p>
@@ -264,7 +264,7 @@
                 <!-- Product 4 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
                     <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%234a7c59'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EFace Pack%3C/text%3E%3C/svg%3E" 
-                         alt="Face Pack" class="w-full h-48 object-cover">
+                         alt="Face Pack" class="w-full aspect-square object-cover">
                     <div class="p-6">
                         <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Neem Face Pack</h3>
                         <p class="text-ayur-brown text-sm mb-4">Natural face pack with Neem and Turmeric for clear, glowing skin.</p>
