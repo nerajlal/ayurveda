@@ -23,8 +23,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-ayur-brown text-sm font-medium">Total Products</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">128</p>
-                    <p class="text-green-600 text-sm mt-1">+5 new this month</p>
+                    <p class="text-2xl font-bold text-ayur-green mt-1">{{ $totalProducts }}</p>
                 </div>
                 <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                     <span class="text-green-600 text-xl">🌿</span>
@@ -36,8 +35,8 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-ayur-brown text-sm font-medium">Out of Stock</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">3</p>
-                    <p class="text-red-600 text-sm mt-1">Action required</p>
+                    <p class="text-2xl font-bold text-ayur-green mt-1">{{ $outOfStockCount }}</p>
+                    <p class="text-red-600 text-sm mt-1">Variants out of stock</p>
                 </div>
                 <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
                     <span class="text-red-600 text-xl">⚠️</span>
@@ -49,8 +48,8 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-ayur-brown text-sm font-medium">Hidden Products</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">7</p>
-                    <p class="text-gray-600 text-sm mt-1">Not visible to customers</p>
+                    <p class="text-2xl font-bold text-ayur-green mt-1">0</p>
+                    <p class="text-gray-600 text-sm mt-1">Coming soon</p>
                 </div>
                 <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
                     <span class="text-gray-600 text-xl">🙈</span>
@@ -62,8 +61,8 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-ayur-brown text-sm font-medium">Top Selling</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">Brahmi Hair Oil</p>
-                    <p class="text-blue-600 text-sm mt-1">345 units sold</p>
+                    <p class="text-2xl font-bold text-ayur-green mt-1">-</p>
+                    <p class="text-blue-600 text-sm mt-1">Coming soon</p>
                 </div>
                 <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                     <span class="text-blue-600 text-xl">⭐</span>
@@ -75,7 +74,7 @@
     <div class="grid grid-cols-1 gap-6 mb-8">
         <div class="bg-white rounded-xl card-shadow">
             <div class="p-6 border-b border-gray-100 flex justify-between items-center">
-                <h3 class="font-playfair text-xl font-semibold text-ayur-green">All Products</h3>
+                <h3 class="font-playfair text-xl font-semibold text-ayur-green">Product Variants</h3>
                 <div class="flex space-x-2">
                     <input type="text" placeholder="Search products..." class="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-ayur-green">
                     <button class="bg-gray-100 p-2 rounded-md text-ayur-brown hover:bg-gray-200 transition duration-300">
@@ -92,8 +91,8 @@
                         <thead>
                             <tr class="text-left border-b border-gray-100">
                                 <th class="pb-3 text-sm font-medium text-ayur-brown">Product</th>
-                                <th class="pb-3 text-sm font-medium text-ayur-brown">Category</th>
                                 <th class="pb-3 text-sm font-medium text-ayur-brown">SKU</th>
+                                <th class="pb-3 text-sm font-medium text-ayur-brown">Size</th>
                                 <th class="pb-3 text-sm font-medium text-ayur-brown">Price</th>
                                 <th class="pb-3 text-sm font-medium text-ayur-brown">Stock</th>
                                 <th class="pb-3 text-sm font-medium text-ayur-brown">Status</th>
@@ -102,27 +101,17 @@
                         </thead>
                         <tbody>
                             @forelse ($products as $product)
+                                @forelse ($product->sizes as $size)
                                 <tr class="table-hover">
                                     <td class="py-3 text-sm font-medium text-ayur-green">{{ $product->name }}</td>
-                                    <td class="py-3 text-sm text-ayur-brown">{{ $product->category_name }}</td>
-                                    <td class="py-3 text-sm text-ayur-brown">PROD-{{ $product->id }}</td>
-                                    <td class="py-3 text-sm text-ayur-brown">
-                                        @if($product->sizes->isNotEmpty())
-                                            ₹{{ $product->sizes->first()->price }}
-                                        @else
-                                            N/A
-                                        @endif
-                                    </td>
-                                    <td class="py-3 text-sm text-ayur-brown">
-                                        @php
-                                            $totalStock = $product->sizes->sum('stock_quantity');
-                                        @endphp
-                                        {{ $totalStock }} in stock
-                                    </td>
+                                    <td class="py-3 text-sm text-ayur-brown">PROD-{{ $product->id }}-{{$size->id}}</td>
+                                    <td class="py-3 text-sm text-ayur-brown">{{ $size->size }}</td>
+                                    <td class="py-3 text-sm text-ayur-brown">₹{{ $size->price }}</td>
+                                    <td class="py-3 text-sm text-ayur-brown">{{ $size->stock_quantity }} in stock</td>
                                     <td class="py-3">
-                                        @if ($totalStock == 0)
+                                        @if ($size->stock_quantity == 0)
                                             <span class="text-xs px-2 py-1 rounded-full bg-red-500 text-white">Out of Stock</span>
-                                        @elseif ($totalStock < 10)
+                                        @elseif ($size->stock_quantity < 10)
                                             <span class="text-xs px-2 py-1 rounded-full bg-yellow-500 text-white">Low Stock</span>
                                         @else
                                             <span class="text-xs px-2 py-1 rounded-full bg-green-500 text-white">Active</span>
@@ -130,13 +119,19 @@
                                     </td>
                                     <td class="py-3 flex items-center">
                                         <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">Edit</button>
-                                        <form action="{{ route('admin.products.destroy', $product) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                        <form action="{{ route('admin.products.destroy', $product) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product? This will delete all its sizes.');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-500 hover:text-red-700 text-sm">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
+                                @empty
+                                <tr class="table-hover">
+                                     <td class="py-3 text-sm font-medium text-ayur-green">{{ $product->name }}</td>
+                                     <td colspan="6" class="text-center py-4 text-ayur-brown">This product has no sizes defined.</td>
+                                </tr>
+                                @endforelse
                             @empty
                                 <tr>
                                     <td colspan="7" class="text-center py-4 text-ayur-brown">No products found.</td>

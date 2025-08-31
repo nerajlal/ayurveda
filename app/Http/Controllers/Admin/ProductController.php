@@ -16,7 +16,12 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('sizes')->latest()->get();
-        return view('admin.products', compact('products'));
+        $totalProducts = Product::count();
+        $outOfStockCount = Product::whereDoesntHave('sizes', function ($query) {
+            $query->where('stock_quantity', '>', 0);
+        })->count();
+
+        return view('admin.products', compact('products', 'totalProducts', 'outOfStockCount'));
     }
 
     /**
