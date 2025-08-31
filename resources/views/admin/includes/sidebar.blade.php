@@ -151,9 +151,12 @@
                         <p class="text-xs text-ayur-brown">Administrator</p>
                     </div>
                 </div>
-                <button class="w-full bg-ayur-green text-white py-2 px-3 rounded-lg text-sm hover:bg-ayur-dark transition duration-300">
-                    Logout
-                </button>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button type="submit" class="w-full bg-ayur-green text-white py-2 px-3 rounded-lg text-sm hover:bg-ayur-dark transition duration-300">
+                        Logout
+                    </button>
+                </form>
             </div>
         </div>
     </div>

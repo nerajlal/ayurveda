@@ -114,11 +114,25 @@
                         </span>
                     </a>
                     
+                    @guest
                     <!-- Sign In Button -->
                     <button onclick="openAuthModal()" class="hidden md:flex bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-ayur-gold transition duration-300 items-center space-x-2">
                         <i class="fas fa-user"></i>
                         <span>Sign In</span>
                     </button>
+                    @endguest
+                    @auth
+                    <a href="#" class="text-ayur-green hover:text-ayur-gold transition duration-300 relative">
+                        <i class="fas fa-user-circle text-2xl"></i>
+                    </a>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="hidden md:flex bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-ayur-gold transition duration-300 items-center space-x-2">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
+                    @endauth
 
                     <button onclick="toggleMobileMenu()" class="lg:hidden text-ayur-green">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -151,10 +165,21 @@
                     <a href="/contact" class="block text-ayur-green hover:text-ayur-gold transition duration-300 font-medium text-lg">Contact</a>
                 </nav>
                 
+                @guest
                 <button onclick="openAuthModal(); toggleMobileMenu();" class="w-full mt-8 bg-ayur-green text-white px-6 py-3 rounded-lg hover:bg-ayur-gold transition duration-300 flex items-center justify-center space-x-2">
                     <i class="fas fa-user"></i>
                     <span>Sign In</span>
                 </button>
+                @endguest
+                @auth
+                <form action="{{ route('logout') }}" method="post" class="w-full mt-8">
+                    @csrf
+                    <button type="submit" class="w-full bg-ayur-green text-white px-6 py-3 rounded-lg hover:bg-ayur-gold transition duration-300 flex items-center justify-center space-x-2">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </button>
+                </form>
+                @endauth
             </div>
         </div>
     </header>
