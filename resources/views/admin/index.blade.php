@@ -14,9 +14,11 @@
                     <button class="bg-white p-3 rounded-lg card-shadow hover-lift text-ayur-green">
                         <span class="text-lg">🔔</span>
                     </button>
-                    <button class="bg-ayur-green text-white px-6 py-3 rounded-lg hover:bg-ayur-dark transition duration-300 font-medium">
-                        + Add Product
-                    </button>
+                    <a href="/admin-products">
+                        <button class="bg-ayur-green text-white px-6 py-3 rounded-lg hover:bg-ayur-dark transition duration-300 font-medium">
+                            View Product
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -83,9 +85,11 @@
                 <div class="p-6 border-b border-gray-100">
                     <div class="flex justify-between items-center">
                         <h3 class="font-playfair text-xl font-semibold text-ayur-green">Recent Orders</h3>
-                        <button class="text-ayur-green hover:text-ayur-dark transition duration-300 text-sm font-medium">
-                            View All →
-                        </button>
+                        <a href="/admin-orders">
+                            <button class="text-ayur-green hover:text-ayur-dark transition duration-300 text-sm font-medium">
+                                View All →
+                            </button>
+                        </a>
                     </div>
                 </div>
                 <div class="p-6">
@@ -145,30 +149,37 @@
             
             <!-- Quick Actions -->
             <div class="bg-white rounded-xl card-shadow">
+                <!-- Header -->
                 <div class="p-6 border-b border-gray-100">
                     <h3 class="font-playfair text-xl font-semibold text-ayur-green">Quick Actions</h3>
                 </div>
-                <div class="p-6 space-y-4">
-                    <button class="w-full bg-ayur-green text-white p-4 rounded-lg hover:bg-ayur-dark transition duration-300 flex items-center space-x-3">
-                        <span class="text-lg">📦</span>
-                        <span class="font-medium">Add New Product</span>
-                    </button>
-                    <button class="w-full bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 transition duration-300 flex items-center space-x-3">
-                        <span class="text-lg">👨‍⚕️</span>
-                        <span class="font-medium">Schedule Consultation</span>
-                    </button>
-                    <button class="w-full bg-purple-500 text-white p-4 rounded-lg hover:bg-purple-600 transition duration-300 flex items-center space-x-3">
-                        <span class="text-lg">📊</span>
-                        <span class="font-medium">Generate Report</span>
-                    </button>
-                    <button class="w-full bg-orange-500 text-white p-4 rounded-lg hover:bg-orange-600 transition duration-300 flex items-center space-x-3">
-                        <span class="text-lg">📋</span>
-                        <span class="font-medium">Update Inventory</span>
-                    </button>
+
+                <!-- Action Buttons -->
+                <div class="p-6 space-y-5">
+                    <a href="/admin-products" class="block">
+                        <button class="w-full bg-ayur-green text-white p-4 rounded-lg hover:bg-ayur-dark transition duration-300 flex items-center space-x-3">
+                            <span class="text-lg">📦</span>
+                            <span class="font-medium">Add New Product</span>
+                        </button>
+                    </a>
+
+                    <a href="/admin-analytics" class="block">
+                        <button class="w-full bg-purple-500 text-white p-4 rounded-lg hover:bg-purple-600 transition duration-300 flex items-center space-x-3">
+                            <span class="text-lg">📊</span>
+                            <span class="font-medium">Generate Report</span>
+                        </button>
+                    </a>
+
+                    <a href="/admin-inventory" class="block">
+                        <button class="w-full bg-orange-500 text-white p-4 rounded-lg hover:bg-orange-600 transition duration-300 flex items-center space-x-3">
+                            <span class="text-lg">📋</span>
+                            <span class="font-medium">Update Inventory</span>
+                        </button>
+                    </a>
                 </div>
-                
+
                 <!-- Low Stock Alert -->
-                <div class="p-6 border-t border-gray-100">
+                <div class="px-6 pb-6"> <!-- unified padding -->
                     <div class="bg-red-50 border border-red-200 rounded-lg p-4">
                         <div class="flex items-center space-x-3">
                             <span class="text-red-500 text-lg">⚠️</span>
@@ -180,6 +191,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <!-- Performance Metrics -->
