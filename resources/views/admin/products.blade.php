@@ -179,7 +179,14 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <input type="text" name="name" placeholder="Product Name" class="w-full border p-2 rounded">
                 <input type="text" name="subtitle" placeholder="Product Subtitle" class="w-full border p-2 rounded">
-                <input type="text" name="category_name" placeholder="Category" class="w-full border p-2 rounded">
+                <select name="category_name" class="w-full border p-2 rounded bg-white">
+                    <option value="" disabled selected>Select a Category</option>
+                    <option value="Herbal Oils">Herbal Oils</option>
+                    <option value="Skincare">Skincare</option>
+                    <option value="Herbal Tea">Herbal Tea</option>
+                    <option value="Churna & Powders">Churna & Powders</option>
+                    <option value="Supplements">Supplements</option>
+                </select>
             </div>
             <textarea name="description" placeholder="Description" class="w-full border p-2 rounded mb-6"></textarea>
             <textarea name="key_benefits" placeholder="Key Benefits (one per line)" class="w-full border p-2 rounded mb-6"></textarea>
