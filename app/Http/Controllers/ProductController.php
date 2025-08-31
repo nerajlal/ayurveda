@@ -18,11 +18,20 @@ class ProductController extends Controller
             $primaryImage = $product->images->firstWhere('is_primary', true);
             $firstSize = $product->sizes->first();
 
+            $categorySlug = match($product->category_name) {
+                'Herbal Oils' => 'oils',
+                'Skincare' => 'skincare',
+                'Herbal Tea' => 'teas',
+                'Churna & Powders' => 'powders',
+                'Supplements' => 'supplements',
+                default => 'general',
+            };
+
             return [
                 'id' => $product->id,
                 'name' => $product->name,
                 'slug' => $product->slug,
-                'category' => $product->category_name, // The JS uses 'category', not 'category_name'
+                'category' => $categorySlug,
                 'price' => $firstSize->price ?? 0,
                 'originalPrice' => $firstSize->original_price ?? 0,
                 'rating' => 4.5, // Placeholder rating
