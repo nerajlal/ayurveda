@@ -44,9 +44,9 @@ class WishlistController extends Controller
 
         if ($wishlistItem) {
             $wishlistItem->delete();
-            return response()->json(['message' => 'Product removed from wishlist.']);
+            return back()->with('success', 'Product removed from wishlist.');
         }
 
-        return response()->json(['message' => 'Product not in wishlist.'], 404);
+        return back()->with('error', 'Product not found in wishlist.');
     }
 }

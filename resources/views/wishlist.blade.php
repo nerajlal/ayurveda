@@ -19,12 +19,26 @@
         </div>
     </div>
 
+    <!-- Session Messages -->
+    <div class="container mx-auto px-4">
+        @if (session('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <span class="block sm:inline">{{ session('success') }}</span>
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <span class="block sm:inline">{{ session('error') }}</span>
+            </div>
+        @endif
+    </div>
+
     <!-- Wishlist Items -->
     <div class="container mx-auto px-4 pb-16">
         @if ($wishlistItems->isNotEmpty())
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 @foreach ($wishlistItems as $item)
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift flex flex-col">
                         <div class="relative">
                             <a href="{{ route('products.show', $item->product) }}">
                                 <img src="{{ $item->product->images->firstWhere('is_primary', true) ? url('images/' . $item->product->images->firstWhere('is_primary', true)->image_path) : 'https://via.placeholder.com/300x200' }}"
@@ -42,11 +56,14 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="p-6">
-                            <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">
-                                <a href="{{ route('products.show', $item->product) }}">{{ $item->product->name }}</a>
-                            </h3>
-                            <div class="flex justify-between items-center">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex-grow">
+                                <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">
+                                    <a href="{{ route('products.show', $item->product) }}">{{ $item->product->name }}</a>
+                                </h3>
+                                <p class="text-ayur-brown text-sm mb-3 line-clamp-2">{{ $item->product->subtitle }}</p>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
                                 <span class="font-bold text-ayur-green text-lg">₹{{ $item->product->sizes->first()->price ?? 'N/A' }}</span>
                                 <a href="{{ route('products.show', $item->product) }}" class="text-ayur-green hover:text-ayur-gold transition duration-300">View Product</a>
                             </div>
