@@ -97,4 +97,13 @@ class ProductController extends Controller
             return back()->with('error', 'Failed to create product. Please try again. Error: ' . $e->getMessage());
         }
     }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Product $product)
+    {
+        $product->delete();
+        return back()->with('success', 'Product deleted successfully.');
+    }
 }

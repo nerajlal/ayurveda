@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,12 +23,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/products', function () {
-    return view('products');
-});
-Route::get('/product', function () {
-    return view('single-product');
-});
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/product/{slug}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/about', function () {
     return view('about');
 });
@@ -54,7 +51,7 @@ Route::get('/refund', function () {
 Route::get('/admin', function () {
     return view('admin.index');
 });
-Route::get('/admin-products', [ProductController::class, 'index'])->name('admin.products.index');
+Route::get('/admin-products', [AdminProductController::class, 'index'])->name('admin.products.index');
 Route::get('/admin-orders', function () {
     return view('admin.orders');
 });
@@ -71,4 +68,5 @@ Route::get('/admin-setting', function () {
     return view('admin.setting');
 });
 
-Route::post('/admin/products', [ProductController::class, 'store'])->name('admin.products.store');
+Route::post('/admin/products', [AdminProductController::class, 'store'])->name('admin.products.store');
+Route::delete('/admin/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');

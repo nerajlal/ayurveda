@@ -128,9 +128,13 @@
                                             <span class="text-xs px-2 py-1 rounded-full bg-green-500 text-white">Active</span>
                                         @endif
                                     </td>
-                                    <td class="py-3">
+                                    <td class="py-3 flex items-center">
                                         <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">Edit</button>
-                                        <button class="text-red-500 hover:text-red-700 text-sm">Delete</button>
+                                        <form action="{{ route('admin.products.destroy', $product) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-500 hover:text-red-700 text-sm">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @empty
