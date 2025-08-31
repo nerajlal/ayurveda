@@ -79,7 +79,7 @@
                     <div class="flex space-x-2">
                         <a href="{{ route('admin.products.index') }}" class="px-3 py-1 text-sm rounded-md {{ !request('stock_status') ? 'bg-ayur-green text-white' : 'bg-gray-100 text-ayur-brown' }}">All</a>
                         <a href="{{ route('admin.products.index', ['stock_status' => 'in_stock']) }}" class="px-3 py-1 text-sm rounded-md {{ request('stock_status') == 'in_stock' ? 'bg-ayur-green text-white' : 'bg-gray-100 text-ayur-brown' }}">In Stock</a>
-                        <a href="{{ route('admin.products.index', ['stock_status' => 'out_of_stock']) }}" class="px-3 py-1 text-sm rounded-md {{ request('stock_status') == 'out_of_stock' ? 'bg-ayur-green text-white' : 'bg-gray-100 text-ayur-brown' }}">Unavailable</a>
+                        <a href="{{ route('admin.products.index', ['stock_status' => 'out_of_stock']) }}" class="px-3 py-1 text-sm rounded-md {{ request('stock_status') == 'out_of_stock' ? 'bg-ayur-green text-white' : 'bg-gray-100 text-ayur-brown' }}">Inactive</a>
                     </div>
                     <form action="{{ route('admin.products.index') }}" method="GET" class="flex space-x-2">
                         <input type="text" name="search" placeholder="Search products..." class="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-ayur-green" value="{{ request('search') }}">

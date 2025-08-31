@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -55,9 +56,7 @@ Route::get('/admin-products', [AdminProductController::class, 'index'])->name('a
 Route::get('/admin-orders', function () {
     return view('admin.orders');
 });
-Route::get('/admin-customers', function () {
-    return view('admin.customers');
-});
+Route::get('/admin-customers', [AdminCustomerController::class, 'index'])->name('admin.customers.index');
 Route::get('/admin-inventory', function () {
     return view('admin.inventory');
 });
