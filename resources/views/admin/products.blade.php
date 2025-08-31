@@ -119,6 +119,12 @@
                                     </td>
                                     <td class="py-3 flex items-center">
                                         <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">Edit</button>
+                                        <button class="update-stock-btn text-blue-500 hover:text-blue-700 text-sm mr-2"
+                                                data-size-id="{{ $size->id }}"
+                                                data-current-stock="{{ $size->stock_quantity }}"
+                                                data-product-name="{{ $product->name }} ({{ $size->size }})">
+                                            Update Stock
+                                        </button>
                                         <form action="{{ route('admin.products.destroy', $product) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product? This will delete all its sizes.');">
                                             @csrf
                                             @method('DELETE')
@@ -144,6 +150,29 @@
         </div>
     </div>
 </div>
+
+<!-- Update Stock Modal -->
+<div id="updateStockModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full">
+        <form id="updateStockForm" method="POST" class="p-8">
+            @csrf
+            @method('PATCH')
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="font-playfair text-2xl font-bold text-ayur-green">Update Stock</h2>
+                <button type="button" id="closeStockModalBtn" class="text-ayur-brown hover:text-ayur-green">&times;</button>
+            </div>
+            <p id="stockProductName" class="mb-4"></p>
+            <div>
+                <label for="stock_quantity" class="block text-ayur-green font-medium mb-2">New Stock Quantity:</label>
+                <input type="number" name="stock_quantity" id="stock_quantity_input" class="w-full border p-2 rounded" min="0">
+            </div>
+            <div class="flex justify-end mt-6">
+                <button type="submit" class="bg-ayur-green text-white px-6 py-3 rounded-lg">Update Stock</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 <!-- Add Product Modal -->
 <div id="addProductModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50">
@@ -266,6 +295,40 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// Update Stock Modal Logic
+const updateStockModal = document.getElementById('updateStockModal');
+const closeStockModalBtn = document.getElementById('closeStockModalBtn');
+const updateStockForm = document.getElementById('updateStockForm');
+const stockProductName = document.getElementById('stockProductName');
+const stockQuantityInput = document.getElementById('stock_quantity_input');
+
+document.querySelectorAll('.update-stock-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const sizeId = button.dataset.sizeId;
+        const currentStock = button.dataset.currentStock;
+        const productName = button.dataset.productName;
+
+        //- Set the form action
+        let url = "{{ route('admin.product_sizes.updateStock', ':id') }}";
+        url = url.replace(':id', sizeId);
+        updateStockForm.action = url;
+
+        //- Populate the modal
+        stockProductName.textContent = productName;
+        stockQuantityInput.value = currentStock;
+
+        //- Show the modal
+        updateStockModal.classList.remove('hidden');
+        updateStockModal.classList.add('flex');
+    });
+});
+
+closeStockModalBtn.addEventListener('click', () => {
+    updateStockModal.classList.add('hidden');
+    updateStockModal.classList.remove('flex');
+});
+
 </script>
 
 @include('admin.includes.footer')

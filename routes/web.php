@@ -70,3 +70,4 @@ Route::get('/admin-setting', function () {
 
 Route::post('/admin/products', [AdminProductController::class, 'store'])->name('admin.products.store');
 Route::delete('/admin/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
+Route::patch('/admin/product-sizes/{product_size}/stock', [AdminProductController::class, 'updateStock'])->name('admin.product_sizes.updateStock');

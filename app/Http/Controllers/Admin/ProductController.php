@@ -114,4 +114,20 @@ class ProductController extends Controller
         $product->delete();
         return back()->with('success', 'Product deleted successfully.');
     }
+
+    /**
+     * Update the stock for a specific product size.
+     */
+    public function updateStock(Request $request, \App\Models\ProductSize $product_size)
+    {
+        $validated = $request->validate([
+            'stock_quantity' => 'required|integer|min:0',
+        ]);
+
+        $product_size->update([
+            'stock_quantity' => $validated['stock_quantity'],
+        ]);
+
+        return back()->with('success', 'Stock updated successfully.');
+    }
 }
