@@ -116,11 +116,9 @@
                                     <td class="py-3 text-sm text-ayur-brown">{{ $size->stock_quantity }} in stock</td>
                                     <td class="py-3">
                                         @if ($size->stock_quantity == 0)
-                                            <span class="text-xs px-2 py-1 rounded-full bg-gray-500 text-white">Inactive</span>
-                                        @elseif ($size->stock_quantity < 10)
-                                            <span class="text-xs px-2 py-1 rounded-full bg-yellow-500 text-white">Low Stock</span>
+                                            <span class="text-xs px-2 py-1 rounded-full bg-red-500 text-white">Out of Stock</span>
                                         @else
-                                            <span class="text-xs px-2 py-1 rounded-full bg-green-500 text-white">Active</span>
+                                            <span class="text-xs px-2 py-1 rounded-full bg-green-500 text-white">In Stock</span>
                                         @endif
                                     </td>
                                     <td class="py-3 flex items-center">
