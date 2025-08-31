@@ -31,7 +31,7 @@
                         <div class="cart-item bg-ayur-cream p-6 rounded-2xl">
                             <div class="flex flex-col md:flex-row gap-6">
                                 <div class="flex-shrink-0">
-                                    <img src="{{ $item->product->images->firstWhere('is_primary', true) ? asset('storage/' . $item->product->images->firstWhere('is_primary', true)->image_path) : 'https://via.placeholder.com/120' }}"
+                                    <img src="{{ $item->product->images->firstWhere('is_primary', true) ? url('images/' . $item->product->images->firstWhere('is_primary', true)->image_path) : 'https://via.placeholder.com/120' }}"
                                          alt="{{ $item->product->name }}" class="w-24 h-24 md:w-28 md:h-28 rounded-xl object-cover">
                                 </div>
                                 <div class="flex-grow">
