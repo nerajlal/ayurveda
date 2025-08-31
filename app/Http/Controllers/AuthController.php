@@ -42,7 +42,22 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            if ($user->status != 0) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return back()->withErrors([
+                    'email' => 'Your account has been blocked by the administrator.',
+                ])->onlyInput('email');
+            }
+
             $request->session()->regenerate();
+
+            if ($user->user_type == 'admin') {
+                return redirect()->intended('/admin');
+            }
 
             return redirect()->intended('/');
         }

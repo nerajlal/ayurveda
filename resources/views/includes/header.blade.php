@@ -178,20 +178,30 @@
                 </div>
                 
                 <!-- Sign In Form -->
-                <form id="signInForm" class="space-y-6">
+                <form id="signInForm" class="space-y-6" action="{{ route('login') }}" method="post">
+                    @csrf
                     <div>
                         <label class="block text-ayur-green font-medium mb-2">Email Address</label>
-                        <input type="email" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Enter your email" required>
+                        <input type="email" name="email" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Enter your email" required>
                     </div>
                     <div>
                         <label class="block text-ayur-green font-medium mb-2">Password</label>
                         <div class="relative">
-                            <input type="password" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none pr-12" placeholder="Enter your password" required>
+                            <input type="password" name="password" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none pr-12" placeholder="Enter your password" required>
                             <button type="button" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-ayur-brown hover:text-ayur-green">
                                 <i class="fas fa-eye"></i>
                             </button>
                         </div>
                     </div>
+                    @if ($errors->any())
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="flex items-center justify-between">
                         <label class="flex items-center">
                             <input type="checkbox" class="rounded border-gray-300 text-ayur-green focus:border-ayur-green focus:ring-ayur-green">
@@ -354,8 +364,6 @@
         
         // Handle form submissions
         document.getElementById('signInForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Sign in functionality would be implemented here');
         });
         
         document.getElementById('registerForm').addEventListener('submit', function(e) {
