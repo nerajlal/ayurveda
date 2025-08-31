@@ -123,8 +123,8 @@
                         <button type="button" class="flex-1 border-2 border-ayur-green text-ayur-green px-8 py-4 rounded-lg hover:bg-ayur-green hover:text-white transition duration-300 font-medium text-lg">
                             Buy Now
                         </button>
-                        <button type="button" id="addToWishlistBtn" class="border border-ayur-sage text-ayur-sage p-4 rounded-lg hover:bg-ayur-sage hover:text-white transition duration-300" data-product-id="{{ $product->id }}">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <button type="button" id="addToWishlistBtn" class="border border-ayur-sage text-ayur-sage p-4 rounded-lg hover:bg-ayur-sage hover:text-white transition duration-300" data-product-id="{{ $product->id }}" data-wishlisted="{{ $isWishlisted }}">
+                            <svg class="w-6 h-6 @if($isWishlisted) text-red-500 @endif" fill="@if($isWishlisted) currentColor @else none @endif" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                             </svg>
                         </button>
@@ -404,26 +404,42 @@
         // Add to wishlist functionality
         document.getElementById('addToWishlistBtn').addEventListener('click', function() {
             const productId = this.dataset.productId;
+            let isWishlisted = this.dataset.wishlisted === 'true' || this.dataset.wishlisted === '1';
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            const wishlistCount = document.getElementById('wishlist-count');
+            const svg = this.querySelector('svg');
 
-            fetch('/wishlist', {
-                method: 'POST',
+            const method = isWishlisted ? 'DELETE' : 'POST';
+            const url = isWishlisted ? `/wishlist/${productId}` : '/wishlist';
+            const body = isWishlisted ? null : JSON.stringify({ product_id: productId });
+
+            fetch(url, {
+                method: method,
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': csrfToken
                 },
-                body: JSON.stringify({ product_id: productId })
+                body: body
             })
             .then(response => {
-                if (response.status === 201) {
-                    const wishlistCount = document.getElementById('wishlist-count');
-                    wishlistCount.textContent = parseInt(wishlistCount.textContent) + 1;
-                    this.querySelector('svg').classList.add('text-red-500');
+                if (response.ok) {
+                    isWishlisted = !isWishlisted;
+                    this.dataset.wishlisted = isWishlisted;
+
+                    if (isWishlisted) {
+                        svg.classList.add('text-red-500');
+                        svg.setAttribute('fill', 'currentColor');
+                        wishlistCount.textContent = parseInt(wishlistCount.textContent) + 1;
+                    } else {
+                        svg.classList.remove('text-red-500');
+                        svg.setAttribute('fill', 'none');
+                        wishlistCount.textContent = parseInt(wishlistCount.textContent) - 1;
+                    }
                 }
                 return response.json();
             })
             .then(data => {
-                alert(data.message); // Simple feedback, can be improved
+                alert(data.message);
             })
             .catch(error => {
                 console.error('Error:', error);

@@ -64,6 +64,13 @@ class ProductController extends Controller
         // We can load the relationships if they are not already loaded.
         $product->load('images', 'sizes');
 
-        return view('single-product', compact('product'));
+        $isWishlisted = false;
+        if (Auth::check()) {
+            $isWishlisted = WishlistItem::where('user_id', Auth::id())
+                ->where('product_id', $product->id)
+                ->exists();
+        }
+
+        return view('single-product', compact('product', 'isWishlisted'));
     }
 }

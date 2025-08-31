@@ -36,7 +36,7 @@ class WishlistController extends Controller
         return response()->json(['message' => 'Product already in wishlist.'], 200);
     }
 
-    public function destroy(Product $product)
+    public function destroy(Request $request, Product $product)
     {
         $wishlistItem = WishlistItem::where('user_id', Auth::id())
             ->where('product_id', $product->id)
@@ -44,9 +44,15 @@ class WishlistController extends Controller
 
         if ($wishlistItem) {
             $wishlistItem->delete();
+            if ($request->wantsJson()) {
+                return response()->json(['message' => 'Product removed from wishlist.']);
+            }
             return back()->with('success', 'Product removed from wishlist.');
         }
 
+        if ($request->wantsJson()) {
+            return response()->json(['message' => 'Product not in wishlist.'], 404);
+        }
         return back()->with('error', 'Product not found in wishlist.');
     }
 }
