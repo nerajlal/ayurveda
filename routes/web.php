@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/wishlist', [WishlistController::class, 'store'])->name('wishlist.store');
     Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
 
+    Route::get('/profile/address', [ProfileController::class, 'getAddress'])->name('profile.address.get');
     Route::patch('/profile/address', [ProfileController::class, 'updateAddress'])->name('profile.address.update');
 });
 

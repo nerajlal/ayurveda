@@ -233,6 +233,10 @@
                             <input type="text" name="country" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Country" required>
                         </div>
                     </div>
+                    <div>
+                        <label class="block text-ayur-green font-medium mb-2">Delivery Phone Number</label>
+                        <input type="tel" name="delivery_phone_number" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Enter a phone number for delivery updates">
+                    </div>
                     <div class="flex justify-end space-x-4 pt-4">
                         <button type="button" onclick="closeAddressModal()" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition duration-300">Cancel</button>
                         <button type="submit" class="bg-ayur-green text-white px-6 py-2 rounded-lg hover:bg-ayur-gold transition duration-300">Save Changes</button>
@@ -386,7 +390,33 @@
     
 
     <script>
-        function openAddressModal() {
+        async function openAddressModal() {
+            try {
+                const response = await fetch('{{ route('profile.address.get') }}', {
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const address = await response.json();
+
+                if (address) {
+                    const form = document.getElementById('shippingAddressForm');
+                    form.elements.address_line_1.value = address.address_line_1 || '';
+                    form.elements.address_line_2.value = address.address_line_2 || '';
+                    form.elements.city.value = address.city || '';
+                    form.elements.state.value = address.state || '';
+                    form.elements.postal_code.value = address.postal_code || '';
+                    form.elements.country.value = address.country || '';
+                    form.elements.delivery_phone_number.value = address.delivery_phone_number || '';
+                }
+
+            } catch (error) {
+                console.error('There was a problem fetching the address:', error);
+            }
+
             document.getElementById('addressModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }

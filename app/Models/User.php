@@ -25,12 +25,6 @@ class User extends Authenticatable
         'password',
         'user_type',
         'status',
-        'address_line_1',
-        'address_line_2',
-        'city',
-        'state',
-        'postal_code',
-        'country',
     ];
 
     /**
@@ -52,4 +46,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function shippingAddress()
+    {
+        return $this->hasOne(ShippingAddress::class);
+    }
 }
