@@ -414,12 +414,16 @@
                 },
                 body: JSON.stringify({ product_id: productId })
             })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message); // Simple feedback, can be improved
-                if (data.message.includes('added')) {
+            .then(response => {
+                if (response.status === 201) {
+                    const wishlistCount = document.getElementById('wishlist-count');
+                    wishlistCount.textContent = parseInt(wishlistCount.textContent) + 1;
                     this.querySelector('svg').classList.add('text-red-500');
                 }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message); // Simple feedback, can be improved
             })
             .catch(error => {
                 console.error('Error:', error);

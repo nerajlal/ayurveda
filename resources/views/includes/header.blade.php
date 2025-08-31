@@ -110,7 +110,7 @@
                     </a>
                     <a href="{{ url('/wishlist') }}" class="text-ayur-green hover:text-ayur-gold transition duration-300 relative">
                         <i class="fas fa-heart text-xl"></i>
-                        <span class="absolute -top-2 -right-2 bg-ayur-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                        <span id="wishlist-count" class="absolute -top-2 -right-2 bg-ayur-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                             {{ $wishlistCount }}
                         </span>
                     </a>
