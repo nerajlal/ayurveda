@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,8 +67,6 @@ Route::get('/admin-inventory', function () {
 Route::get('/admin-analytics', function () {
     return view('admin.analytics');
 }); 
-use App\Http\Controllers\Admin\ProductController;
-
 Route::get('/admin-setting', function () {
     return view('admin.setting');
 });
