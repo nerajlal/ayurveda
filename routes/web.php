@@ -68,6 +68,10 @@ Route::get('/admin-inventory', function () {
 Route::get('/admin-analytics', function () {
     return view('admin.analytics');
 }); 
+use App\Http\Controllers\Admin\ProductController;
+
 Route::get('/admin-setting', function () {
     return view('admin.setting');
-}); 
+});
+
+Route::post('/admin/products', [ProductController::class, 'store'])->name('admin.products.store');
