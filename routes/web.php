@@ -36,9 +36,7 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::get('/wishlist', function () {
-    return view('wishlist');
-});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
@@ -46,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/cart/{cartItem}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/{cartItem}', [CartController::class, 'destroy'])->name('cart.destroy');
 
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::post('/wishlist', [WishlistController::class, 'store'])->name('wishlist.store');
     Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
 });

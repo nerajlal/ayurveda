@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
+    public function index()
+    {
+        $wishlistItems = WishlistItem::where('user_id', Auth::id())
+            ->with('product.images')
+            ->get();
+
+        return view('wishlist', compact('wishlistItems'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
