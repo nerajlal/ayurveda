@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $products = Product::with('sizes')->latest()->get();
+        return view('admin.products', compact('products'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)

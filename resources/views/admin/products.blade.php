@@ -100,63 +100,44 @@
                                 <th class="pb-3 text-sm font-medium text-ayur-brown">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="space-y-2">
-                            <tr class="table-hover">
-                                <td class="py-3 text-sm font-medium text-ayur-green">Brahmi Hair Oil</td>
-                                <td class="py-3 text-sm text-ayur-brown">Hair Care</td>
-                                <td class="py-3 text-sm text-ayur-brown">BR-HO-01</td>
-                                <td class="py-3 text-sm text-ayur-brown">₹899</td>
-                                <td class="py-3 text-sm text-ayur-brown">45 in stock</td>
-                                <td class="py-3">
-                                    <span class="status-active text-white text-xs px-2 py-1 rounded-full">Active</span>
-                                </td>
-                                <td class="py-3">
-                                    <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">Edit</button>
-                                    <button class="text-red-500 hover:text-red-700 text-sm">Delete</button>
-                                </td>
-                            </tr>
-                            <tr class="table-hover">
-                                <td class="py-3 text-sm font-medium text-ayur-green">Immunity Tea Blend</td>
-                                <td class="py-3 text-sm text-ayur-brown">Wellness Teas</td>
-                                <td class="py-3 text-sm text-ayur-brown">ITB-02</td>
-                                <td class="py-3 text-sm text-ayur-brown">₹549</td>
-                                <td class="py-3 text-sm text-ayur-brown">12 in stock</td>
-                                <td class="py-3">
-                                    <span class="status-active text-white text-xs px-2 py-1 rounded-full">Active</span>
-                                </td>
-                                <td class="py-3">
-                                    <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">Edit</button>
-                                    <button class="text-red-500 hover:text-red-700 text-sm">Delete</button>
-                                </td>
-                            </tr>
-                            <tr class="table-hover">
-                                <td class="py-3 text-sm font-medium text-ayur-green">Triphala Churna</td>
-                                <td class="py-3 text-sm text-ayur-brown">Digestion</td>
-                                <td class="py-3 text-sm text-ayur-brown">TRP-CHU-03</td>
-                                <td class="py-3 text-sm text-ayur-brown">₹399</td>
-                                <td class="py-3 text-sm text-ayur-brown">2 in stock</td>
-                                <td class="py-3">
-                                    <span class="status-low-stock text-white text-xs px-2 py-1 rounded-full">Low Stock</span>
-                                </td>
-                                <td class="py-3">
-                                    <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">Edit</button>
-                                    <button class="text-red-500 hover:text-red-700 text-sm">Delete</button>
-                                </td>
-                            </tr>
-                            <tr class="table-hover">
-                                <td class="py-3 text-sm font-medium text-ayur-green">Neem Face Pack</td>
-                                <td class="py-3 text-sm text-ayur-brown">Skin Care</td>
-                                <td class="py-3 text-sm text-ayur-brown">NFP-04</td>
-                                <td class="py-3 text-sm text-ayur-brown">₹299</td>
-                                <td class="py-3 text-sm text-ayur-brown">0 in stock</td>
-                                <td class="py-3">
-                                    <span class="status-out-of-stock text-white text-xs px-2 py-1 rounded-full">Out of Stock</span>
-                                </td>
-                                <td class="py-3">
-                                    <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">Edit</button>
-                                    <button class="text-red-500 hover:text-red-700 text-sm">Delete</button>
-                                </td>
-                            </tr>
+                        <tbody>
+                            @forelse ($products as $product)
+                                <tr class="table-hover">
+                                    <td class="py-3 text-sm font-medium text-ayur-green">{{ $product->name }}</td>
+                                    <td class="py-3 text-sm text-ayur-brown">{{ $product->category_name }}</td>
+                                    <td class="py-3 text-sm text-ayur-brown">PROD-{{ $product->id }}</td>
+                                    <td class="py-3 text-sm text-ayur-brown">
+                                        @if($product->sizes->isNotEmpty())
+                                            ₹{{ $product->sizes->first()->price }}
+                                        @else
+                                            N/A
+                                        @endif
+                                    </td>
+                                    <td class="py-3 text-sm text-ayur-brown">
+                                        @php
+                                            $totalStock = $product->sizes->sum('stock_quantity');
+                                        @endphp
+                                        {{ $totalStock }} in stock
+                                    </td>
+                                    <td class="py-3">
+                                        @if ($totalStock == 0)
+                                            <span class="text-xs px-2 py-1 rounded-full bg-red-500 text-white">Out of Stock</span>
+                                        @elseif ($totalStock < 10)
+                                            <span class="text-xs px-2 py-1 rounded-full bg-yellow-500 text-white">Low Stock</span>
+                                        @else
+                                            <span class="text-xs px-2 py-1 rounded-full bg-green-500 text-white">Active</span>
+                                        @endif
+                                    </td>
+                                    <td class="py-3">
+                                        <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">Edit</button>
+                                        <button class="text-red-500 hover:text-red-700 text-sm">Delete</button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center py-4 text-ayur-brown">No products found.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

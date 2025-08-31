@@ -53,9 +53,7 @@ Route::get('/refund', function () {
 Route::get('/admin', function () {
     return view('admin.index');
 });
-Route::get('/admin-products', function () {
-    return view('admin.products');
-});
+Route::get('/admin-products', [ProductController::class, 'index'])->name('admin.products.index');
 Route::get('/admin-orders', function () {
     return view('admin.orders');
 });
