@@ -110,19 +110,25 @@
                 </div>
 
                 <!-- Action Buttons -->
-                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-                    <button id="addToCart" class="flex-1 bg-ayur-green text-white px-8 py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-medium text-lg">
-                        Add to Cart
-                    </button>
-                    <button class="flex-1 border-2 border-ayur-green text-ayur-green px-8 py-4 rounded-lg hover:bg-ayur-green hover:text-white transition duration-300 font-medium text-lg">
-                        Buy Now
-                    </button>
-                    <button class="border border-ayur-sage text-ayur-sage p-4 rounded-lg hover:bg-ayur-sage hover:text-white transition duration-300">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                        </svg>
-                    </button>
-                </div>
+                <form action="{{ route('cart.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_size_id" id="selected_product_size_id" value="{{ $product->sizes->first()->id ?? '' }}">
+                    <input type="hidden" name="quantity" id="selected_quantity" value="1">
+
+                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                        <button type="submit" id="addToCart" class="flex-1 bg-ayur-green text-white px-8 py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-medium text-lg">
+                            Add to Cart
+                        </button>
+                        <button type="button" class="flex-1 border-2 border-ayur-green text-ayur-green px-8 py-4 rounded-lg hover:bg-ayur-green hover:text-white transition duration-300 font-medium text-lg">
+                            Buy Now
+                        </button>
+                        <button type="button" class="border border-ayur-sage text-ayur-sage p-4 rounded-lg hover:bg-ayur-sage hover:text-white transition duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
 
                 <!-- Delivery Info -->
                 <div class="bg-gradient-to-r from-ayur-cream to-white p-6 rounded-xl border-l-4 border-ayur-green">
