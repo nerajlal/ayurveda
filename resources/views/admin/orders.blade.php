@@ -88,22 +88,21 @@
     <div class="bg-white rounded-xl card-shadow">
         <div class="p-6 border-b border-gray-100 flex justify-between items-center flex-wrap gap-4">
             <h3 class="font-playfair text-xl font-semibold text-ayur-green">All Orders</h3>
-            <div class="flex items-center space-x-2 flex-grow sm:flex-grow-0">
-                <input type="text" placeholder="Search orders..." class="flex-grow border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-ayur-green">
-                <select class="border border-gray-300 rounded-md px-3 py-2 text-sm text-ayur-brown focus:outline-none focus:ring-1 focus:ring-ayur-green">
-                    <option>Filter by Status</option>
-                    <option>Pending</option>
-                    <option>Processing</option>
-                    <option>Shipped</option>
-                    <option>Delivered</option>
-                    <option>Canceled</option>
+            <form action="{{ route('admin.orders.index') }}" method="GET" class="flex items-center space-x-2 flex-grow sm:flex-grow-0">
+                <input type="text" name="search" value="{{ $filters['search'] ?? '' }}" placeholder="Search orders..." class="flex-grow border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-ayur-green">
+                <select name="status" class="border border-gray-300 rounded-md px-3 py-2 text-sm text-ayur-brown focus:outline-none focus:ring-1 focus:ring-ayur-green">
+                    <option value="">All Statuses</option>
+                    <option value="0" @if(isset($filters['status']) && $filters['status'] == '0') selected @endif>Pending</option>
+                    <option value="1" @if(isset($filters['status']) && $filters['status'] == '1') selected @endif>Processing</option>
+                    <option value="2" @if(isset($filters['status']) && $filters['status'] == '2') selected @endif>Shipped</option>
+                    <option value="3" @if(isset($filters['status']) && $filters['status'] == '3') selected @endif>Delivered</option>
                 </select>
-                <button class="bg-gray-100 p-2 rounded-md text-ayur-brown hover:bg-gray-200 transition duration-300">
+                <button type="submit" class="bg-ayur-green p-2 rounded-md text-white hover:bg-opacity-90 transition duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 9.414V17a1 1 0 01-1.485.876l-3-2A1 1 0 017 15V9.414L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                     </svg>
                 </button>
-            </div>
+            </form>
         </div>
         <div class="p-6">
             <div class="overflow-x-auto">

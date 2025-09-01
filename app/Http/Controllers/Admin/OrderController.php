@@ -8,9 +8,29 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::with('user')->latest()->paginate(15);
+        $query = Order::with('user')->latest();
+
+        // Handle search
+        if ($request->has('search') && $request->search != '') {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('id', 'like', '%' . $searchTerm . '%')
+                  ->orWhereHas('user', function($userQuery) use ($searchTerm) {
+                      $userQuery->where('first_name', 'like', '%' . $searchTerm . '%')
+                                ->orWhere('last_name', 'like', '%' . $searchTerm . '%')
+                                ->orWhere('email', 'like', '%' . $searchTerm . '%');
+                  });
+            });
+        }
+
+        // Handle status filter
+        if ($request->has('status') && $request->status != '') {
+            $query->where('status', $request->status);
+        }
+
+        $orders = $query->paginate(15)->withQueryString();
 
         $stats = [
             'total_orders' => Order::count(),
@@ -19,7 +39,11 @@ class OrderController extends Controller
             'avg_order_value' => Order::avg('total_amount'),
         ];
 
-        return view('admin.orders', compact('orders', 'stats'));
+        return view('admin.orders', [
+            'orders' => $orders,
+            'stats' => $stats,
+            'filters' => $request->only(['search', 'status']),
+        ]);
     }
 
     public function updateStatus(Request $request, Order $order)

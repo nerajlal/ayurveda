@@ -104,7 +104,9 @@
                     <a href="/admin-orders" class="flex items-center space-x-3 p-3 rounded-lg text-ayur-green hover:bg-ayur-cream transition duration-300">
                         <span class="text-lg">🛒</span>
                         <span class="font-medium">Orders</span>
-                        <span class="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full">12</span>
+                        @if($newOrderCount > 0)
+                            <span class="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full">{{ $newOrderCount }}</span>
+                        @endif
                     </a>
                 </li>
                 <li>

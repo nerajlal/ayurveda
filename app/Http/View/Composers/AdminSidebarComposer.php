@@ -3,6 +3,7 @@
 namespace App\Http\View\Composers;
 
 use App\Models\Product;
+use App\Models\Order;
 use Illuminate\View\View;
 
 class AdminSidebarComposer
@@ -16,5 +17,6 @@ class AdminSidebarComposer
     public function compose(View $view)
     {
         $view->with('productCount', Product::count());
+        $view->with('newOrderCount', Order::where('status', 0)->count());
     }
 }
