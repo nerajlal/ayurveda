@@ -9,6 +9,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile/address', [ProfileController::class, 'getAddress'])->name('profile.address.get');
     Route::patch('/profile/address', [ProfileController::class, 'updateAddress'])->name('profile.address.update');
+
+    Route::post('/checkout', [OrderController::class, 'store'])->name('checkout.store');
+    Route::get('/order-success/{order}', [OrderController::class, 'success'])->name('order.success');
 });
 
 Route::get('/privacy', function () {

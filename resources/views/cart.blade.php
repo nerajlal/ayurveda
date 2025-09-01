@@ -92,9 +92,12 @@
                         </div>
 
                         <!-- Checkout Button -->
-                        <button class="w-full bg-ayur-green text-white py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-medium shadow-lg mb-4">
-                            Proceed to Checkout
-                        </button>
+                        <form action="{{ route('checkout.store') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="w-full bg-ayur-green text-white py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-medium shadow-lg mb-4">
+                                Proceed to Checkout
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
