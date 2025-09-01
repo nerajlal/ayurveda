@@ -172,7 +172,7 @@
                 @if($product->how_to_use)
                 <button class="tab-btn px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="usage">How to Use</button>
                 @endif
-                <button class="tab-btn px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="reviews">Reviews (127)</button>
+                <button class="tab-btn px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="reviews">Reviews ({{ $reviewCount }})</button>
             </div>
             
             <!-- Tab Contents -->
