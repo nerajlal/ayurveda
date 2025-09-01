@@ -124,88 +124,40 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="table-hover">
-                            <td class="py-3 text-sm font-medium text-ayur-green">#AYR-1234</td>
-                            <td class="py-3 text-sm text-ayur-brown">Priya Sharma</td>
-                            <td class="py-3 text-sm text-ayur-brown">2 items</td>
-                            <td class="py-3 text-sm text-ayur-brown">₹899</td>
-                            <td class="py-3 text-sm text-ayur-brown">2023-10-25</td>
-                            <td class="py-3">
-                                <select class="text-ayur-green bg-white border border-gray-300 rounded-full px-2 py-1 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-ayur-green">
-                                    <option>Pending</option>
-                                    <option>Processing</option>
-                                    <option>Shipped</option>
-                                    <option selected>Delivered</option>
-                                    <option>Canceled</option>
-                                </select>
-                            </td>
-                            <td class="py-3">
-                                <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">View</button>
-                                <button class="text-blue-500 hover:text-blue-700 text-sm">Invoice</button>
-                            </td>
-                        </tr>
-                        <tr class="table-hover">
-                            <td class="py-3 text-sm font-medium text-ayur-green">#AYR-1235</td>
-                            <td class="py-3 text-sm text-ayur-brown">Rajesh Kumar</td>
-                            <td class="py-3 text-sm text-ayur-brown">1 item</td>
-                            <td class="py-3 text-sm text-ayur-brown">₹549</td>
-                            <td class="py-3 text-sm text-ayur-brown">2023-10-26</td>
-                            <td class="py-3">
-                                <select class="text-ayur-green bg-white border border-gray-300 rounded-full px-2 py-1 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-ayur-green">
-                                    <option>Pending</option>
-                                    <option selected>Processing</option>
-                                    <option>Shipped</option>
-                                    <option>Delivered</option>
-                                    <option>Canceled</option>
-                                </select>
-                            </td>
-                            <td class="py-3">
-                                <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">View</button>
-                                <button class="text-blue-500 hover:text-blue-700 text-sm">Invoice</button>
-                            </td>
-                        </tr>
-                        <tr class="table-hover">
-                            <td class="py-3 text-sm font-medium text-ayur-green">#AYR-1236</td>
-                            <td class="py-3 text-sm text-ayur-brown">Meera Patel</td>
-                            <td class="py-3 text-sm text-ayur-brown">3 items</td>
-                            <td class="py-3 text-sm text-ayur-brown">₹1,245</td>
-                            <td class="py-3 text-sm text-ayur-brown">2023-10-26</td>
-                            <td class="py-3">
-                                <select class="text-ayur-green bg-white border border-gray-300 rounded-full px-2 py-1 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-ayur-green">
-                                    <option selected>Pending</option>
-                                    <option>Processing</option>
-                                    <option>Shipped</option>
-                                    <option>Delivered</option>
-                                    <option>Canceled</option>
-                                </select>
-                            </td>
-                            <td class="py-3">
-                                <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">View</button>
-                                <button class="text-blue-500 hover:text-blue-700 text-sm">Invoice</button>
-                            </td>
-                        </tr>
-                        <tr class="table-hover">
-                            <td class="py-3 text-sm font-medium text-ayur-green">#AYR-1237</td>
-                            <td class="py-3 text-sm text-ayur-brown">Amit Singh</td>
-                            <td class="py-3 text-sm text-ayur-brown">1 item</td>
-                            <td class="py-3 text-sm text-ayur-brown">₹299</td>
-                            <td class="py-3 text-sm text-ayur-brown">2023-10-27</td>
-                            <td class="py-3">
-                                <select class="text-ayur-green bg-white border border-gray-300 rounded-full px-2 py-1 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-ayur-green">
-                                    <option>Pending</option>
-                                    <option>Processing</option>
-                                    <option selected>Shipped</option>
-                                    <option>Delivered</option>
-                                    <option>Canceled</option>
-                                </select>
-                            </td>
-                            <td class="py-3">
-                                <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">View</button>
-                                <button class="text-blue-500 hover:text-blue-700 text-sm">Invoice</button>
-                            </td>
-                        </tr>
+                        @forelse($orders as $order)
+                            <tr class="table-hover">
+                                <td class="py-3 text-sm font-medium text-ayur-green">#{{ $order->id }}</td>
+                                <td class="py-3 text-sm text-ayur-brown">{{ $order->user->first_name }} {{ $order->user->last_name }}</td>
+                                <td class="py-3 text-sm text-ayur-brown">{{ $order->items->count() }} item(s)</td>
+                                <td class="py-3 text-sm text-ayur-brown">₹{{ number_format($order->total_amount, 2) }}</td>
+                                <td class="py-3 text-sm text-ayur-brown">{{ $order->created_at->format('d M Y') }}</td>
+                                <td class="py-3">
+                                    <form action="{{ route('admin.orders.updateStatus', $order) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <select name="status" onchange="this.form.submit()" class="text-ayur-green bg-white border border-gray-300 rounded-full px-2 py-1 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-ayur-green">
+                                            <option value="0" @if($order->status == 0) selected @endif>Pending</option>
+                                            <option value="1" @if($order->status == 1) selected @endif>Processing</option>
+                                            <option value="2" @if($order->status == 2) selected @endif>Shipped</option>
+                                            <option value="3" @if($order->status == 3) selected @endif>Delivered</option>
+                                        </select>
+                                    </form>
+                                </td>
+                                <td class="py-3">
+                                    <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">View</button>
+                                    <button class="text-blue-500 hover:text-blue-700 text-sm">Invoice</button>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-center py-8 text-ayur-brown">No orders found.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
+            </div>
+            <div class="p-6 border-t border-gray-100">
+                {{ $orders->links() }}
             </div>
         </div>
     </div>

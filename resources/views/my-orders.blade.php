@@ -60,7 +60,6 @@
                                     @case(1) Processing @break
                                     @case(2) Shipped @break
                                     @case(3) Delivered @break
-                                    @case(4) Cancelled @break
                                     @default Unknown
                                 @endswitch
                             </span>

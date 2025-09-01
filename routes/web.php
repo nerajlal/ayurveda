@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
@@ -73,9 +74,7 @@ Route::get('/admin', function () {
     return view('admin.index');
 });
 Route::get('/admin-products', [AdminProductController::class, 'index'])->name('admin.products.index');
-Route::get('/admin-orders', function () {
-    return view('admin.orders');
-});
+Route::get('/admin-orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
 Route::get('/admin-customers', [AdminCustomerController::class, 'index'])->name('admin.customers.index');
 Route::get('/admin-inventory', function () {
     return view('admin.inventory');
@@ -90,3 +89,4 @@ Route::get('/admin-setting', function () {
 Route::post('/admin/products', [AdminProductController::class, 'store'])->name('admin.products.store');
 Route::delete('/admin/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
 Route::patch('/admin/product-sizes/{product_size}/stock', [AdminProductController::class, 'updateStock'])->name('admin.product_sizes.updateStock');
+Route::patch('/admin/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
