@@ -145,7 +145,7 @@
                                 </td>
                                 <td class="py-3">
                                     <button onclick="openOrderDetailsModal({{ $order->id }})" class="text-ayur-green hover:text-ayur-dark text-sm mr-2">View</button>
-                                    <a href="{{ route('admin.orders.invoice', $order) }}" class="text-blue-500 hover:text-blue-700 text-sm">Invoice</a>
+                                    <a href="{{ route('admin.orders.invoice', $order) }}" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm">Invoice</a>
                                 </td>
                             </tr>
                         @empty

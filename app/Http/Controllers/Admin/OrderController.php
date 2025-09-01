@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class OrderController extends Controller
 {
@@ -26,12 +25,10 @@ class OrderController extends Controller
         return redirect()->route('admin.orders.index')->with('success', "Order #{$order->id} status has been updated.");
     }
 
-    public function downloadInvoice(Order $order)
+    public function showInvoice(Order $order)
     {
         $order->load(['user', 'items.productSize.product']);
 
-        $pdf = Pdf::loadView('admin.invoice', compact('order'));
-
-        return $pdf->download('invoice-order-'.$order->id.'.pdf');
+        return view('admin.invoice', compact('order'));
     }
 }
