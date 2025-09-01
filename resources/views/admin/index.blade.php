@@ -180,10 +180,10 @@
                         </button>
                     </a>
 
-                    <a href="/admin-inventory" class="block">
+                    <a href="/admin-orders" class="block">
                         <button class="w-full bg-orange-500 text-white p-4 rounded-lg hover:bg-orange-600 transition duration-300 flex items-center space-x-3">
                             <span class="text-lg">📋</span>
-                            <span class="font-medium">Update Inventory</span>
+                            <span class="font-medium">Check Orders</span>
                         </button>
                     </a>
                 </div>
@@ -204,52 +204,6 @@
 
         </div>
 
-        <!-- Performance Metrics -->
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            <div class="bg-white p-6 rounded-xl card-shadow">
-                <h4 class="font-medium text-ayur-brown mb-4">Conversion Rate</h4>
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-2xl font-bold text-ayur-green">3.2%</span>
-                    <span class="text-green-500 text-sm">↗ 0.5%</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div class="progress-bar h-2 rounded-full" style="width: 32%"></div>
-                </div>
-            </div>
-            
-            <div class="bg-white p-6 rounded-xl card-shadow">
-                <h4 class="font-medium text-ayur-brown mb-4">Average Order Value</h4>
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-2xl font-bold text-ayur-green">₹1,247</span>
-                    <span class="text-green-500 text-sm">↗ ₹85</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div class="progress-bar h-2 rounded-full" style="width: 68%"></div>
-                </div>
-            </div>
-            
-            <div class="bg-white p-6 rounded-xl card-shadow">
-                <h4 class="font-medium text-ayur-brown mb-4">Customer Retention</h4>
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-2xl font-bold text-ayur-green">87%</span>
-                    <span class="text-green-500 text-sm">↗ 2%</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div class="progress-bar h-2 rounded-full" style="width: 87%"></div>
-                </div>
-            </div>
-            
-            <div class="bg-white p-6 rounded-xl card-shadow">
-                <h4 class="font-medium text-ayur-brown mb-4">Satisfaction Score</h4>
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-2xl font-bold text-ayur-green">4.8/5</span>
-                    <span class="text-green-500 text-sm">↗ 0.2</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div class="progress-bar h-2 rounded-full" style="width: 96%"></div>
-                </div>
-            </div>
-        </div>
     </div>
 
     
