@@ -112,6 +112,12 @@
     </button>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (session('show_address_modal'))
+                openAddressModal();
+            @endif
+        });
+
         // Back to top functionality
         const backToTopButton = document.getElementById('backToTop');
         

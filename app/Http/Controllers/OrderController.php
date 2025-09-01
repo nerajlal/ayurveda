@@ -21,7 +21,7 @@ class OrderController extends Controller
         // Ensure user has a shipping address
         $shippingAddress = $user->shippingAddress;
         if (!$shippingAddress) {
-            return redirect()->back()->with('error', 'Please update your shipping address before checking out.');
+            return redirect()->route('cart.index')->with('show_address_modal', true);
         }
 
         // Calculate total amount
