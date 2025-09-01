@@ -69,4 +69,17 @@ class OrderController extends Controller
     {
         return view('order-success', compact('order'));
     }
+
+    public function show(Order $order)
+    {
+        // Authorization: only order owner or admin can view
+        $user = Auth::user();
+        if ($user->id !== $order->user_id && $user->user_type !== 'admin') {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        $order->load(['user', 'items.productSize.product.images']);
+
+        return response()->json($order);
+    }
 }

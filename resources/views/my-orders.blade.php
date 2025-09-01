@@ -48,7 +48,7 @@
                             <p class="font-medium text-ayur-green">{{ $order->id }}</p>
                         </div>
                         <div>
-                            <a href="#" class="border border-ayur-green text-ayur-green px-4 py-2 rounded-lg hover:bg-ayur-green hover:text-white transition duration-300 text-sm">View Details</a>
+                            <button onclick="openOrderDetailsModal({{ $order->id }})" class="border border-ayur-green text-ayur-green px-4 py-2 rounded-lg hover:bg-ayur-green hover:text-white transition duration-300 text-sm">View Details</button>
                         </div>
                     </div>
                     <div class="p-6">

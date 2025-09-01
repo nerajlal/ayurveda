@@ -144,7 +144,7 @@
                                     </form>
                                 </td>
                                 <td class="py-3">
-                                    <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">View</button>
+                                    <button onclick="openOrderDetailsModal({{ $order->id }})" class="text-ayur-green hover:text-ayur-dark text-sm mr-2">View</button>
                                     <button class="text-blue-500 hover:text-blue-700 text-sm">Invoice</button>
                                 </td>
                             </tr>
