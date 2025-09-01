@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\SettingController as AdminSettingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ProfileController;
@@ -61,6 +62,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/my-orders', [OrderController::class, 'index'])->name('my-orders');
     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('order.show');
+
+    Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 });
 
 Route::get('/privacy', function () {

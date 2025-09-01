@@ -6,13 +6,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\CartItem;
+use App\Models\Review;
 
 class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Auth::user()->orders()->with('items.productSize.product')->latest()->get();
-        return view('my-orders', compact('orders'));
+        $user = Auth::user();
+        $orders = $user->orders()->with('items.productSize.product.images')->latest()->get();
+
+        $userReviews = Review::where('user_id', $user->id)
+            ->get()
+            ->keyBy(function ($review) {
+                return $review->order_id . '-' . $review->product_id;
+            });
+
+        return view('my-orders', compact('orders', 'userReviews'));
     }
 
     public function store(Request $request)
