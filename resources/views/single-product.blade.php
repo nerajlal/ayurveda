@@ -218,7 +218,7 @@
                         @php
                             $primaryImage = $relatedProduct->images->firstWhere('is_primary', true) ?? $relatedProduct->images->first();
                         @endphp
-                        <a href="{{ route('products.show', $relatedProduct->slug) }}">
+                        <a href="{{ route('products.show', $relatedProduct->id) }}">
                             <img src="{{ $primaryImage ? url('images/' . $primaryImage->image_path) : 'https://via.placeholder.com/300x200' }}"
                                  alt="{{ $relatedProduct->name }}" class="w-full aspect-square object-cover">
                         </a>
@@ -227,7 +227,7 @@
                             <p class="text-ayur-brown text-sm mb-4">{{ $relatedProduct->subtitle }}</p>
                             <div class="flex justify-between items-center">
                                 <span class="font-bold text-ayur-green text-lg">₹{{ number_format($relatedProduct->sizes->first()->price ?? 0, 2) }}</span>
-                                <a href="{{ route('products.show', $relatedProduct->slug) }}">
+                                <a href="{{ route('products.show', $relatedProduct->id) }}">
                                     <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">View Product</button>
                                 </a>
                             </div>
