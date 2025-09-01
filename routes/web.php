@@ -91,3 +91,4 @@ Route::post('/admin/products', [AdminProductController::class, 'store'])->name('
 Route::delete('/admin/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
 Route::patch('/admin/product-sizes/{product_size}/stock', [AdminProductController::class, 'updateStock'])->name('admin.product_sizes.updateStock');
 Route::patch('/admin/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
+Route::get('/admin/orders/{order}/invoice', [AdminOrderController::class, 'downloadInvoice'])->name('admin.orders.invoice');
