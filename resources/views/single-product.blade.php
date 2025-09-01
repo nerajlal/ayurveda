@@ -172,6 +172,15 @@
                 @if($product->how_to_use)
                 <button class="tab-btn px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="usage">How to Use</button>
                 @endif
+                @if($product->pro_tips)
+                <button class="tab-btn px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="tips">Pro Tips</button>
+                @endif
+                @if($product->suitable_for)
+                <button class="tab-btn px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="suitable">Suitable For</button>
+                @endif
+                @if($product->precautions)
+                <button class="tab-btn px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="precautions">Precautions</button>
+                @endif
                 <button class="tab-btn px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="reviews">Reviews ({{ $reviewCount }})</button>
             </div>
             
@@ -233,6 +242,31 @@
                         <p>No reviews yet for this product.</p>
                     @endif
                 </div>
+
+                @if($product->pro_tips)
+                <div id="tips" class="tab-content hidden">
+                    <h3 class="font-playfair text-2xl font-semibold text-ayur-green mb-6">Pro Tips</h3>
+                    <div class="prose max-w-none text-ayur-brown leading-relaxed">
+                       {!! nl2br(e($product->pro_tips)) !!}
+                    </div>
+                </div>
+                @endif
+                @if($product->suitable_for)
+                <div id="suitable" class="tab-content hidden">
+                    <h3 class="font-playfair text-2xl font-semibold text-ayur-green mb-6">Suitable For</h3>
+                    <div class="prose max-w-none text-ayur-brown leading-relaxed">
+                       {!! nl2br(e($product->suitable_for)) !!}
+                    </div>
+                </div>
+                @endif
+                @if($product->precautions)
+                <div id="precautions" class="tab-content hidden">
+                    <h3 class="font-playfair text-2xl font-semibold text-ayur-green mb-6">Precautions</h3>
+                    <div class="prose max-w-none text-ayur-brown leading-relaxed">
+                       {!! nl2br(e($product->precautions)) !!}
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
     </div>
