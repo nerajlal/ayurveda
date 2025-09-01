@@ -76,6 +76,7 @@ Route::get('/admin', function () {
 });
 Route::get('/admin-products', [AdminProductController::class, 'index'])->name('admin.products.index');
 Route::get('/admin-orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
+Route::get('/admin/orders/export', [AdminOrderController::class, 'export'])->name('admin.orders.export');
 Route::get('/admin-customers', [AdminCustomerController::class, 'index'])->name('admin.customers.index');
 Route::get('/admin-inventory', function () {
     return view('admin.inventory');

@@ -26,9 +26,9 @@
                 <button class="bg-white p-3 rounded-lg card-shadow hover-lift text-ayur-green">
                     <span class="text-lg">🔔</span>
                 </button>
-                <button class="bg-ayur-green text-white px-6 py-3 rounded-lg hover:bg-ayur-dark transition duration-300 font-medium">
+                <a href="{{ route('admin.orders.export') }}" id="export-orders-btn" class="bg-ayur-green text-white px-6 py-3 rounded-lg hover:bg-ayur-dark transition duration-300 font-medium">
                     + Export Orders
-                </button>
+                </a>
             </div>
         </div>
     </div>
@@ -99,8 +99,8 @@
         <div class="p-6 border-b border-gray-100 flex justify-between items-center flex-wrap gap-4">
             <h3 class="font-playfair text-xl font-semibold text-ayur-green">All Orders</h3>
             <form action="{{ route('admin.orders.index') }}" method="GET" class="flex items-center space-x-2 flex-grow sm:flex-grow-0">
-                <input type="text" name="search" value="{{ $filters['search'] ?? '' }}" placeholder="Search orders..." class="flex-grow border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-ayur-green">
-                <select name="status" class="border border-gray-300 rounded-md px-3 py-2 text-sm text-ayur-brown focus:outline-none focus:ring-1 focus:ring-ayur-green">
+                <input type="text" id="search-input" name="search" value="{{ $filters['search'] ?? '' }}" placeholder="Search orders..." class="flex-grow border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-ayur-green">
+                <select id="status-select" name="status" class="border border-gray-300 rounded-md px-3 py-2 text-sm text-ayur-brown focus:outline-none focus:ring-1 focus:ring-ayur-green">
                     <option value="">All Statuses</option>
                     <option value="0" @if(isset($filters['status']) && $filters['status'] == '0') selected @endif>Pending</option>
                     <option value="1" @if(isset($filters['status']) && $filters['status'] == '1') selected @endif>Processing</option>
@@ -169,3 +169,34 @@
 </div>
     
 @include('admin.includes.footer')
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const exportBtn = document.getElementById('export-orders-btn');
+        const searchInput = document.getElementById('search-input');
+        const statusSelect = document.getElementById('status-select');
+
+        function updateExportUrl() {
+            const search = searchInput.value;
+            const status = statusSelect.value;
+            let url = '{{ route('admin.orders.export') }}';
+            const params = new URLSearchParams();
+            if (search) {
+                params.append('search', search);
+            }
+            if (status) {
+                params.append('status', status);
+            }
+            if (params.toString()) {
+                url += '?' + params.toString();
+            }
+            exportBtn.href = url;
+        }
+
+        searchInput.addEventListener('input', updateExportUrl);
+        statusSelect.addEventListener('change', updateExportUrl);
+
+        // Initial call to set the URL on page load
+        updateExportUrl();
+    });
+</script>

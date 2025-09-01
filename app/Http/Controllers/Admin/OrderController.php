@@ -95,4 +95,78 @@ class OrderController extends Controller
 
         return view('admin.invoice', compact('order'));
     }
+
+    public function export(Request $request)
+    {
+        $query = Order::with('user')->latest();
+
+        // Handle search
+        if ($request->has('search') && $request->search != '') {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('id', 'like', '%' . $searchTerm . '%')
+                  ->orWhereHas('user', function($userQuery) use ($searchTerm) {
+                      $userQuery->where('first_name', 'like', '%' . $searchTerm . '%')
+                                ->orWhere('last_name', 'like', '%' . $searchTerm . '%')
+                                ->orWhere('email', 'like', '%' . $searchTerm . '%');
+                  });
+            });
+        }
+
+        // Handle status filter
+        if ($request->has('status') && $request->status != '') {
+            $query->where('status', $request->status);
+        }
+
+        $orders = $query->get();
+
+        $fileName = 'orders.csv';
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = array('Order ID', 'Customer', 'Email', 'Total Amount', 'Status', 'Order Date');
+
+        $callback = function() use($orders, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($orders as $order) {
+                $row['Order ID']  = $order->id;
+                $row['Customer']    = $order->user->first_name . ' ' . $order->user->last_name;
+                $row['Email']    = $order->user->email;
+                $row['Total Amount']  = $order->total_amount;
+
+                switch ($order->status) {
+                    case 0:
+                        $status = 'Pending';
+                        break;
+                    case 1:
+                        $status = 'Processing';
+                        break;
+                    case 2:
+                        $status = 'Shipped';
+                        break;
+                    case 3:
+                        $status = 'Delivered';
+                        break;
+                    default:
+                        $status = 'Unknown';
+                }
+                $row['Status'] = $status;
+
+                $row['Order Date'] = $order->created_at->format('Y-m-d H:i:s');
+
+                fputcsv($file, array($row['Order ID'], $row['Customer'], $row['Email'], $row['Total Amount'], $row['Status'], $row['Order Date']));
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
 }
