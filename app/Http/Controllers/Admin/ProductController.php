@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use App\Models\OrderItem;
 
 class ProductController extends Controller
 {
@@ -21,6 +22,14 @@ class ProductController extends Controller
             $query->where('stock_quantity', '>', 0);
         })->count();
         $outOfStockVariantsCount = \App\Models\ProductSize::where('stock_quantity', 0)->count();
+
+        $topSelling = DB::table('order_items')
+            ->join('product_sizes', 'order_items.product_size_id', '=', 'product_sizes.id')
+            ->join('products', 'product_sizes.product_id', '=', 'products.id')
+            ->select('products.name', DB::raw('SUM(order_items.quantity) as total_sold'))
+            ->groupBy('products.name')
+            ->orderByDesc('total_sold')
+            ->first();
 
         // Start query for filtered/searched products
         $query = Product::query()->with('sizes');
@@ -45,7 +54,7 @@ class ProductController extends Controller
 
         $products = $query->latest()->paginate(10);
 
-        return view('admin.products', compact('products', 'totalProducts', 'hiddenProductsCount', 'outOfStockVariantsCount'));
+        return view('admin.products', compact('products', 'totalProducts', 'hiddenProductsCount', 'outOfStockVariantsCount', 'topSelling'));
     }
 
     /**

@@ -61,8 +61,13 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-ayur-brown text-sm font-medium">Top Selling</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">-</p>
-                    <p class="text-blue-600 text-sm mt-1">Coming soon</p>
+                    @if ($topSelling)
+                        <p class="text-2xl font-bold text-ayur-green mt-1">{{ $topSelling->name }}</p>
+                        <p class="text-blue-600 text-sm mt-1">{{ $topSelling->total_sold }} units sold</p>
+                    @else
+                        <p class="text-2xl font-bold text-ayur-green mt-1">-</p>
+                        <p class="text-blue-600 text-sm mt-1">No sales data yet</p>
+                    @endif
                 </div>
                 <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                     <span class="text-blue-600 text-xl">⭐</span>
