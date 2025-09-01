@@ -119,6 +119,9 @@
                     <a href="{{ route('admin.reviews.index') }}" class="flex items-center space-x-3 p-3 rounded-lg text-ayur-green hover:bg-ayur-cream transition duration-300">
                         <span class="text-lg">⭐</span>
                         <span class="font-medium">Reviews</span>
+                        @if($newReviewCount > 0)
+                            <span class="ml-auto bg-blue-500 text-white text-xs px-2 py-1 rounded-full">{{ $newReviewCount }}</span>
+                        @endif
                     </a>
                 </li>
                 <!-- <li>
