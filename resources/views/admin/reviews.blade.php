@@ -8,7 +8,7 @@
 </style>
 
 <!-- Main Content -->
-<div class="ml-64 p-6 bg-gray-50 min-h-screen font-sans">
+<div class="ml-64 p-6 min-h-screen font-sans">
     <!-- Header -->
     <div class="mb-8">
         <div class="flex justify-between items-center mb-6">
