@@ -54,8 +54,8 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-ayur-brown text-sm font-medium">Active Customers</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">-</p>
-                    <p class="text-blue-600 text-sm mt-1">Coming Soon</p>
+                    <p class="text-2xl font-bold text-ayur-green mt-1">{{ $activeCustomers }}</p>
+                    <p class="text-blue-600 text-sm mt-1">In the last 30 days</p>
                 </div>
                 <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                     <span class="text-blue-600 text-xl">🛒</span>
@@ -66,8 +66,13 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-ayur-brown text-sm font-medium">Top Spender</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">-</p>
-                    <p class="text-purple-600 text-sm mt-1">Coming Soon</p>
+                    @if ($topSpender && $topSpender->orders_sum_total_amount > 0)
+                        <p class="text-2xl font-bold text-ayur-green mt-1">{{ $topSpender->first_name }}</p>
+                        <p class="text-purple-600 text-sm mt-1">₹{{ number_format($topSpender->orders_sum_total_amount, 2) }} spent</p>
+                    @else
+                        <p class="text-2xl font-bold text-ayur-green mt-1">-</p>
+                        <p class="text-purple-600 text-sm mt-1">No sales data yet</p>
+                    @endif
                 </div>
                 <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
                     <span class="text-purple-600 text-xl">⭐</span>
