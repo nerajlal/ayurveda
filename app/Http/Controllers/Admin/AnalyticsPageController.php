@@ -22,27 +22,18 @@ class AnalyticsPageController extends Controller
         $previousMonth = $previousMonthCarbon->month;
 
         // --- Top Cards ---
-        // Total Revenue
         $totalRevenueCurrentMonth = Order::whereYear('created_at', $currentYear)->whereMonth('created_at', $currentMonth)->sum('total_amount');
         $totalRevenuePreviousMonth = Order::whereYear('created_at', $previousMonthYear)->whereMonth('created_at', $previousMonth)->sum('total_amount');
         $revenuePercentageChange = $totalRevenuePreviousMonth > 0 ? (($totalRevenueCurrentMonth - $totalRevenuePreviousMonth) / $totalRevenuePreviousMonth) * 100 : ($totalRevenueCurrentMonth > 0 ? 100 : 0);
 
-        // New Customers
         $newCustomersCurrentMonth = User::whereYear('created_at', $currentYear)->whereMonth('created_at', $currentMonth)->count();
         $newCustomersPreviousMonth = User::whereYear('created_at', $previousMonthYear)->whereMonth('created_at', $previousMonth)->count();
         $customersPercentageChange = $newCustomersPreviousMonth > 0 ? (($newCustomersCurrentMonth - $newCustomersPreviousMonth) / $newCustomersPreviousMonth) * 100 : ($newCustomersCurrentMonth > 0 ? 100 : 0);
 
-        // Average Order Value
-        $avgOrderValueCurrentMonth = Order::whereYear('created_at', $currentYear)->whereMonth('created_at', $currentMonth)->avg('total_amount');
-        $avgOrderValuePreviousMonth = Order::whereYear('created_at', $previousMonthYear)->whereMonth('created_at', $previousMonth)->avg('total_amount');
-        $avgOrderValuePercentageChange = $avgOrderValuePreviousMonth > 0 ? (($avgOrderValueCurrentMonth - $avgOrderValuePreviousMonth) / $avgOrderValuePreviousMonth) * 100 : ($avgOrderValueCurrentMonth > 0 ? 100 : 0);
-
-        // Total Orders
         $totalOrdersCurrentMonth = Order::whereYear('created_at', $currentYear)->whereMonth('created_at', $currentMonth)->count();
         $totalOrdersPreviousMonth = Order::whereYear('created_at', $previousMonthYear)->whereMonth('created_at', $previousMonth)->count();
         $ordersPercentageChange = $totalOrdersPreviousMonth > 0 ? (($totalOrdersCurrentMonth - $totalOrdersPreviousMonth) / $totalOrdersPreviousMonth) * 100 : ($totalOrdersCurrentMonth > 0 ? 100 : 0);
 
-        // Total Items Sold
         $totalItemsSoldCurrentMonth = OrderItem::whereHas('order', function ($query) use ($currentYear, $currentMonth) {
             $query->whereYear('created_at', $currentYear)->whereMonth('created_at', $currentMonth);
         })->sum('quantity');
@@ -51,50 +42,55 @@ class AnalyticsPageController extends Controller
         })->sum('quantity');
         $itemsSoldPercentageChange = $totalItemsSoldPreviousMonth > 0 ? (($totalItemsSoldCurrentMonth - $totalItemsSoldPreviousMonth) / $totalItemsSoldPreviousMonth) * 100 : ($totalItemsSoldCurrentMonth > 0 ? 100 : 0);
 
-        // --- Sales Overview Chart (Last 6 Months) ---
-        $salesData = Order::select(
-            DB::raw('YEAR(created_at) as year'),
-            DB::raw('MONTH(created_at) as month'),
-            DB::raw('SUM(total_amount) as total')
-        )
-        ->where('created_at', '>=', Carbon::now()->subMonths(5)->startOfMonth())
-        ->groupBy('year', 'month')
-        ->orderBy('year', 'asc')
-        ->orderBy('month', 'asc')
-        ->get();
+        // --- Chart Data (Last 6 Months) ---
+        $sixMonthsAgo = Carbon::now()->subMonths(5)->startOfMonth();
 
-        $chartLabels = $salesData->map(function($item) {
-            return Carbon::createFromDate($item->year, $item->month)->format('M Y');
-        });
-        $chartData = $salesData->pluck('total');
+        $revenueData = Order::select(DB::raw('YEAR(created_at) as year, MONTH(created_at) as month, SUM(total_amount) as total'))
+            ->where('created_at', '>=', $sixMonthsAgo)->groupBy('year', 'month')->get()->keyBy(fn($item) => $item->year . '-' . $item->month);
+
+        $ordersData = Order::select(DB::raw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as total'))
+            ->where('created_at', '>=', $sixMonthsAgo)->groupBy('year', 'month')->get()->keyBy(fn($item) => $item->year . '-' . $item->month);
+
+        $customersData = User::select(DB::raw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as total'))
+            ->where('created_at', '>=', $sixMonthsAgo)->groupBy('year', 'month')->get()->keyBy(fn($item) => $item->year . '-' . $item->month);
+
+        $itemsSoldData = OrderItem::join('orders', 'order_items.order_id', '=', 'orders.id')
+            ->select(DB::raw('YEAR(orders.created_at) as year, MONTH(orders.created_at) as month, SUM(order_items.quantity) as total'))
+            ->where('orders.created_at', '>=', $sixMonthsAgo)->groupBy('year', 'month')->get()->keyBy(fn($item) => $item->year . '-' . $item->month);
+
+        $chartLabels = [];
+        $chartRevenueData = [];
+        $chartOrdersData = [];
+        $chartCustomersData = [];
+        $chartItemsSoldData = [];
+
+        for ($i = 5; $i >= 0; $i--) {
+            $date = Carbon::now()->subMonths($i);
+            $year = $date->year;
+            $month = $date->month;
+            $key = $year . '-' . $month;
+
+            $chartLabels[] = $date->format('M Y');
+            $chartRevenueData[] = $revenueData->get($key)->total ?? 0;
+            $chartOrdersData[] = $ordersData->get($key)->total ?? 0;
+            $chartCustomersData[] = $customersData->get($key)->total ?? 0;
+            $chartItemsSoldData[] = $itemsSoldData->get($key)->total ?? 0;
+        }
 
         // --- Top Selling Products ---
         $topSellingProducts = DB::table('order_items')
             ->join('product_sizes', 'order_items.product_size_id', '=', 'product_sizes.id')
             ->join('products', 'product_sizes.product_id', '=', 'products.id')
-            ->select(
-                'products.name',
-                DB::raw('SUM(order_items.quantity) as units_sold'),
-                DB::raw('SUM(order_items.quantity * order_items.price) as revenue')
-            )
-            ->groupBy('products.name')
-            ->orderByDesc('units_sold')
-            ->take(4)
-            ->get();
+            ->select('products.name', DB::raw('SUM(order_items.quantity) as units_sold'), DB::raw('SUM(order_items.quantity * order_items.price) as revenue'))
+            ->groupBy('products.name')->orderByDesc('units_sold')->take(4)->get();
 
         return view('admin.analytics', compact(
-            'totalRevenueCurrentMonth',
-            'revenuePercentageChange',
-            'newCustomersCurrentMonth',
-            'customersPercentageChange',
-            'avgOrderValueCurrentMonth',
-            'avgOrderValuePercentageChange',
-            'totalOrdersCurrentMonth',
-            'ordersPercentageChange',
-            'totalItemsSoldCurrentMonth',
-            'itemsSoldPercentageChange',
+            'totalRevenueCurrentMonth', 'revenuePercentageChange',
+            'newCustomersCurrentMonth', 'customersPercentageChange',
+            'totalOrdersCurrentMonth', 'ordersPercentageChange',
+            'totalItemsSoldCurrentMonth', 'itemsSoldPercentageChange',
             'chartLabels',
-            'chartData',
+            'chartRevenueData', 'chartOrdersData', 'chartCustomersData', 'chartItemsSoldData',
             'topSellingProducts'
         ));
     }

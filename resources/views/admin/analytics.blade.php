@@ -8,7 +8,7 @@
 </style>
 
 <!-- Main Content -->
-<div class="ml-64 p-6 bg-gray-50 min-h-screen font-sans">
+<div class="ml-64 p-6 min-h-screen font-sans">
     <!-- Header -->
     <div class="mb-8">
         <div class="flex justify-between items-center mb-6">
@@ -184,22 +184,66 @@
             type: 'line',
             data: {
                 labels: @json($chartLabels),
-                datasets: [{
-                    label: 'Sales',
-                    data: @json($chartData),
-                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
-                    borderColor: 'rgba(34, 197, 94, 1)',
-                    borderWidth: 2,
-                    tension: 0.4,
-                    fill: true,
-                }]
+                datasets: [
+                    {
+                        label: 'Revenue',
+                        data: @json($chartRevenueData),
+                        borderColor: 'rgba(34, 197, 94, 1)',
+                        backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                        yAxisID: 'y',
+                        tension: 0.4,
+                        fill: true,
+                    },
+                    {
+                        label: 'Orders',
+                        data: @json($chartOrdersData),
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        yAxisID: 'y1',
+                        tension: 0.4,
+                        fill: true,
+                    },
+                    {
+                        label: 'New Customers',
+                        data: @json($chartCustomersData),
+                        borderColor: 'rgba(168, 85, 247, 1)',
+                        backgroundColor: 'rgba(168, 85, 247, 0.1)',
+                        yAxisID: 'y1',
+                        tension: 0.4,
+                        fill: true,
+                    },
+                    {
+                        label: 'Items Sold',
+                        data: @json($chartItemsSoldData),
+                        borderColor: 'rgba(249, 115, 22, 1)',
+                        backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                        yAxisID: 'y1',
+                        tension: 0.4,
+                        fill: true,
+                    }
+                ]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
                     y: {
-                        beginAtZero: true
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        ticks: {
+                            callback: function(value, index, values) {
+                                return '₹' + value;
+                            }
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        grid: {
+                            drawOnChartArea: false, // only want the grid lines for one axis to show up
+                        },
                     }
                 }
             }
