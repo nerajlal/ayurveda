@@ -44,7 +44,7 @@
             </div>
         </div>
         
-        <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
+        {{-- <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-ayur-brown text-sm font-medium">Unique Visitors</p>
@@ -55,7 +55,7 @@
                     <span class="text-blue-600 text-xl">📈</span>
                 </div>
             </div>
-        </div>
+        </div> --}}
         
         <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
             <div class="flex items-center justify-between">
@@ -72,7 +72,7 @@
             </div>
         </div>
         
-        <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
+        {{-- <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-ayur-brown text-sm font-medium">Customer Retention</p>
@@ -83,7 +83,7 @@
                     <span class="text-orange-600 text-xl">♻️</span>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <!-- Charts and Data Tables -->
@@ -134,13 +134,13 @@
 
     <!-- Additional Analytics Metrics -->
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        <div class="bg-white p-6 rounded-xl card-shadow">
+        {{-- <div class="bg-white p-6 rounded-xl card-shadow">
             <h4 class="font-medium text-ayur-brown mb-4">Conversion Rate</h4>
             <div class="flex items-center justify-between mb-2">
                 <span class="text-2xl font-bold text-ayur-green">3.2%</span>
                 <span class="text-green-500 text-sm">↗ 0.5%</span>
             </div>
-        </div>
+        </div> --}}
         
         <div class="bg-white p-6 rounded-xl card-shadow">
             <h4 class="font-medium text-ayur-brown mb-4">Average Order Value</h4>
@@ -152,21 +152,21 @@
             </div>
         </div>
         
-        <div class="bg-white p-6 rounded-xl card-shadow">
+        {{-- <div class="bg-white p-6 rounded-xl card-shadow">
             <h4 class="font-medium text-ayur-brown mb-4">Page Views</h4>
             <div class="flex items-center justify-between mb-2">
                 <span class="text-2xl font-bold text-ayur-green">45,120</span>
                 <span class="text-red-500 text-sm">↘ 1.2%</span>
             </div>
-        </div>
+        </div> --}}
         
-        <div class="bg-white p-6 rounded-xl card-shadow">
+        {{-- <div class="bg-white p-6 rounded-xl card-shadow">
             <h4 class="font-medium text-ayur-brown mb-4">Bounce Rate</h4>
             <div class="flex items-center justify-between mb-2">
                 <span class="text-2xl font-bold text-ayur-green">28%</span>
                 <span class="text-red-500 text-sm">↘ 3%</span>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 
