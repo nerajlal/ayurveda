@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\User;
 use Carbon\Carbon;
+use App\Models\ProductSize;
 
 class AnalyticsController extends Controller
 {
@@ -41,6 +42,9 @@ class AnalyticsController extends Controller
         // Recent Orders
         $recentOrders = Order::with('user', 'items.productSize.product')->latest()->take(5)->get();
 
+        // Out of Stock Variants Count
+        $outOfStockVariantsCount = ProductSize::where('stock_quantity', 0)->count();
+
         return view('admin.index', compact(
             'totalRevenueCurrentMonth',
             'revenuePercentageChange',
@@ -49,7 +53,8 @@ class AnalyticsController extends Controller
             'newCustomersCurrentMonth',
             'customersPercentageChange',
             'newOrders',
-            'recentOrders'
+            'recentOrders',
+            'outOfStockVariantsCount'
         ));
     }
 }

@@ -188,14 +188,14 @@
                     </a>
                 </div>
 
-                <!-- Low Stock Alert -->
+                <!-- Out of Stock Alert -->
                 <div class="px-6 pb-6"> <!-- unified padding -->
                     <div class="bg-red-50 border border-red-200 rounded-lg p-4">
                         <div class="flex items-center space-x-3">
                             <span class="text-red-500 text-lg">⚠️</span>
                             <div>
-                                <p class="text-sm font-medium text-red-800">Low Stock Alert</p>
-                                <p class="text-xs text-red-600 mt-1">3 products are running low</p>
+                                <p class="text-sm font-medium text-red-800">Out of Stock Alert</p>
+                                <p class="text-xs text-red-600 mt-1">{{ $outOfStockVariantsCount }} products are out of stock</p>
                             </div>
                         </div>
                     </div>
