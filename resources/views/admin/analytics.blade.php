@@ -33,8 +33,10 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-ayur-brown text-sm font-medium">Total Revenue</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">₹2,47,850</p>
-                    <p class="text-green-600 text-sm mt-1">+12.5% from last month</p>
+                    <p class="text-2xl font-bold text-ayur-green mt-1">₹{{ number_format($totalRevenueCurrentMonth, 2) }}</p>
+                    <p class="text-{{ $revenuePercentageChange >= 0 ? 'green' : 'red' }}-600 text-sm mt-1">
+                        {{ $revenuePercentageChange >= 0 ? '+' : '' }}{{ number_format($revenuePercentageChange, 1) }}% from last month
+                    </p>
                 </div>
                 <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                     <span class="text-green-600 text-xl">💰</span>
@@ -59,8 +61,10 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-ayur-brown text-sm font-medium">New Customers</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">189</p>
-                    <p class="text-purple-600 text-sm mt-1">+23.1% from last month</p>
+                    <p class="text-2xl font-bold text-ayur-green mt-1">{{ number_format($newCustomersCurrentMonth) }}</p>
+                    <p class="text-{{ $customersPercentageChange >= 0 ? 'purple' : 'red' }}-600 text-sm mt-1">
+                        {{ $customersPercentageChange >= 0 ? '+' : '' }}{{ number_format($customersPercentageChange, 1) }}% from last month
+                    </p>
                 </div>
                 <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
                     <span class="text-purple-600 text-xl">👥</span>
@@ -90,9 +94,7 @@
                 <h3 class="font-playfair text-xl font-semibold text-ayur-green">Sales Overview (Last 6 Months)</h3>
             </div>
             <div class="p-6">
-                <!-- Placeholder for a chart -->
                 <canvas id="salesChart" width="400" height="200"></canvas>
-                <!-- In a real application, you would use a library like Chart.js here. -->
             </div>
         </div>
         
@@ -112,26 +114,17 @@
                             </tr>
                         </thead>
                         <tbody class="space-y-2">
-                            <tr class="table-hover">
-                                <td class="py-3 text-sm font-medium text-ayur-green">Brahmi Hair Oil</td>
-                                <td class="py-3 text-sm text-ayur-brown">345</td>
-                                <td class="py-3 text-sm text-ayur-brown">₹3,09,955</td>
-                            </tr>
-                            <tr class="table-hover">
-                                <td class="py-3 text-sm font-medium text-ayur-green">Immunity Tea Blend</td>
-                                <td class="py-3 text-sm text-ayur-brown">210</td>
-                                <td class="py-3 text-sm text-ayur-brown">₹1,15,290</td>
-                            </tr>
-                            <tr class="table-hover">
-                                <td class="py-3 text-sm font-medium text-ayur-green">Triphala Churna</td>
-                                <td class="py-3 text-sm text-ayur-brown">155</td>
-                                <td class="py-3 text-sm text-ayur-brown">₹61,845</td>
-                            </tr>
-                            <tr class="table-hover">
-                                <td class="py-3 text-sm font-medium text-ayur-green">Neem Face Pack</td>
-                                <td class="py-3 text-sm text-ayur-brown">98</td>
-                                <td class="py-3 text-sm text-ayur-brown">₹29,202</td>
-                            </tr>
+                            @forelse ($topSellingProducts as $product)
+                                <tr class="table-hover">
+                                    <td class="py-3 text-sm font-medium text-ayur-green">{{ $product->name }}</td>
+                                    <td class="py-3 text-sm text-ayur-brown">{{ $product->units_sold }}</td>
+                                    <td class="py-3 text-sm text-ayur-brown">₹{{ number_format($product->revenue, 2) }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="3" class="text-center py-4">No sales data available.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -152,8 +145,10 @@
         <div class="bg-white p-6 rounded-xl card-shadow">
             <h4 class="font-medium text-ayur-brown mb-4">Average Order Value</h4>
             <div class="flex items-center justify-between mb-2">
-                <span class="text-2xl font-bold text-ayur-green">₹1,247</span>
-                <span class="text-green-500 text-sm">↗ ₹85</span>
+                <span class="text-2xl font-bold text-ayur-green">₹{{ number_format($avgOrderValueCurrentMonth, 2) }}</span>
+                <span class="text-{{ $avgOrderValuePercentageChange >= 0 ? 'green' : 'red' }}-500 text-sm">
+                    {{ $avgOrderValuePercentageChange >= 0 ? '↗' : '↘' }} {{ number_format(abs($avgOrderValuePercentageChange), 1) }}%
+                </span>
             </div>
         </div>
         
@@ -176,3 +171,34 @@
 </div>
 
 @include('admin.includes.footer')
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        const salesChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: @json($chartLabels),
+                datasets: [{
+                    label: 'Sales',
+                    data: @json($chartData),
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                    borderColor: 'rgba(34, 197, 94, 1)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>

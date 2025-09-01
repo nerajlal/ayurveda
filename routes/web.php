@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\Admin\AnalyticsController as AdminAnalyticsController;
+use App\Http\Controllers\Admin\AnalyticsPageController as AdminAnalyticsPageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ImageController;
@@ -80,9 +81,7 @@ Route::get('/admin-customers', [AdminCustomerController::class, 'index'])->name(
 Route::get('/admin-inventory', function () {
     return view('admin.inventory');
 });
-Route::get('/admin-analytics', function () {
-    return view('admin.analytics');
-}); 
+Route::get('/admin-analytics', [AdminAnalyticsPageController::class, 'index'])->name('admin.analytics');
 Route::get('/admin-setting', function () {
     return view('admin.setting');
 });
