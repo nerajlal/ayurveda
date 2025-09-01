@@ -36,20 +36,26 @@ class OrderController extends Controller
 
         // Calculate stats
         $now = now();
+        $currentYear = $now->year;
+        $currentMonth = $now->month;
+
+        $previousMonthCarbon = $now->copy()->subMonthNoOverflow();
+        $previousMonthYear = $previousMonthCarbon->year;
+        $previousMonth = $previousMonthCarbon->month;
 
         // Total Revenue This Month vs Last Month
-        $totalRevenueCurrentMonth = Order::whereBetween('created_at', [$now->startOfMonth(), $now->endOfMonth()])->sum('total_amount');
-        $totalRevenuePreviousMonth = Order::whereBetween('created_at', [$now->copy()->subMonth()->startOfMonth(), $now->copy()->subMonth()->endOfMonth()])->sum('total_amount');
+        $totalRevenueCurrentMonth = Order::whereYear('created_at', $currentYear)->whereMonth('created_at', $currentMonth)->sum('total_amount');
+        $totalRevenuePreviousMonth = Order::whereYear('created_at', $previousMonthYear)->whereMonth('created_at', $previousMonth)->sum('total_amount');
         $revenuePercentageChange = $totalRevenuePreviousMonth > 0 ? (($totalRevenueCurrentMonth - $totalRevenuePreviousMonth) / $totalRevenuePreviousMonth) * 100 : ($totalRevenueCurrentMonth > 0 ? 100 : 0);
 
         // Total Orders This Month vs Last Month
-        $totalOrdersCurrentMonth = Order::whereBetween('created_at', [$now->startOfMonth(), $now->endOfMonth()])->count();
-        $totalOrdersPreviousMonth = Order::whereBetween('created_at', [$now->copy()->subMonth()->startOfMonth(), $now->copy()->subMonth()->endOfMonth()])->count();
+        $totalOrdersCurrentMonth = Order::whereYear('created_at', $currentYear)->whereMonth('created_at', $currentMonth)->count();
+        $totalOrdersPreviousMonth = Order::whereYear('created_at', $previousMonthYear)->whereMonth('created_at', $previousMonth)->count();
         $ordersPercentageChange = $totalOrdersPreviousMonth > 0 ? (($totalOrdersCurrentMonth - $totalOrdersPreviousMonth) / $totalOrdersPreviousMonth) * 100 : ($totalOrdersCurrentMonth > 0 ? 100 : 0);
 
         // Avg Order Value This Month vs Last Month
-        $avgOrderValueCurrentMonth = Order::whereBetween('created_at', [$now->startOfMonth(), $now->endOfMonth()])->avg('total_amount');
-        $avgOrderValuePreviousMonth = Order::whereBetween('created_at', [$now->copy()->subMonth()->startOfMonth(), $now->copy()->subMonth()->endOfMonth()])->avg('total_amount');
+        $avgOrderValueCurrentMonth = Order::whereYear('created_at', $currentYear)->whereMonth('created_at', $currentMonth)->avg('total_amount');
+        $avgOrderValuePreviousMonth = Order::whereYear('created_at', $previousMonthYear)->whereMonth('created_at', $previousMonth)->avg('total_amount');
         $avgOrderValuePercentageChange = $avgOrderValuePreviousMonth > 0 ? (($avgOrderValueCurrentMonth - $avgOrderValuePreviousMonth) / $avgOrderValuePreviousMonth) * 100 : ($avgOrderValueCurrentMonth > 0 ? 100 : 0);
 
         // New Orders (Pending)
