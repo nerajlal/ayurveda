@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\Admin\AnalyticsController as AdminAnalyticsController;
 use App\Http\Controllers\Admin\AnalyticsPageController as AdminAnalyticsPageController;
 use App\Http\Controllers\Admin\SettingController as AdminSettingController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ImageController;
@@ -30,9 +31,7 @@ Route::post('/register', [AuthController::class, 'registerPost'])->name('registe
 Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/images/{path}', [ImageController::class, 'show'])->where('path', '.*');
