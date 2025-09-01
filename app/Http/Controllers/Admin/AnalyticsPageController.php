@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\User;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\ProductSize;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
