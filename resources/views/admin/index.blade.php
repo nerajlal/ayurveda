@@ -29,8 +29,10 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-ayur-brown text-sm font-medium">Total Revenue</p>
-                        <p class="text-2xl font-bold text-ayur-green mt-1">₹2,47,850</p>
-                        <p class="text-green-600 text-sm mt-1">+12.5% from last month</p>
+                        <p class="text-2xl font-bold text-ayur-green mt-1">₹{{ number_format($totalRevenueCurrentMonth, 2) }}</p>
+                        <p class="text-{{ $revenuePercentageChange >= 0 ? 'green' : 'red' }}-600 text-sm mt-1">
+                            {{ $revenuePercentageChange >= 0 ? '+' : '' }}{{ number_format($revenuePercentageChange, 1) }}% from last month
+                        </p>
                     </div>
                     <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                         <span class="text-green-600 text-xl">💰</span>
@@ -42,8 +44,10 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-ayur-brown text-sm font-medium">Total Orders</p>
-                        <p class="text-2xl font-bold text-ayur-green mt-1">1,247</p>
-                        <p class="text-blue-600 text-sm mt-1">+8.2% from last month</p>
+                        <p class="text-2xl font-bold text-ayur-green mt-1">{{ number_format($totalOrdersCurrentMonth) }}</p>
+                        <p class="text-{{ $ordersPercentageChange >= 0 ? 'blue' : 'red' }}-600 text-sm mt-1">
+                            {{ $ordersPercentageChange >= 0 ? '+' : '' }}{{ number_format($ordersPercentageChange, 1) }}% from last month
+                        </p>
                     </div>
                     <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                         <span class="text-blue-600 text-xl">📦</span>
@@ -55,8 +59,10 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-ayur-brown text-sm font-medium">New Customers</p>
-                        <p class="text-2xl font-bold text-ayur-green mt-1">189</p>
-                        <p class="text-purple-600 text-sm mt-1">+23.1% from last month</p>
+                        <p class="text-2xl font-bold text-ayur-green mt-1">{{ number_format($newCustomersCurrentMonth) }}</p>
+                        <p class="text-{{ $customersPercentageChange >= 0 ? 'purple' : 'red' }}-600 text-sm mt-1">
+                            {{ $customersPercentageChange >= 0 ? '+' : '' }}{{ number_format($customersPercentageChange, 1) }}% from last month
+                        </p>
                     </div>
                     <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
                         <span class="text-purple-600 text-xl">👥</span>

@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
+use App\Http\Controllers\Admin\AnalyticsController as AdminAnalyticsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ImageController;
@@ -71,9 +72,7 @@ Route::get('/refund', function () {
     return view('refund');
 });
 
-Route::get('/admin', function () {
-    return view('admin.index');
-});
+Route::get('/admin', [AdminAnalyticsController::class, 'index'])->name('admin.index');
 Route::get('/admin-products', [AdminProductController::class, 'index'])->name('admin.products.index');
 Route::get('/admin-orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
 Route::get('/admin/orders/export', [AdminOrderController::class, 'export'])->name('admin.orders.export');
