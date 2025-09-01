@@ -213,69 +213,31 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Product 1 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23d4a574'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EHerbal Oil%3C/text%3E%3C/svg%3E" 
-                         alt="Herbal Oil" class="w-full aspect-square object-cover">
-                    <div class="p-6">
-                        <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Brahmi Hair Oil</h3>
-                        <p class="text-ayur-brown text-sm mb-4">Nourishing hair oil with Brahmi and Amla for healthy, lustrous hair.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-ayur-green text-lg">₹899</span>
-                            <a href="/product">
-                                <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">View Product</button>
-                            </a>
+                @forelse ($relatedProducts as $relatedProduct)
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                        @php
+                            $primaryImage = $relatedProduct->images->firstWhere('is_primary', true) ?? $relatedProduct->images->first();
+                        @endphp
+                        <a href="{{ route('products.show', $relatedProduct->slug) }}">
+                            <img src="{{ $primaryImage ? url('images/' . $primaryImage->image_path) : 'https://via.placeholder.com/300x200' }}"
+                                 alt="{{ $relatedProduct->name }}" class="w-full aspect-square object-cover">
+                        </a>
+                        <div class="p-6">
+                            <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">{{ $relatedProduct->name }}</h3>
+                            <p class="text-ayur-brown text-sm mb-4">{{ $relatedProduct->subtitle }}</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-ayur-green text-lg">₹{{ number_format($relatedProduct->sizes->first()->price ?? 0, 2) }}</span>
+                                <a href="{{ route('products.show', $relatedProduct->slug) }}">
+                                    <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">View Product</button>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%2387a96b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EHerbal Tea%3C/text%3E%3C/svg%3E" 
-                         alt="Herbal Tea" class="w-full aspect-square object-cover">
-                    <div class="p-6">
-                        <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Immunity Tea Blend</h3>
-                        <p class="text-ayur-brown text-sm mb-4">Powerful blend of Tulsi, Ginger, and Turmeric for natural immunity.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-ayur-green text-lg">₹549</span>
-                            <a href="/product">
-                                <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">View Product</button>
-                            </a>
-                        </div>
+                @empty
+                    <div class="col-span-4 text-center">
+                        <p class="text-ayur-brown">No related products found.</p>
                     </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%238b4513'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EAyurvedic Powder%3C/text%E3C/svg%3E"
-                         alt="Ayurvedic Powder" class="w-full aspect-square object-cover">
-                    <div class="p-6">
-                        <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Triphala Churna</h3>
-                        <p class="text-ayur-brown text-sm mb-4">Traditional digestive support formula with three powerful fruits.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-ayur-green text-lg">₹399</span>
-                            <a href="/product">
-                                <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">View Product</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%234a7c59'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EFace Pack%3C/text%3E%3C/svg%3E" 
-                         alt="Face Pack" class="w-full aspect-square object-cover">
-                    <div class="p-6">
-                        <h3 class="font-playfair text-xl font-semibold text-ayur-green mb-2">Neem Face Pack</h3>
-                        <p class="text-ayur-brown text-sm mb-4">Natural face pack with Neem and Turmeric for clear, glowing skin.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-ayur-green text-lg">₹299</span>
-                            <a href="/product">
-                                <button class="bg-ayur-green text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">View Product</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
             
             <div class="text-center mt-12">

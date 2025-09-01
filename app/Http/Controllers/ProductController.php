@@ -60,10 +60,29 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        // The product is automatically resolved by Laravel.
-        // We can load the relationships if they are not already loaded.
         $product->load('images', 'sizes');
 
-        return view('single-product', compact('product'));
+        // Fetch related products
+        $relatedProducts = Product::with('images', 'sizes')
+            ->where('category_name', $product->category_name)
+            ->where('id', '!=', $product->id)
+            ->inRandomOrder()
+            ->take(4)
+            ->get();
+
+        if ($relatedProducts->count() < 4) {
+            $needed = 4 - $relatedProducts->count();
+            $excludeIds = $relatedProducts->pluck('id')->push($product->id);
+
+            $otherProducts = Product::with('images', 'sizes')
+                ->whereNotIn('id', $excludeIds)
+                ->inRandomOrder()
+                ->take($needed)
+                ->get();
+
+            $relatedProducts = $relatedProducts->concat($otherProducts);
+        }
+
+        return view('single-product', compact('product', 'relatedProducts'));
     }
 }
