@@ -112,5 +112,7 @@
             });
         });
     </script>
+
+    @include('includes.modals.order-details')
 </body>
 </html>
