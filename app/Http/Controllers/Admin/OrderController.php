@@ -11,7 +11,15 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::with('user')->latest()->paginate(15);
-        return view('admin.orders', compact('orders'));
+
+        $stats = [
+            'total_orders' => Order::count(),
+            'new_orders' => Order::where('status', 0)->count(),
+            'delivered_this_week' => Order::where('status', 3)->where('updated_at', '>=', now()->startOfWeek())->count(),
+            'avg_order_value' => Order::avg('total_amount'),
+        ];
+
+        return view('admin.orders', compact('orders', 'stats'));
     }
 
     public function updateStatus(Request $request, Order $order)
