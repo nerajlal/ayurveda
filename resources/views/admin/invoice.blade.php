@@ -5,7 +5,7 @@
     <title>Invoice - Order #{{ $order->id }}</title>
     <style>
         body { font-family: 'Helvetica', sans-serif; font-size: 12px; color: #333; }
-        .container { width: 100%; margin: 0 auto; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
         .header, .footer { text-align: center; }
         .header h1 { font-size: 24px; margin: 0; }
         .details, .items, .summary { width: 100%; margin-top: 20px; }
@@ -15,10 +15,16 @@
         .items table th { background-color: #f4f4f4; }
         .text-right { text-align: right; }
         .total { font-weight: bold; font-size: 14px; }
+        .print-button { display: block; width: 150px; margin: 20px auto; padding: 10px; background-color: #4a7c59; color: #fff; text-align: center; text-decoration: none; border-radius: 5px; }
+        @media print {
+            .print-button { display: none; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <a href="javascript:window.print()" class="print-button">Print / Download PDF</a>
+
         <div class="header">
             <h1>AyurVeda Wellness Store</h1>
             <p>Invoice</p>
