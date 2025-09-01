@@ -33,21 +33,19 @@
         </div>
     </div>
 
-    <!-- Order Stats Cards -->
+    <!-- Stats Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-ayur-brown text-sm font-medium">Orders This Month</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">{{ number_format($stats['orders_this_month']) }}</p>
-                    @if($stats['orders_percentage_change'] != 0)
-                        <p class="{{ $stats['orders_percentage_change'] > 0 ? 'text-green-600' : 'text-red-600' }} text-sm mt-1">
-                            {{ $stats['orders_percentage_change'] > 0 ? '↑' : '↓' }} {{ number_format(abs($stats['orders_percentage_change']), 1) }}% from last month
-                        </p>
-                    @endif
+                    <p class="text-ayur-brown text-sm font-medium">Total Revenue</p>
+                    <p class="text-2xl font-bold text-ayur-green mt-1">₹{{ number_format($stats['totalRevenueCurrentMonth'], 2) }}</p>
+                    <p class="text-{{ $stats['revenuePercentageChange'] >= 0 ? 'green' : 'red' }}-600 text-sm mt-1">
+                        {{ $stats['revenuePercentageChange'] >= 0 ? '+' : '' }}{{ number_format($stats['revenuePercentageChange'], 2) }}% from last month
+                    </p>
                 </div>
                 <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                    <span class="text-green-600 text-xl">📦</span>
+                    <span class="text-green-600 text-xl">💰</span>
                 </div>
             </div>
         </div>
@@ -55,29 +53,14 @@
         <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-ayur-brown text-sm font-medium">New Orders</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">{{ number_format($stats['new_orders']) }}</p>
-                    <p class="text-red-600 text-sm mt-1">Immediate action required</p>
-                </div>
-                <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-                    <span class="text-red-600 text-xl">⏳</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-ayur-brown text-sm font-medium">Delivered This Week</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">{{ number_format($stats['delivered_this_week']) }}</p>
-                     @if($stats['delivered_percentage_change'] != 0)
-                        <p class="{{ $stats['delivered_percentage_change'] > 0 ? 'text-green-600' : 'text-red-600' }} text-sm mt-1">
-                            {{ $stats['delivered_percentage_change'] > 0 ? '↑' : '↓' }} {{ number_format(abs($stats['delivered_percentage_change']), 1) }}% from last week
-                        </p>
-                    @endif
+                    <p class="text-ayur-brown text-sm font-medium">Total Orders</p>
+                    <p class="text-2xl font-bold text-ayur-green mt-1">{{ $stats['totalOrdersCurrentMonth'] }}</p>
+                    <p class="text-{{ $stats['ordersPercentageChange'] >= 0 ? 'blue' : 'red' }}-600 text-sm mt-1">
+                        {{ $stats['ordersPercentageChange'] >= 0 ? '+' : '' }}{{ number_format($stats['ordersPercentageChange'], 2) }}% from last month
+                    </p>
                 </div>
                 <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                    <span class="text-blue-600 text-xl">✅</span>
+                    <span class="text-blue-600 text-xl">📦</span>
                 </div>
             </div>
         </div>
@@ -85,16 +68,29 @@
         <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-ayur-brown text-sm font-medium">Avg. Order Value (This Month)</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">₹{{ number_format($stats['avg_order_value_this_month'], 2) }}</p>
-                    @if($stats['avg_percentage_change'] != 0)
-                        <p class="{{ $stats['avg_percentage_change'] > 0 ? 'text-green-600' : 'text-red-600' }} text-sm mt-1">
-                            {{ $stats['avg_percentage_change'] > 0 ? '↑' : '↓' }} {{ number_format(abs($stats['avg_percentage_change']), 1) }}% from last month
-                        </p>
-                    @endif
+                    <p class="text-ayur-brown text-sm font-medium">New Customers</p>
+                    <p class="text-2xl font-bold text-ayur-green mt-1">{{ $stats['newCustomersCurrentMonth'] }}</p>
+                    <p class="text-{{ $stats['customersPercentageChange'] >= 0 ? 'purple' : 'red' }}-600 text-sm mt-1">
+                        {{ $stats['customersPercentageChange'] >= 0 ? '+' : '' }}{{ number_format($stats['customersPercentageChange'], 2) }}% from last month
+                    </p>
                 </div>
                 <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                    <span class="text-purple-600 text-xl">💰</span>
+                    <span class="text-purple-600 text-xl">👥</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-ayur-brown text-sm font-medium">Consultations</p>
+                    <p class="text-2xl font-bold text-ayur-green mt-1">{{ $stats['consultationsCurrentMonth'] }}</p>
+                    <p class="text-{{ $stats['consultationsPercentageChange'] >= 0 ? 'orange' : 'red' }}-600 text-sm mt-1">
+                        {{ $stats['consultationsPercentageChange'] >= 0 ? '+' : '' }}{{ number_format($stats['consultationsPercentageChange'], 2) }}% from last month
+                    </p>
+                </div>
+                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                    <span class="text-orange-600 text-xl">👨‍⚕️</span>
                 </div>
             </div>
         </div>
