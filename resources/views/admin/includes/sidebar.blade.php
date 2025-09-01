@@ -115,6 +115,12 @@
                         <span class="font-medium">Customers</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('admin.reviews.index') }}" class="flex items-center space-x-3 p-3 rounded-lg text-ayur-green hover:bg-ayur-cream transition duration-300">
+                        <span class="text-lg">⭐</span>
+                        <span class="font-medium">Reviews</span>
+                    </a>
+                </li>
                 <!-- <li>
                     <a href="#consultations" class="flex items-center space-x-3 p-3 rounded-lg text-ayur-green hover:bg-ayur-cream transition duration-300">
                         <span class="text-lg">👨‍⚕️</span>

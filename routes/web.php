@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\Admin\AnalyticsController as AdminAnalyticsController;
 use App\Http\Controllers\Admin\AnalyticsPageController as AdminAnalyticsPageController;
 use App\Http\Controllers\Admin\SettingController as AdminSettingController;
+use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
@@ -86,6 +87,7 @@ Route::get('/admin-inventory', function () {
 });
 Route::get('/admin-analytics', [AdminAnalyticsPageController::class, 'index'])->name('admin.analytics');
 Route::get('/admin-setting', [AdminSettingController::class, 'index'])->name('admin.setting');
+Route::get('/admin/reviews', [AdminReviewController::class, 'index'])->name('admin.reviews.index');
 Route::post('/admin/setting/password', [AdminSettingController::class, 'updatePassword'])->name('admin.setting.password');
 
 Route::post('/admin/products', [AdminProductController::class, 'store'])->name('admin.products.store');
@@ -93,3 +95,4 @@ Route::delete('/admin/products/{product}', [AdminProductController::class, 'dest
 Route::patch('/admin/product-sizes/{product_size}/stock', [AdminProductController::class, 'updateStock'])->name('admin.product_sizes.updateStock');
 Route::patch('/admin/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
 Route::get('/admin/orders/{order}/invoice', [AdminOrderController::class, 'showInvoice'])->name('admin.orders.invoice');
+Route::delete('/admin/reviews/{review}', [AdminReviewController::class, 'destroy'])->name('admin.reviews.destroy');
