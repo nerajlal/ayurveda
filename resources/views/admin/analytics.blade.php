@@ -138,39 +138,37 @@
 
     <!-- Additional Analytics Metrics -->
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {{-- <div class="bg-white p-6 rounded-xl card-shadow">
-            <h4 class="font-medium text-ayur-brown mb-4">Conversion Rate</h4>
+        <div class="bg-white p-6 rounded-xl card-shadow">
+            <h4 class="font-medium text-ayur-brown mb-4">Pending Orders</h4>
             <div class="flex items-center justify-between mb-2">
-                <span class="text-2xl font-bold text-ayur-green">3.2%</span>
-                <span class="text-green-500 text-sm">↗ 0.5%</span>
+                <span class="text-2xl font-bold text-ayur-green">{{ number_format($pendingOrders) }}</span>
+                <span class="text-red-500 text-sm">Action Required</span>
             </div>
-        </div> --}}
+        </div>
         
-        {{-- <div class="bg-white p-6 rounded-xl card-shadow">
-            <h4 class="font-medium text-ayur-brown mb-4">Average Order Value</h4>
+        <div class="bg-white p-6 rounded-xl card-shadow">
+            <h4 class="font-medium text-ayur-brown mb-4">Shipped This Month</h4>
             <div class="flex items-center justify-between mb-2">
-                <span class="text-2xl font-bold text-ayur-green">₹{{ number_format($avgOrderValueCurrentMonth, 2) }}</span>
-                <span class="text-{{ $avgOrderValuePercentageChange >= 0 ? 'green' : 'red' }}-500 text-sm">
-                    {{ $avgOrderValuePercentageChange >= 0 ? '↗' : '↘' }} {{ number_format(abs($avgOrderValuePercentageChange), 1) }}%
-                </span>
+                <span class="text-2xl font-bold text-ayur-green">{{ number_format($shippedOrdersThisMonth) }}</span>
+                <span class="text-green-500 text-sm">Orders</span>
             </div>
-        </div> --}}
+        </div>
         
-        {{-- <div class="bg-white p-6 rounded-xl card-shadow">
-            <h4 class="font-medium text-ayur-brown mb-4">Page Views</h4>
+        <div class="bg-white p-6 rounded-xl card-shadow">
+            <h4 class="font-medium text-ayur-brown mb-4">Total Products</h4>
             <div class="flex items-center justify-between mb-2">
-                <span class="text-2xl font-bold text-ayur-green">45,120</span>
-                <span class="text-red-500 text-sm">↘ 1.2%</span>
+                <span class="text-2xl font-bold text-ayur-green">{{ number_format($totalProducts) }}</span>
+                 <span class="text-blue-500 text-sm">SKUs</span>
             </div>
-        </div> --}}
+        </div>
         
-        {{-- <div class="bg-white p-6 rounded-xl card-shadow">
-            <h4 class="font-medium text-ayur-brown mb-4">Bounce Rate</h4>
+        <div class="bg-white p-6 rounded-xl card-shadow">
+            <h4 class="font-medium text-ayur-brown mb-4">Out of Stock Variants</h4>
             <div class="flex items-center justify-between mb-2">
-                <span class="text-2xl font-bold text-ayur-green">28%</span>
-                <span class="text-red-500 text-sm">↘ 3%</span>
+                <span class="text-2xl font-bold text-ayur-green">{{ number_format($outOfStockVariants) }}</span>
+                <span class="text-red-500 text-sm">Variants</span>
             </div>
-        </div> --}}
+        </div>
     </div>
 </div>
 

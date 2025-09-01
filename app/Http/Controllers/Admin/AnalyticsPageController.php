@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -84,6 +85,12 @@ class AnalyticsPageController extends Controller
             ->select('products.name', DB::raw('SUM(order_items.quantity) as units_sold'), DB::raw('SUM(order_items.quantity * order_items.price) as revenue'))
             ->groupBy('products.name')->orderByDesc('units_sold')->take(4)->get();
 
+        // --- Bottom Cards ---
+        $pendingOrders = Order::where('status', 0)->count();
+        $shippedOrdersThisMonth = Order::where('status', 2)->whereYear('created_at', $currentYear)->whereMonth('created_at', $currentMonth)->count();
+        $totalProducts = Product::count();
+        $outOfStockVariants = ProductSize::where('stock_quantity', 0)->count();
+
         return view('admin.analytics', compact(
             'totalRevenueCurrentMonth', 'revenuePercentageChange',
             'newCustomersCurrentMonth', 'customersPercentageChange',
@@ -91,7 +98,11 @@ class AnalyticsPageController extends Controller
             'totalItemsSoldCurrentMonth', 'itemsSoldPercentageChange',
             'chartLabels',
             'chartRevenueData', 'chartOrdersData', 'chartCustomersData', 'chartItemsSoldData',
-            'topSellingProducts'
+            'topSellingProducts',
+            'pendingOrders',
+            'shippedOrdersThisMonth',
+            'totalProducts',
+            'outOfStockVariants'
         ));
     }
 }
