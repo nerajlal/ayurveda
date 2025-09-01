@@ -73,12 +73,12 @@
             <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-ayur-brown text-sm font-medium">Consultations</p>
-                        <p class="text-2xl font-bold text-ayur-green mt-1">34</p>
-                        <p class="text-orange-600 text-sm mt-1">+15.7% from last month</p>
+                        <p class="text-ayur-brown text-sm font-medium">New Orders</p>
+                        <p class="text-2xl font-bold text-ayur-green mt-1">{{ number_format($newOrders) }}</p>
+                        <p class="text-red-600 text-sm mt-1">Pending</p>
                     </div>
                     <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                        <span class="text-orange-600 text-xl">👨‍⚕️</span>
+                        <span class="text-orange-600 text-xl">⏳</span>
                     </div>
                 </div>
             </div>

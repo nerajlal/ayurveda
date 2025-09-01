@@ -35,13 +35,17 @@ class AnalyticsController extends Controller
         $newCustomersPreviousMonth = User::whereYear('created_at', $previousMonthYear)->whereMonth('created_at', $previousMonth)->count();
         $customersPercentageChange = $newCustomersPreviousMonth > 0 ? (($newCustomersCurrentMonth - $newCustomersPreviousMonth) / $newCustomersPreviousMonth) * 100 : ($newCustomersCurrentMonth > 0 ? 100 : 0);
 
+        // New Orders (Pending)
+        $newOrders = Order::where('status', 0)->count();
+
         return view('admin.index', compact(
             'totalRevenueCurrentMonth',
             'revenuePercentageChange',
             'totalOrdersCurrentMonth',
             'ordersPercentageChange',
             'newCustomersCurrentMonth',
-            'customersPercentageChange'
+            'customersPercentageChange',
+            'newOrders'
         ));
     }
 }
