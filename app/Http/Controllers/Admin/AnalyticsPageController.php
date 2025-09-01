@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\OrderItem;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -35,6 +36,20 @@ class AnalyticsPageController extends Controller
         $avgOrderValueCurrentMonth = Order::whereYear('created_at', $currentYear)->whereMonth('created_at', $currentMonth)->avg('total_amount');
         $avgOrderValuePreviousMonth = Order::whereYear('created_at', $previousMonthYear)->whereMonth('created_at', $previousMonth)->avg('total_amount');
         $avgOrderValuePercentageChange = $avgOrderValuePreviousMonth > 0 ? (($avgOrderValueCurrentMonth - $avgOrderValuePreviousMonth) / $avgOrderValuePreviousMonth) * 100 : ($avgOrderValueCurrentMonth > 0 ? 100 : 0);
+
+        // Total Orders
+        $totalOrdersCurrentMonth = Order::whereYear('created_at', $currentYear)->whereMonth('created_at', $currentMonth)->count();
+        $totalOrdersPreviousMonth = Order::whereYear('created_at', $previousMonthYear)->whereMonth('created_at', $previousMonth)->count();
+        $ordersPercentageChange = $totalOrdersPreviousMonth > 0 ? (($totalOrdersCurrentMonth - $totalOrdersPreviousMonth) / $totalOrdersPreviousMonth) * 100 : ($totalOrdersCurrentMonth > 0 ? 100 : 0);
+
+        // Total Items Sold
+        $totalItemsSoldCurrentMonth = OrderItem::whereHas('order', function ($query) use ($currentYear, $currentMonth) {
+            $query->whereYear('created_at', $currentYear)->whereMonth('created_at', $currentMonth);
+        })->sum('quantity');
+        $totalItemsSoldPreviousMonth = OrderItem::whereHas('order', function ($query) use ($previousMonthYear, $previousMonth) {
+            $query->whereYear('created_at', $previousMonthYear)->whereMonth('created_at', $previousMonth);
+        })->sum('quantity');
+        $itemsSoldPercentageChange = $totalItemsSoldPreviousMonth > 0 ? (($totalItemsSoldCurrentMonth - $totalItemsSoldPreviousMonth) / $totalItemsSoldPreviousMonth) * 100 : ($totalItemsSoldCurrentMonth > 0 ? 100 : 0);
 
         // --- Sales Overview Chart (Last 6 Months) ---
         $salesData = Order::select(
@@ -74,6 +89,10 @@ class AnalyticsPageController extends Controller
             'customersPercentageChange',
             'avgOrderValueCurrentMonth',
             'avgOrderValuePercentageChange',
+            'totalOrdersCurrentMonth',
+            'ordersPercentageChange',
+            'totalItemsSoldCurrentMonth',
+            'itemsSoldPercentageChange',
             'chartLabels',
             'chartData',
             'topSellingProducts'

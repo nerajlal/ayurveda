@@ -44,18 +44,20 @@
             </div>
         </div>
         
-        {{-- <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
+        <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-ayur-brown text-sm font-medium">Unique Visitors</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">9,450</p>
-                    <p class="text-blue-600 text-sm mt-1">+8.2% from last month</p>
+                    <p class="text-ayur-brown text-sm font-medium">Total Orders</p>
+                    <p class="text-2xl font-bold text-ayur-green mt-1">{{ number_format($totalOrdersCurrentMonth) }}</p>
+                    <p class="text-{{ $ordersPercentageChange >= 0 ? 'blue' : 'red' }}-600 text-sm mt-1">
+                        {{ $ordersPercentageChange >= 0 ? '+' : '' }}{{ number_format($ordersPercentageChange, 1) }}% from last month
+                    </p>
                 </div>
                 <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                    <span class="text-blue-600 text-xl">📈</span>
+                    <span class="text-blue-600 text-xl">📦</span>
                 </div>
             </div>
-        </div> --}}
+        </div>
         
         <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
             <div class="flex items-center justify-between">
@@ -72,18 +74,20 @@
             </div>
         </div>
         
-        {{-- <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
+        <div class="bg-white p-6 rounded-xl card-shadow hover-lift">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-ayur-brown text-sm font-medium">Customer Retention</p>
-                    <p class="text-2xl font-bold text-ayur-green mt-1">87%</p>
-                    <p class="text-orange-600 text-sm mt-1">+2% from last month</p>
+                    <p class="text-ayur-brown text-sm font-medium">Items Sold</p>
+                    <p class="text-2xl font-bold text-ayur-green mt-1">{{ number_format($totalItemsSoldCurrentMonth) }}</p>
+                    <p class="text-{{ $itemsSoldPercentageChange >= 0 ? 'orange' : 'red' }}-600 text-sm mt-1">
+                        {{ $itemsSoldPercentageChange >= 0 ? '+' : '' }}{{ number_format($itemsSoldPercentageChange, 1) }}% from last month
+                    </p>
                 </div>
                 <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                    <span class="text-orange-600 text-xl">♻️</span>
+                    <span class="text-orange-600 text-xl">🛍️</span>
                 </div>
             </div>
-        </div> --}}
+        </div>
     </div>
 
     <!-- Charts and Data Tables -->
@@ -142,7 +146,7 @@
             </div>
         </div> --}}
         
-        <div class="bg-white p-6 rounded-xl card-shadow">
+        {{-- <div class="bg-white p-6 rounded-xl card-shadow">
             <h4 class="font-medium text-ayur-brown mb-4">Average Order Value</h4>
             <div class="flex items-center justify-between mb-2">
                 <span class="text-2xl font-bold text-ayur-green">₹{{ number_format($avgOrderValueCurrentMonth, 2) }}</span>
@@ -150,7 +154,7 @@
                     {{ $avgOrderValuePercentageChange >= 0 ? '↗' : '↘' }} {{ number_format(abs($avgOrderValuePercentageChange), 1) }}%
                 </span>
             </div>
-        </div>
+        </div> --}}
         
         {{-- <div class="bg-white p-6 rounded-xl card-shadow">
             <h4 class="font-medium text-ayur-brown mb-4">Page Views</h4>
