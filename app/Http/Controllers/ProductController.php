@@ -14,7 +14,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $rawProducts = Product::with('images', 'sizes')->get();
+        $rawProducts = Product::with('images', 'sizes')
+            ->withCount('reviews')
+            ->withAvg('reviews', 'rating')
+            ->get();
 
         $wishlistedProductIds = [];
         if (Auth::check()) {
@@ -41,8 +44,8 @@ class ProductController extends Controller
                 'category' => $categorySlug,
                 'price' => $firstSize->price ?? 0,
                 'originalPrice' => $firstSize->original_price ?? 0,
-                'rating' => 4.5, // Placeholder rating
-                'reviews' => 100, // Placeholder reviews
+                'rating' => $product->reviews_avg_rating ?? 0,
+                'reviews' => $product->reviews_count,
                 'image' => $primaryImage ? url('images/' . $primaryImage->image_path) : 'https://via.placeholder.com/300x200',
                 'description' => $product->subtitle, // Using subtitle as short description
                 'benefits' => [], // Placeholder
@@ -60,7 +63,16 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $product->load('images', 'sizes');
+        $product->load([
+            'images',
+            'sizes',
+            'reviews' => function ($query) {
+                $query->with('user')->latest();
+            }
+        ]);
+
+        $avgRating = $product->reviews->avg('rating');
+        $reviewCount = $product->reviews->count();
 
         // Fetch related products
         $relatedProducts = Product::with('images', 'sizes')
@@ -83,6 +95,6 @@ class ProductController extends Controller
             $relatedProducts = $relatedProducts->concat($otherProducts);
         }
 
-        return view('single-product', compact('product', 'relatedProducts'));
+        return view('single-product', compact('product', 'relatedProducts', 'avgRating', 'reviewCount'));
     }
 }

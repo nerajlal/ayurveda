@@ -51,10 +51,18 @@
                     <!-- Rating -->
                     <div class="flex items-center space-x-4 mb-4">
                         <div class="flex items-center">
-                            <div class="text-ayur-gold">⭐⭐⭐⭐⭐</div>
-                            <span class="text-sm text-ayur-brown ml-2">(4.8/5)</span>
+                            <div class="text-ayur-gold">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= round($avgRating))
+                                        ★
+                                    @else
+                                        ☆
+                                    @endif
+                                @endfor
+                            </div>
+                            <span class="text-sm text-ayur-brown ml-2">({{ number_format($avgRating, 1) }}/5)</span>
                         </div>
-                        <span class="text-sm text-ayur-sage">127 Reviews</span>
+                        <span class="text-sm text-ayur-sage">{{ $reviewCount }} Reviews</span>
                     </div>
                     
                     <!-- Price -->
@@ -199,7 +207,31 @@
                 
                 <!-- Reviews Tab -->
                 <div id="reviews" class="tab-content hidden">
-                    <p>Reviews will be here soon.</p>
+                    <h3 class="font-playfair text-2xl font-semibold text-ayur-green mb-6">Customer Reviews ({{ $reviewCount }})</h3>
+                    @if ($product->reviews->isNotEmpty())
+                        <div class="space-y-6">
+                            @foreach ($product->reviews as $review)
+                                <div class="border-b pb-6">
+                                    <div class="flex items-center mb-2">
+                                        <div class="text-ayur-gold">
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                @if ($i <= $review->rating)
+                                                    ★
+                                                @else
+                                                    ☆
+                                                @endif
+                                            @endfor
+                                        </div>
+                                        <span class="text-sm text-ayur-brown ml-4">{{ $review->user->first_name }} {{ $review->user->last_name }}</span>
+                                        <span class="text-sm text-gray-500 ml-auto">{{ $review->created_at->format('M d, Y') }}</span>
+                                    </div>
+                                    <p class="text-ayur-brown">{{ $review->comment }}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <p>No reviews yet for this product.</p>
+                    @endif
                 </div>
             </div>
         </div>
