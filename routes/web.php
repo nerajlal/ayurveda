@@ -55,6 +55,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/checkout', [OrderController::class, 'store'])->name('checkout.store');
     Route::get('/order-success/{order}', [OrderController::class, 'success'])->name('order.success');
+
+    Route::get('/my-orders', [OrderController::class, 'index'])->name('my-orders');
 });
 
 Route::get('/privacy', function () {

@@ -9,6 +9,12 @@ use App\Models\CartItem;
 
 class OrderController extends Controller
 {
+    public function index()
+    {
+        $orders = Auth::user()->orders()->with('items.productSize.product')->latest()->get();
+        return view('my-orders', compact('orders'));
+    }
+
     public function store(Request $request)
     {
         $user = Auth::user();
