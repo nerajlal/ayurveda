@@ -111,42 +111,46 @@
                                 </tr>
                             </thead>
                             <tbody class="space-y-2">
-                                <tr class="table-hover">
-                                    <td class="py-3 text-sm font-medium text-ayur-green">#AYR-1234</td>
-                                    <td class="py-3 text-sm text-ayur-brown">Priya Sharma</td>
-                                    <td class="py-3 text-sm text-ayur-brown">Brahmi Hair Oil</td>
-                                    <td class="py-3 text-sm text-ayur-brown">₹899</td>
-                                    <td class="py-3">
-                                        <span class="status-completed text-white text-xs px-2 py-1 rounded-full">Completed</span>
-                                    </td>
-                                </tr>
-                                <tr class="table-hover">
-                                    <td class="py-3 text-sm font-medium text-ayur-green">#AYR-1235</td>
-                                    <td class="py-3 text-sm text-ayur-brown">Rajesh Kumar</td>
-                                    <td class="py-3 text-sm text-ayur-brown">Immunity Tea Blend</td>
-                                    <td class="py-3 text-sm text-ayur-brown">₹549</td>
-                                    <td class="py-3">
-                                        <span class="status-processing text-white text-xs px-2 py-1 rounded-full">Processing</span>
-                                    </td>
-                                </tr>
-                                <tr class="table-hover">
-                                    <td class="py-3 text-sm font-medium text-ayur-green">#AYR-1236</td>
-                                    <td class="py-3 text-sm text-ayur-brown">Meera Patel</td>
-                                    <td class="py-3 text-sm text-ayur-brown">Triphala Churna</td>
-                                    <td class="py-3 text-sm text-ayur-brown">₹399</td>
-                                    <td class="py-3">
-                                        <span class="status-pending text-white text-xs px-2 py-1 rounded-full">Pending</span>
-                                    </td>
-                                </tr>
-                                <tr class="table-hover">
-                                    <td class="py-3 text-sm font-medium text-ayur-green">#AYR-1237</td>
-                                    <td class="py-3 text-sm text-ayur-brown">Amit Singh</td>
-                                    <td class="py-3 text-sm text-ayur-brown">Neem Face Pack</td>
-                                    <td class="py-3 text-sm text-ayur-brown">₹299</td>
-                                    <td class="py-3">
-                                        <span class="status-completed text-white text-xs px-2 py-1 rounded-full">Completed</span>
-                                    </td>
-                                </tr>
+                                @forelse ($recentOrders as $order)
+                                    <tr class="table-hover">
+                                        <td class="py-3 text-sm font-medium text-ayur-green">#{{ $order->id }}</td>
+                                        <td class="py-3 text-sm text-ayur-brown">{{ $order->user->first_name }} {{ $order->user->last_name }}</td>
+                                        <td class="py-3 text-sm text-ayur-brown">{{ $order->items->first() ? $order->items->first()->productSize->product->name : 'N/A' }}</td>
+                                        <td class="py-3 text-sm text-ayur-brown">₹{{ number_format($order->total_amount, 2) }}</td>
+                                        <td class="py-3">
+                                            @php
+                                                $statusClass = '';
+                                                $statusText = '';
+                                                switch ($order->status) {
+                                                    case 0:
+                                                        $statusClass = 'bg-red-500';
+                                                        $statusText = 'Pending';
+                                                        break;
+                                                    case 1:
+                                                        $statusClass = 'bg-yellow-500';
+                                                        $statusText = 'Processing';
+                                                        break;
+                                                    case 2:
+                                                        $statusClass = 'bg-blue-500';
+                                                        $statusText = 'Shipped';
+                                                        break;
+                                                    case 3:
+                                                        $statusClass = 'bg-green-500';
+                                                        $statusText = 'Completed';
+                                                        break;
+                                                    default:
+                                                        $statusClass = 'bg-gray-500';
+                                                        $statusText = 'Unknown';
+                                                }
+                                            @endphp
+                                            <span class="{{ $statusClass }} text-white text-xs px-2 py-1 rounded-full">{{ $statusText }}</span>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center py-4">No recent orders found.</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

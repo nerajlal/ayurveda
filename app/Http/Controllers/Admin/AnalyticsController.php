@@ -38,6 +38,9 @@ class AnalyticsController extends Controller
         // New Orders (Pending)
         $newOrders = Order::where('status', 0)->count();
 
+        // Recent Orders
+        $recentOrders = Order::with('user', 'items.productSize.product')->latest()->take(5)->get();
+
         return view('admin.index', compact(
             'totalRevenueCurrentMonth',
             'revenuePercentageChange',
@@ -45,7 +48,8 @@ class AnalyticsController extends Controller
             'ordersPercentageChange',
             'newCustomersCurrentMonth',
             'customersPercentageChange',
-            'newOrders'
+            'newOrders',
+            'recentOrders'
         ));
     }
 }
