@@ -31,7 +31,7 @@
             </a>
         </div>
     @else
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
             @foreach($orders as $order)
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
                     <div class="bg-ayur-cream p-4 flex justify-between items-center">
