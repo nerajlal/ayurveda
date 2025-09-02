@@ -155,6 +155,7 @@
                                                 <button class="update-price-btn text-green-600 hover:text-green-800"
                                                         data-size-id="{{ $size->id }}"
                                                         data-current-price="{{ $size->price }}"
+                                                        data-current-original-price="{{ $size->original_price }}"
                                                         data-product-name="{{ $product->name }} ({{ $size->size }})">
                                                     Price
                                                 </button>
@@ -217,9 +218,15 @@
                 <button type="button" id="closePriceModalBtn" class="text-ayur-brown hover:text-ayur-green">&times;</button>
             </div>
             <p id="priceProductName" class="mb-4"></p>
-            <div>
-                <label for="price" class="block text-ayur-green font-medium mb-2">New Price:</label>
-                <input type="number" name="price" id="price_input" class="w-full border p-2 rounded" min="0" step="0.01">
+            <div class="space-y-4">
+                <div>
+                    <label for="price" class="block text-ayur-green font-medium mb-2">New Price:</label>
+                    <input type="number" name="price" id="price_input" class="w-full border p-2 rounded" min="0" step="0.01" required>
+                </div>
+                <div>
+                    <label for="original_price" class="block text-ayur-green font-medium mb-2">Original Price (Optional):</label>
+                    <input type="number" name="original_price" id="original_price_input" class="w-full border p-2 rounded" min="0" step="0.01">
+                </div>
             </div>
             <div class="flex justify-end mt-6">
                 <button type="submit" class="bg-ayur-green text-white px-6 py-3 rounded-lg">Update Price</button>
@@ -390,11 +397,15 @@ const closePriceModalBtn = document.getElementById('closePriceModalBtn');
 const updatePriceForm = document.getElementById('updatePriceForm');
 const priceProductName = document.getElementById('priceProductName');
 const priceInput = document.getElementById('price_input');
+const originalPriceInput = document.getElementById('original_price_input');
+let activePriceButton = null;
 
 document.querySelectorAll('.update-price-btn').forEach(button => {
     button.addEventListener('click', () => {
+        activePriceButton = button; // Store the button that was clicked
         const sizeId = button.dataset.sizeId;
         const currentPrice = button.dataset.currentPrice;
+        const currentOriginalPrice = button.dataset.currentOriginalPrice;
         const productName = button.dataset.productName;
 
         let url = "{{ route('admin.product_sizes.updatePrice', ':id') }}";
@@ -403,6 +414,7 @@ document.querySelectorAll('.update-price-btn').forEach(button => {
 
         priceProductName.textContent = productName;
         priceInput.value = currentPrice;
+        originalPriceInput.value = currentOriginalPrice;
 
         updatePriceModal.classList.remove('hidden');
         updatePriceModal.classList.add('flex');
@@ -430,19 +442,35 @@ if(updatePriceForm) {
             },
             body: formData
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => { throw err; });
+            }
+            return response.json();
+        })
         .then(data => {
             if(data.success) {
-                // This is a simple way to update the UI. A more robust solution might involve finding the exact cell to update.
-                location.reload();
-            } else {
-                // Handle errors, e.g., show validation messages
-                alert(data.message || 'An error occurred.');
+                // Update the UI without reloading
+                const row = activePriceButton.closest('tr');
+                row.cells[3].textContent = '₹' + data.new_price; // Update price cell
+
+                // Update the button's data attributes
+                activePriceButton.dataset.currentPrice = data.new_price;
+                activePriceButton.dataset.currentOriginalPrice = data.new_original_price;
+
+                // Close the modal
+                updatePriceModal.classList.add('hidden');
+                updatePriceModal.classList.remove('flex');
             }
         })
         .catch(error => {
+            if (error.errors) {
+                let errorMsg = Object.values(error.errors).join('\n');
+                alert('Validation failed:\n' + errorMsg);
+            } else {
+                alert('An error occurred while updating the price.');
+            }
             console.error('Error:', error);
-            alert('An error occurred while updating the price.');
         });
     });
 }

@@ -177,12 +177,15 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'price' => 'required|numeric|min:0',
+            'original_price' => 'nullable|numeric|min:0|gte:price',
         ]);
 
-        $size->update([
-            'price' => $validated['price'],
-        ]);
+        $size->update($validated);
 
-        return response()->json(['success' => 'Price updated successfully.', 'new_price' => $size->price]);
+        return response()->json([
+            'success' => 'Price updated successfully.',
+            'new_price' => $size->price,
+            'new_original_price' => $size->original_price,
+        ]);
     }
 }
