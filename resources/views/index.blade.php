@@ -116,8 +116,10 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-col lg:flex-row items-center">
                 <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-12">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='400' viewBox='0 0 500 400'%3E%3Crect width='500' height='400' fill='%23e8e5d3'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='16' fill='%234a7c59'%3EAyurvedic Heritage%3C/text%3E%3C/svg%3E" 
-                         alt="Ayurvedic Heritage" class="w-full rounded-2xl leaf-shadow">
+                    <a href="/about">
+                        <img src="{{ asset('images/about.png') }}"
+                             alt="About AyurVeda Wellness" class="w-full rounded-2xl leaf-shadow hover-lift">
+                    </a>
                 </div>
                 <div class="lg:w-1/2">
                     <h2 class="font-playfair text-4xl font-bold text-ayur-green mb-6">
