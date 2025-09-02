@@ -148,16 +148,41 @@ class ProductController extends Controller
     /**
      * Update the stock for a specific product size.
      */
-    public function updateStock(Request $request, \App\Models\ProductSize $product_size)
+    public function updateStock(Request $request, \App\Models\ProductSize $size)
     {
         $validated = $request->validate([
             'stock_quantity' => 'required|integer|min:0',
         ]);
 
-        $product_size->update([
+        $size->update([
             'stock_quantity' => $validated['stock_quantity'],
         ]);
 
         return back()->with('success', 'Stock updated successfully.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroyVariant(\App\Models\ProductSize $size)
+    {
+        $size->delete();
+        return back()->with('success', 'Product variant deleted successfully.');
+    }
+
+    /**
+     * Update the price for a specific product size.
+     */
+    public function updatePrice(Request $request, \App\Models\ProductSize $size)
+    {
+        $validated = $request->validate([
+            'price' => 'required|numeric|min:0',
+        ]);
+
+        $size->update([
+            'price' => $validated['price'],
+        ]);
+
+        return response()->json(['success' => 'Price updated successfully.', 'new_price' => $size->price]);
     }
 }

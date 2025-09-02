@@ -144,20 +144,26 @@
                                             @endif
                                         </td>
                                         <td class="py-3">
-                                            <div class="flex items-center">
-                                                <button class="update-stock-btn text-blue-500 hover:text-blue-700 text-sm mr-2"
+                                            <div class="flex items-center text-sm">
+                                                <button class="update-stock-btn text-blue-600 hover:text-blue-800"
                                                         data-size-id="{{ $size->id }}"
                                                         data-current-stock="{{ $size->stock_quantity }}"
                                                         data-product-name="{{ $product->name }} ({{ $size->size }})">
-                                                    Update Stock
+                                                    Stock
                                                 </button>
-                                                @if ($index == 0)
-                                                    <form action="{{ route('admin.products.destroy', $product) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product? This will delete all its sizes.');" class="ml-2">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="text-red-500 hover:text-red-700 text-sm">Delete</button>
-                                                    </form>
-                                                @endif
+                                                <span class="text-gray-300 mx-1">|</span>
+                                                <button class="update-price-btn text-green-600 hover:text-green-800"
+                                                        data-size-id="{{ $size->id }}"
+                                                        data-current-price="{{ $size->price }}"
+                                                        data-product-name="{{ $product->name }} ({{ $size->size }})">
+                                                    Price
+                                                </button>
+                                                <span class="text-gray-300 mx-1">|</span>
+                                                <form action="{{ route('admin.product_sizes.destroy', $size->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this variant?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="text-red-600 hover:text-red-800">Delete</button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
@@ -195,6 +201,28 @@
             </div>
             <div class="flex justify-end mt-6">
                 <button type="submit" class="bg-ayur-green text-white px-6 py-3 rounded-lg">Update Stock</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Update Price Modal -->
+<div id="updatePriceModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full">
+        <form id="updatePriceForm" method="POST" class="p-8">
+            @csrf
+            @method('PATCH')
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="font-playfair text-2xl font-bold text-ayur-green">Update Price</h2>
+                <button type="button" id="closePriceModalBtn" class="text-ayur-brown hover:text-ayur-green">&times;</button>
+            </div>
+            <p id="priceProductName" class="mb-4"></p>
+            <div>
+                <label for="price" class="block text-ayur-green font-medium mb-2">New Price:</label>
+                <input type="number" name="price" id="price_input" class="w-full border p-2 rounded" min="0" step="0.01">
+            </div>
+            <div class="flex justify-end mt-6">
+                <button type="submit" class="bg-ayur-green text-white px-6 py-3 rounded-lg">Update Price</button>
             </div>
         </form>
     </div>
@@ -336,25 +364,88 @@ document.querySelectorAll('.update-stock-btn').forEach(button => {
         const currentStock = button.dataset.currentStock;
         const productName = button.dataset.productName;
 
-        //- Set the form action
         let url = "{{ route('admin.product_sizes.updateStock', ':id') }}";
         url = url.replace(':id', sizeId);
         updateStockForm.action = url;
 
-        //- Populate the modal
         stockProductName.textContent = productName;
         stockQuantityInput.value = currentStock;
 
-        //- Show the modal
         updateStockModal.classList.remove('hidden');
         updateStockModal.classList.add('flex');
     });
 });
 
-closeStockModalBtn.addEventListener('click', () => {
-    updateStockModal.classList.add('hidden');
-    updateStockModal.classList.remove('flex');
+if(closeStockModalBtn) {
+    closeStockModalBtn.addEventListener('click', () => {
+        updateStockModal.classList.add('hidden');
+        updateStockModal.classList.remove('flex');
+    });
+}
+
+
+// Update Price Modal Logic
+const updatePriceModal = document.getElementById('updatePriceModal');
+const closePriceModalBtn = document.getElementById('closePriceModalBtn');
+const updatePriceForm = document.getElementById('updatePriceForm');
+const priceProductName = document.getElementById('priceProductName');
+const priceInput = document.getElementById('price_input');
+
+document.querySelectorAll('.update-price-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const sizeId = button.dataset.sizeId;
+        const currentPrice = button.dataset.currentPrice;
+        const productName = button.dataset.productName;
+
+        let url = "{{ route('admin.product_sizes.updatePrice', ':id') }}";
+        url = url.replace(':id', sizeId);
+        updatePriceForm.action = url;
+
+        priceProductName.textContent = productName;
+        priceInput.value = currentPrice;
+
+        updatePriceModal.classList.remove('hidden');
+        updatePriceModal.classList.add('flex');
+    });
 });
+
+if(closePriceModalBtn) {
+    closePriceModalBtn.addEventListener('click', () => {
+        updatePriceModal.classList.add('hidden');
+        updatePriceModal.classList.remove('flex');
+    });
+}
+
+if(updatePriceForm) {
+    updatePriceForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                'Accept': 'application/json'
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success) {
+                // This is a simple way to update the UI. A more robust solution might involve finding the exact cell to update.
+                location.reload();
+            } else {
+                // Handle errors, e.g., show validation messages
+                alert(data.message || 'An error occurred.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while updating the price.');
+        });
+    });
+}
 
 </script>
 

@@ -93,7 +93,9 @@ Route::post('/admin/setting/password', [AdminSettingController::class, 'updatePa
 
 Route::post('/admin/products', [AdminProductController::class, 'store'])->name('admin.products.store');
 Route::delete('/admin/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
-Route::patch('/admin/product-sizes/{product_size}/stock', [AdminProductController::class, 'updateStock'])->name('admin.product_sizes.updateStock');
+Route::delete('/admin/product-sizes/{size}', [AdminProductController::class, 'destroyVariant'])->name('admin.product_sizes.destroy');
+Route::patch('/admin/product-sizes/{size}/price', [AdminProductController::class, 'updatePrice'])->name('admin.product_sizes.updatePrice');
+Route::patch('/admin/product-sizes/{size}/stock', [AdminProductController::class, 'updateStock'])->name('admin.product_sizes.updateStock');
 Route::patch('/admin/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
 Route::get('/admin/orders/{order}/invoice', [AdminOrderController::class, 'showInvoice'])->name('admin.orders.invoice');
 Route::delete('/admin/reviews/{review}', [AdminReviewController::class, 'destroy'])->name('admin.reviews.destroy');
