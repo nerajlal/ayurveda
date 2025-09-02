@@ -164,24 +164,24 @@
     <div class="container mx-auto px-4 py-12">
         <div class="bg-white rounded-2xl leaf-shadow overflow-hidden">
             <!-- Tab Headers -->
-            <div class="flex border-b bg-ayur-cream">
-                <button class="tab-btn px-8 py-4 font-medium text-ayur-green border-b-2 border-ayur-green bg-white" data-tab="description">Description</button>
+            <div class="flex border-b bg-ayur-cream overflow-x-auto whitespace-nowrap">
+                <button class="tab-btn flex-shrink-0 px-8 py-4 font-medium text-ayur-green border-b-2 border-ayur-green bg-white" data-tab="description">Description</button>
                 @if($product->ingredients)
-                <button class="tab-btn px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="ingredients">Ingredients</button>
+                <button class="tab-btn flex-shrink-0 px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="ingredients">Ingredients</button>
                 @endif
                 @if($product->how_to_use)
-                <button class="tab-btn px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="usage">How to Use</button>
+                <button class="tab-btn flex-shrink-0 px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="usage">How to Use</button>
                 @endif
                 @if($product->pro_tips)
-                <button class="tab-btn px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="tips">Pro Tips</button>
+                <button class="tab-btn flex-shrink-0 px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="tips">Pro Tips</button>
                 @endif
                 @if($product->suitable_for)
-                <button class="tab-btn px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="suitable">Suitable For</button>
+                <button class="tab-btn flex-shrink-0 px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="suitable">Suitable For</button>
                 @endif
                 @if($product->precautions)
-                <button class="tab-btn px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="precautions">Precautions</button>
+                <button class="tab-btn flex-shrink-0 px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="precautions">Precautions</button>
                 @endif
-                <button class="tab-btn px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="reviews">Reviews ({{ $reviewCount }})</button>
+                <button class="tab-btn flex-shrink-0 px-8 py-4 font-medium text-ayur-brown hover:text-ayur-green transition duration-300" data-tab="reviews">Reviews ({{ $reviewCount }})</button>
             </div>
             
             <!-- Tab Contents -->
