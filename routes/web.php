@@ -57,6 +57,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile/address', [ProfileController::class, 'getAddress'])->name('profile.address.get');
     Route::patch('/profile/address', [ProfileController::class, 'updateAddress'])->name('profile.address.update');
+    Route::post('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
 
     Route::post('/checkout', [OrderController::class, 'store'])->name('checkout.store');
     Route::get('/order-success/{order}', [OrderController::class, 'success'])->name('order.success');

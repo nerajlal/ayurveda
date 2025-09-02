@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 use App\Models\ShippingAddress;
 
 class ProfileController extends Controller
@@ -36,5 +38,21 @@ class ProfileController extends Controller
         );
 
         return redirect()->back()->with('success', 'Your shipping address has been updated successfully!');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $user = Auth::user();
+
+        $validated = $request->validate([
+            'current_password' => ['required', 'string', 'current_password'],
+            'new_password' => ['required', 'string', Password::defaults(), 'confirmed'],
+        ]);
+
+        $user->update([
+            'password' => Hash::make($validated['new_password']),
+        ]);
+
+        return response()->json(['message' => 'Password updated successfully.']);
     }
 }

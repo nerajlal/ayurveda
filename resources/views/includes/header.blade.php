@@ -132,7 +132,7 @@
                         <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
                             <a href="{{ route('my-orders') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Orders</a>
                             <a href="#" onclick="openAddressModal(); return false;" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Update Address</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Update Password</a>
+                            <a href="#" id="openPasswordModalBtn" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Update Password</a>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
                                 <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
@@ -509,6 +509,79 @@
                     icon.classList.add('fa-eye');
                 }
             });
+        });
+    </script>
+    @include('includes.modals.update-password')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const passwordModal = document.getElementById('updatePasswordModal');
+            const openBtn = document.getElementById('openPasswordModalBtn');
+            const closeBtn = document.getElementById('closePasswordModal');
+            const passwordForm = document.getElementById('updatePasswordForm');
+            const statusDiv = document.getElementById('password_update_status');
+
+            if (openBtn) {
+                openBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    passwordModal.classList.remove('hidden');
+                });
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function () {
+                    passwordModal.classList.add('hidden');
+                });
+            }
+
+            if (passwordForm) {
+                passwordForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    // Clear previous errors
+                    document.getElementById('current_password_error').textContent = '';
+                    document.getElementById('new_password_error').textContent = '';
+                    statusDiv.textContent = '';
+
+                    const formData = new FormData(passwordForm);
+                    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+                    fetch('{{ route('profile.password.update') }}', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken,
+                            'Accept': 'application/json',
+                        },
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.errors) {
+                            if (data.errors.current_password) {
+                                document.getElementById('current_password_error').textContent = data.errors.current_password[0];
+                            }
+                            if (data.errors.new_password) {
+                                document.getElementById('new_password_error').textContent = data.errors.new_password[0];
+                            }
+                        } else if (data.message) {
+                            statusDiv.classList.remove('text-red-500');
+                            statusDiv.classList.add('text-green-500');
+                            statusDiv.textContent = data.message;
+                            passwordForm.reset();
+                            setTimeout(() => {
+                                passwordModal.classList.add('hidden');
+                                statusDiv.textContent = '';
+                            }, 2000);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        statusDiv.classList.remove('text-green-500');
+                        statusDiv.classList.add('text-red-500');
+                        statusDiv.textContent = 'An unexpected error occurred.';
+                    });
+                });
+            }
         });
     </script>
 </body>
