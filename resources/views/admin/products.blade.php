@@ -112,45 +112,59 @@
                         </thead>
                         <tbody>
                             @forelse ($products as $product)
-                                @foreach ($product->sizes as $size)
-                                    @if(request('stock_status') === 'in_stock' && $size->stock_quantity == 0)
-                                        @continue
-                                    @endif
-                                    @if(request('stock_status') === 'out_of_stock' && $size->stock_quantity > 0)
-                                        @continue
-                                    @endif
-                                    <tr class="table-hover">
-                                        <td class="py-3 text-sm font-medium text-ayur-green">{{ $product->name }}</td>
+                                @php
+                                    $variants = $product->sizes;
+                                    $variantCount = $variants->count();
+                                @endphp
+                                @foreach ($variants as $index => $size)
+                                    <tr class="table-hover {{ $index > 0 ? 'border-t-0' : 'border-t' }}">
+                                        @if ($index == 0)
+                                            <td class="py-3 text-sm font-medium text-ayur-green align-top" rowspan="{{ $variantCount }}">
+                                                <div class="flex items-center">
+                                                    @php
+                                                        $primaryImage = $product->images->firstWhere('is_primary', true) ?? $product->images->first();
+                                                    @endphp
+                                                    <img src="{{ $primaryImage ? url('images/' . $primaryImage->image_path) : 'https://via.placeholder.com/40' }}" alt="{{ $product->name }}" class="w-10 h-10 rounded-md object-cover mr-4">
+                                                    <div>
+                                                        <p>{{ $product->name }}</p>
+                                                        <p class="text-xs text-gray-500">{{$product->category_name}}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        @endif
                                         <td class="py-3 text-sm text-ayur-brown">PROD-{{ $product->id }}-{{$size->id}}</td>
                                         <td class="py-3 text-sm text-ayur-brown">{{ $size->size }}</td>
                                         <td class="py-3 text-sm text-ayur-brown">₹{{ $size->price }}</td>
-                                        <td class="py-3 text-sm text-ayur-brown">{{ $size->stock_quantity }} in stock</td>
+                                        <td class="py-3 text-sm text-ayur-brown">{{ $size->stock_quantity }}</td>
                                         <td class="py-3">
                                             @if ($size->stock_quantity == 0)
-                                                <span class="text-xs px-2 py-1 rounded-full bg-red-500 text-white">Out of Stock</span>
+                                                <span class="text-xs px-2 py-1 rounded-full bg-red-100 text-red-700">Out of Stock</span>
                                             @else
-                                                <span class="text-xs px-2 py-1 rounded-full bg-green-500 text-white">In Stock</span>
+                                                <span class="text-xs px-2 py-1 rounded-full bg-green-100 text-green-700">In Stock</span>
                                             @endif
                                         </td>
-                                        <td class="py-3 flex items-center">
-                                            <!-- <button class="text-ayur-green hover:text-ayur-dark text-sm mr-2">Edit</button> -->
-                                            <button class="update-stock-btn text-blue-500 hover:text-blue-700 text-sm mr-2"
-                                                    data-size-id="{{ $size->id }}"
-                                                    data-current-stock="{{ $size->stock_quantity }}"
-                                                    data-product-name="{{ $product->name }} ({{ $size->size }})">
-                                                Update Stock
-                                            </button>
-                                            <form action="{{ route('admin.products.destroy', $product) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product? This will delete all its sizes.');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="text-red-500 hover:text-red-700 text-sm">Delete</button>
-                                            </form>
+                                        <td class="py-3">
+                                            <div class="flex items-center">
+                                                <button class="update-stock-btn text-blue-500 hover:text-blue-700 text-sm mr-2"
+                                                        data-size-id="{{ $size->id }}"
+                                                        data-current-stock="{{ $size->stock_quantity }}"
+                                                        data-product-name="{{ $product->name }} ({{ $size->size }})">
+                                                    Update Stock
+                                                </button>
+                                                @if ($index == 0)
+                                                    <form action="{{ route('admin.products.destroy', $product) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product? This will delete all its sizes.');" class="ml-2">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="text-red-500 hover:text-red-700 text-sm">Delete</button>
+                                                    </form>
+                                                @endif
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
                             @empty
                                 <tr>
-                                    <td colspan="7" class="text-center py-4 text-ayur-brown">No products found.</td>
+                                    <td colspan="7" class="text-center py-4 text-ayur-brown">No products found matching your criteria.</td>
                                 </tr>
                             @endforelse
                         </tbody>
