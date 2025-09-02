@@ -10,16 +10,16 @@
             <p class="text-xl text-ayur-brown mb-8 max-w-3xl mx-auto leading-relaxed">
                 Rooted in ancient wisdom, committed to modern wellness. Discover how we're bridging 5000 years of Ayurvedic tradition with contemporary health needs.
             </p>
-            <div class="flex justify-center space-x-8 text-center">
-                <div class="bg-white bg-opacity-70 px-6 py-4 rounded-xl">
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-8 text-center">
+                <div class="bg-white bg-opacity-70 px-6 py-4 rounded-xl w-48">
                     <div class="text-3xl font-bold text-ayur-green">25+</div>
                     <div class="text-ayur-brown text-sm">Years of Excellence</div>
                 </div>
-                <div class="bg-white bg-opacity-70 px-6 py-4 rounded-xl">
+                <div class="bg-white bg-opacity-70 px-6 py-4 rounded-xl w-48">
                     <div class="text-3xl font-bold text-ayur-green">5000+</div>
                     <div class="text-ayur-brown text-sm">Happy Customers</div>
                 </div>
-                <div class="bg-white bg-opacity-70 px-6 py-4 rounded-xl">
+                <div class="bg-white bg-opacity-70 px-6 py-4 rounded-xl w-48">
                     <div class="text-3xl font-bold text-ayur-green">100+</div>
                     <div class="text-ayur-brown text-sm">Premium Products</div>
                 </div>
