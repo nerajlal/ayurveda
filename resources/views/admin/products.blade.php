@@ -126,8 +126,9 @@
                                                     @endphp
                                                     <img src="{{ $primaryImage ? url('images/' . $primaryImage->image_path) : 'https://via.placeholder.com/40' }}" alt="{{ $product->name }}" class="w-10 h-10 rounded-md object-cover mr-4">
                                                     <div>
-                                                        <p>{{ $product->name }}</p>
+                                                        <p class="font-semibold">{{ $product->name }}</p>
                                                         <p class="text-xs text-gray-500">{{$product->category_name}}</p>
+                                                        <button class="add-variant-btn text-xs text-blue-500 hover:underline mt-2" data-product-id="{{ $product->id }}" data-product-name="{{ $product->name }}">+ Add Variant</button>
                                                     </div>
                                                 </div>
                                             </td>
@@ -202,6 +203,41 @@
             </div>
             <div class="flex justify-end mt-6">
                 <button type="submit" class="bg-ayur-green text-white px-6 py-3 rounded-lg">Update Stock</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Add Variant Modal -->
+<div id="addVariantModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full">
+        <form id="addVariantForm" method="POST" class="p-8">
+            @csrf
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="font-playfair text-2xl font-bold text-ayur-green">Add New Variant</h2>
+                <button type="button" id="closeVariantModalBtn" class="text-ayur-brown hover:text-ayur-green">&times;</button>
+            </div>
+            <p id="variantProductName" class="mb-4 font-semibold"></p>
+            <div class="space-y-4">
+                <div>
+                    <label for="size" class="block text-ayur-green font-medium mb-2">Size (e.g., 100ml, 50g)</label>
+                    <input type="text" name="size" class="w-full border p-2 rounded" required>
+                </div>
+                <div>
+                    <label for="price" class="block text-ayur-green font-medium mb-2">Price</label>
+                    <input type="number" name="price" class="w-full border p-2 rounded" min="0" step="0.01" required>
+                </div>
+                <div>
+                    <label for="original_price" class="block text-ayur-green font-medium mb-2">Original Price (Optional)</label>
+                    <input type="number" name="original_price" class="w-full border p-2 rounded" min="0" step="0.01">
+                </div>
+                <div>
+                    <label for="stock_quantity" class="block text-ayur-green font-medium mb-2">Stock Quantity</label>
+                    <input type="number" name="stock_quantity" class="w-full border p-2 rounded" min="0" required>
+                </div>
+            </div>
+            <div class="flex justify-end mt-6">
+                <button type="submit" class="bg-ayur-green text-white px-6 py-3 rounded-lg">Add Variant</button>
             </div>
         </form>
     </div>
@@ -472,6 +508,35 @@ if(updatePriceForm) {
             }
             console.error('Error:', error);
         });
+    });
+}
+
+
+// Add Variant Modal Logic
+const addVariantModal = document.getElementById('addVariantModal');
+const closeVariantModalBtn = document.getElementById('closeVariantModalBtn');
+const addVariantForm = document.getElementById('addVariantForm');
+const variantProductName = document.getElementById('variantProductName');
+
+document.querySelectorAll('.add-variant-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const productId = button.dataset.productId;
+        const productName = button.dataset.productName;
+
+        let url = "{{ route('admin.products.variants.add', ':id') }}";
+        url = url.replace(':id', productId);
+        addVariantForm.action = url;
+
+        variantProductName.textContent = `For product: ${productName}`;
+        addVariantModal.classList.remove('hidden');
+        addVariantModal.classList.add('flex');
+    });
+});
+
+if(closeVariantModalBtn) {
+    closeVariantModalBtn.addEventListener('click', () => {
+        addVariantModal.classList.add('hidden');
+        addVariantModal.classList.remove('flex');
     });
 }
 

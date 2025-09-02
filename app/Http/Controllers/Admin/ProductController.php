@@ -188,4 +188,21 @@ class ProductController extends Controller
             'new_original_price' => $size->original_price,
         ]);
     }
+
+    /**
+     * Add a new variant (size) to an existing product.
+     */
+    public function addVariant(Request $request, Product $product)
+    {
+        $validated = $request->validate([
+            'size' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'original_price' => 'nullable|numeric|min:0|gte:price',
+            'stock_quantity' => 'required|integer|min:0',
+        ]);
+
+        $product->sizes()->create($validated);
+
+        return back()->with('success', 'New variant added successfully.');
+    }
 }

@@ -92,6 +92,7 @@ Route::get('/admin/reviews', [AdminReviewController::class, 'index'])->name('adm
 Route::post('/admin/setting/password', [AdminSettingController::class, 'updatePassword'])->name('admin.setting.password');
 
 Route::post('/admin/products', [AdminProductController::class, 'store'])->name('admin.products.store');
+Route::post('/admin/products/{product}/variants', [AdminProductController::class, 'addVariant'])->name('admin.products.variants.add');
 Route::delete('/admin/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
 Route::delete('/admin/product-sizes/{size}', [AdminProductController::class, 'destroyVariant'])->name('admin.product_sizes.destroy');
 Route::patch('/admin/product-sizes/{size}/price', [AdminProductController::class, 'updatePrice'])->name('admin.product_sizes.updatePrice');
